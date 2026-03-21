@@ -137,9 +137,9 @@ CREATE TABLE public.analytics_daily_summary (
   date DATE NOT NULL,
   stage TEXT NOT NULL,
   count INTEGER DEFAULT 0,
-  device_type TEXT,
+  device_type TEXT NOT NULL DEFAULT '',
   top_referrers JSONB,
-  PRIMARY KEY (date, stage, COALESCE(device_type, ''))
+  PRIMARY KEY (date, stage, device_type)
 );
 
 -- =============================================================================
