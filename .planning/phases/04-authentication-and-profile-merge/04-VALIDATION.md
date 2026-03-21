@@ -38,14 +38,10 @@ created: 2026-03-21
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 04-01-01 | 01 | 1 | AUTH-01 | unit | `npx vitest run src/components/auth/__tests__/account-wall-modal.test.ts -x` | -- Wave 0 | pending |
-| 04-01-02 | 01 | 1 | AUTH-02 | unit | `npx vitest run src/app/actions/__tests__/auth.test.ts -x` | -- Wave 0 | pending |
-| 04-01-03 | 01 | 1 | AUTH-03 | unit | `npx vitest run src/app/actions/__tests__/auth.test.ts -x` | -- Wave 0 | pending |
-| 04-01-04 | 01 | 1 | AUTH-04 | unit | `npx vitest run src/components/auth/__tests__/account-wall-modal.test.ts -x` | -- Wave 0 | pending |
-| 04-02-01 | 02 | 1 | AUTH-05 | unit | `npx vitest run src/app/actions/__tests__/auth.test.ts -x` | -- Wave 0 | pending |
-| 04-02-02 | 02 | 1 | AUTH-06 | unit | `npx vitest run src/app/actions/__tests__/auth.test.ts -x` | -- Wave 0 | pending |
-| 04-03-01 | 03 | 2 | AUTH-07 | unit | `npx vitest run src/app/actions/__tests__/saved-grants.test.ts -x` | -- Wave 0 | pending |
-| 04-03-02 | 03 | 2 | GEN-04 | unit | `npx vitest run src/app/privacy/__tests__/page.test.ts -x` | -- Wave 0 | pending |
+| 04-01-T2 | 01 | 1 | AUTH-02, AUTH-03, AUTH-05, AUTH-06 | unit | `npx vitest run src/app/actions/__tests__/auth.test.ts -x` | -- Wave 0 | pending |
+| 04-01-T3 | 01 | 1 | AUTH-07 | unit | `npx vitest run src/app/actions/__tests__/saved-grants.test.ts -x` | -- Wave 0 | pending |
+| 04-02-T1 | 02 | 2 | AUTH-01, AUTH-04 | unit | `npx vitest run src/components/auth/__tests__/account-wall-modal.test.ts -x` | -- Wave 0 | pending |
+| 04-03-T1 | 03 | 1 | GEN-04 | unit | `npx vitest run src/app/privacy/__tests__/page.test.ts -x` | -- Wave 0 | pending |
 
 *Status: pending / green / red / flaky*
 
