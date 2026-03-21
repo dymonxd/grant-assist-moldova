@@ -6,6 +6,7 @@ import { SectionEditor } from './section-editor'
 import { ProgressBar } from '@/components/writer/progress-bar'
 import { DocumentChecklist } from '@/components/writer/document-checklist'
 import { saveSection } from '@/app/actions/writer'
+import { trackEvent } from '@/app/actions/analytics'
 
 /**
  * Writer client orchestrator.
@@ -143,6 +144,11 @@ export function WriterClient({
       return next
     })
   }
+
+  // Track writer_started analytics event on mount (fire-and-forget)
+  useEffect(() => {
+    trackEvent({ eventType: 'writer_started' })
+  }, [])
 
   // WRITE-02: Auto-preview section 1 on first visit
   useEffect(() => {
