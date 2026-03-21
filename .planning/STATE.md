@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Completed 05-01-PLAN.md (writer backend server actions and AI streaming route)
-last_updated: "2026-03-21T22:25:00Z"
-last_activity: 2026-03-21 -- Completed 05-01-PLAN.md (writer backend with AI streaming)
+stopped_at: Completed 05-02-PLAN.md (writer page UI with section editors and streaming)
+last_updated: "2026-03-21T22:34:00Z"
+last_activity: 2026-03-21 -- Completed 05-02-PLAN.md (writer page UI)
 progress:
   total_phases: 6
   completed_phases: 4
   total_plans: 18
-  completed_plans: 15
-  percent: 83
+  completed_plans: 16
+  percent: 89
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 5 in progress -- Plan 01 complete (writer backend). Plans 02-04 remaining (writer UI, export, analytics).
+**Current focus:** Phase 5 in progress -- Plans 01-02 complete (writer backend + UI). Plans 03-04 remaining (export, analytics).
 
 ## Current Position
 
 Phase: 5 of 6 (AI Grant Writer and Export) -- IN PROGRESS
-Plan: 1 of 4 in current phase (1 complete, 3 remaining)
-Status: Phase 5 started; WRITE-01/02/04/05/07/12/13 implemented in Plan 01
-Last activity: 2026-03-21 -- Completed 05-01-PLAN.md (writer backend with AI streaming)
+Plan: 2 of 4 in current phase (2 complete, 2 remaining)
+Status: Phase 5 progressing; Plans 01-02 done, WRITE-01/02/03/04/05/06/07/08/09/10/11/12/13 implemented
+Last activity: 2026-03-21 -- Completed 05-02-PLAN.md (writer page UI)
 
-Progress: [████████░░] 83% (Phases 1-4 complete, Phase 5: 1/4 plans)
+Progress: [█████████░] 89% (Phases 1-4 complete, Phase 5: 2/4 plans)
 
 ## Performance Metrics
 
@@ -63,6 +63,7 @@ Progress: [████████░░] 83% (Phases 1-4 complete, Phase 5: 1/
 | Phase 04 P01 | 3min | 3 tasks | 7 files |
 | Phase 04 P02 | 6min | 2 tasks | 15 files |
 | Phase 05 P01 | 5min | 2 tasks | 6 files |
+| Phase 05 P02 | 5min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -124,6 +125,10 @@ Recent decisions affecting current work:
 - [05-01]: buildLeanProfile duplicated in generate-section.ts (not imported from rank-grants.ts) for module independence
 - [05-01]: checkDeadline is a pure synchronous function for easy testing and reuse in page.tsx
 - [05-01]: Streaming Route Handler pattern (streamText + toTextStreamResponse) for non-conversational AI generation
+- [05-02]: Div-based progress bar instead of shadcn Progress to avoid unnecessary base-ui dependency
+- [05-02]: fetch + ReadableStream reader for streaming (not @ai-sdk/react) -- no new dependency, full control over streaming UX
+- [05-02]: Section auto-preview uses useEffect with AbortController and previewTriggered flag to prevent Strict Mode double-fire
+- [05-02]: DocumentChecklist state managed by parent WriterClient for persistence flexibility
 
 ### Pending Todos
 
@@ -138,6 +143,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T22:25:00Z
-Stopped at: Completed 05-01-PLAN.md (writer backend server actions and AI streaming route)
+Last session: 2026-03-21T22:34:00Z
+Stopped at: Completed 05-02-PLAN.md (writer page UI with section editors and streaming)
 Resume file: None
