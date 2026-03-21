@@ -165,25 +165,108 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FNDTN-01 through FNDTN-07 | Phase 1 | Pending |
-| PROF-01 through PROF-06 | Phase 2 | Pending |
-| PURCH-01 through PURCH-03 | Phase 2 | Pending |
-| MATCH-01 through MATCH-08 | Phase 3 | Pending |
-| AUTH-01 through AUTH-07 | Phase 4 | Pending |
-| WRITE-01 through WRITE-13 | Phase 5 | Pending |
-| EXPRT-01 through EXPRT-06 | Phase 5 | Pending |
-| BRWSE-01 through BRWSE-04 | Phase 3 | Pending |
-| ADMIN-01 through ADMIN-06 | Phase 6 | Pending |
-| AGRANT-01 through AGRANT-10 | Phase 6 | Pending |
-| ANOTIF-01 through ANOTIF-03 | Phase 6 | Pending |
-| AUTO-01 through AUTO-07 | Phase 6 | Pending |
-| GEN-01 through GEN-06 | Phase 1-6 | Pending |
+| FNDTN-01 | Phase 1 | Pending |
+| FNDTN-02 | Phase 1 | Pending |
+| FNDTN-03 | Phase 1 | Pending |
+| FNDTN-04 | Phase 1 | Pending |
+| FNDTN-05 | Phase 1 | Pending |
+| FNDTN-06 | Phase 1 | Pending |
+| FNDTN-07 | Phase 1 | Pending |
+| GEN-01 | Phase 1 | Pending |
+| GEN-02 | Phase 1 | Pending |
+| GEN-03 | Phase 1 | Pending |
+| PROF-01 | Phase 2 | Pending |
+| PROF-02 | Phase 2 | Pending |
+| PROF-03 | Phase 2 | Pending |
+| PROF-04 | Phase 2 | Pending |
+| PROF-05 | Phase 2 | Pending |
+| PROF-06 | Phase 2 | Pending |
+| PURCH-01 | Phase 2 | Pending |
+| PURCH-02 | Phase 2 | Pending |
+| PURCH-03 | Phase 2 | Pending |
+| BRWSE-01 | Phase 2 | Pending |
+| BRWSE-02 | Phase 2 | Pending |
+| BRWSE-03 | Phase 2 | Pending |
+| BRWSE-04 | Phase 2 | Pending |
+| MATCH-01 | Phase 3 | Pending |
+| MATCH-02 | Phase 3 | Pending |
+| MATCH-03 | Phase 3 | Pending |
+| MATCH-04 | Phase 3 | Pending |
+| MATCH-05 | Phase 3 | Pending |
+| MATCH-06 | Phase 3 | Pending |
+| MATCH-07 | Phase 3 | Pending |
+| MATCH-08 | Phase 3 | Pending |
+| AUTH-01 | Phase 4 | Pending |
+| AUTH-02 | Phase 4 | Pending |
+| AUTH-03 | Phase 4 | Pending |
+| AUTH-04 | Phase 4 | Pending |
+| AUTH-05 | Phase 4 | Pending |
+| AUTH-06 | Phase 4 | Pending |
+| AUTH-07 | Phase 4 | Pending |
+| GEN-04 | Phase 4 | Pending |
+| WRITE-01 | Phase 5 | Pending |
+| WRITE-02 | Phase 5 | Pending |
+| WRITE-03 | Phase 5 | Pending |
+| WRITE-04 | Phase 5 | Pending |
+| WRITE-05 | Phase 5 | Pending |
+| WRITE-06 | Phase 5 | Pending |
+| WRITE-07 | Phase 5 | Pending |
+| WRITE-08 | Phase 5 | Pending |
+| WRITE-09 | Phase 5 | Pending |
+| WRITE-10 | Phase 5 | Pending |
+| WRITE-11 | Phase 5 | Pending |
+| WRITE-12 | Phase 5 | Pending |
+| WRITE-13 | Phase 5 | Pending |
+| EXPRT-01 | Phase 5 | Pending |
+| EXPRT-02 | Phase 5 | Pending |
+| EXPRT-03 | Phase 5 | Pending |
+| EXPRT-04 | Phase 5 | Pending |
+| EXPRT-05 | Phase 5 | Pending |
+| EXPRT-06 | Phase 5 | Pending |
+| GEN-05 | Phase 5 | Pending |
+| GEN-06 | Phase 5 | Pending |
+| ADMIN-01 | Phase 6 | Pending |
+| ADMIN-02 | Phase 6 | Pending |
+| ADMIN-03 | Phase 6 | Pending |
+| ADMIN-04 | Phase 6 | Pending |
+| ADMIN-05 | Phase 6 | Pending |
+| ADMIN-06 | Phase 6 | Pending |
+| AGRANT-01 | Phase 6 | Pending |
+| AGRANT-02 | Phase 6 | Pending |
+| AGRANT-03 | Phase 6 | Pending |
+| AGRANT-04 | Phase 6 | Pending |
+| AGRANT-05 | Phase 6 | Pending |
+| AGRANT-06 | Phase 6 | Pending |
+| AGRANT-07 | Phase 6 | Pending |
+| AGRANT-08 | Phase 6 | Pending |
+| AGRANT-09 | Phase 6 | Pending |
+| AGRANT-10 | Phase 6 | Pending |
+| ANOTIF-01 | Phase 6 | Pending |
+| ANOTIF-02 | Phase 6 | Pending |
+| ANOTIF-03 | Phase 6 | Pending |
+| AUTO-01 | Phase 6 | Pending |
+| AUTO-02 | Phase 6 | Pending |
+| AUTO-03 | Phase 6 | Pending |
+| AUTO-04 | Phase 6 | Pending |
+| AUTO-05 | Phase 6 | Pending |
+| AUTO-06 | Phase 6 | Pending |
+| AUTO-07 | Phase 6 | Pending |
 
 **Coverage:**
-- v1 requirements: 81 total
-- Mapped to phases: 81
-- Unmapped: 0 ✓
+- v1 requirements: 86 total
+- Mapped to phases: 86
+- Unmapped: 0
+
+| Phase | Requirement Count |
+|-------|-------------------|
+| Phase 1: Foundation and Validation | 10 |
+| Phase 2: Data Layer and Company Profiles | 13 |
+| Phase 3: Grant Matching | 8 |
+| Phase 4: Authentication and Profile Merge | 8 |
+| Phase 5: AI Grant Writer and Export | 21 |
+| Phase 6: Admin Tooling and Automation | 26 |
+| **Total** | **86** |
 
 ---
 *Requirements defined: 2026-03-21*
-*Last updated: 2026-03-21 after initial definition*
+*Last updated: 2026-03-21 after roadmap creation*
