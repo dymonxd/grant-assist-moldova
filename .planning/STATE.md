@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in_progress
-stopped_at: Completed 05-04-PLAN.md (settings page and analytics tracking)
-last_updated: "2026-03-21T22:40:40Z"
+status: completed
+stopped_at: Completed 05-03-PLAN.md (export functionality with PDF, email, clipboard)
+last_updated: "2026-03-21T22:46:06.262Z"
 last_activity: 2026-03-21 -- Completed 05-04-PLAN.md (settings & analytics)
 progress:
   total_phases: 6
@@ -64,6 +64,7 @@ Progress: [██████████] 100% (Phases 1-5 complete, Phase 6 re
 | Phase 04 P02 | 6min | 2 tasks | 15 files |
 | Phase 05 P01 | 5min | 2 tasks | 6 files |
 | Phase 05 P02 | 5min | 2 tasks | 10 files |
+| Phase 05 P03 | 6min | 2 tasks | 10 files |
 | Phase 05 P04 | 3min | 2 tasks | 8 files |
 
 ## Accumulated Context
@@ -130,6 +131,10 @@ Recent decisions affecting current work:
 - [05-02]: fetch + ReadableStream reader for streaming (not @ai-sdk/react) -- no new dependency, full control over streaming UX
 - [05-02]: Section auto-preview uses useEffect with AbortController and previewTriggered flag to prevent Strict Mode double-fire
 - [05-02]: DocumentChecklist state managed by parent WriterClient for persistence flexibility
+- [05-03]: Class-based MockResend in tests -- Vitest 4 constructor mocks require class syntax
+- [05-03]: ExportBar uses fire-and-forget trackEvent calls -- analytics never blocks export UX
+- [05-03]: page.tsx fetches auth via createClient + getUser for isAuthenticated prop (separate from session)
+- [05-03]: Font.register with Geist Sans from node_modules for PDF Romanian diacritics
 - [05-04]: Checkbox uses base-ui onCheckedChange with useTransition for non-blocking toggle
 - [05-04]: Analytics fire-and-forget: trackEvent called without await in useEffect to avoid blocking UX
 - [05-04]: Session ID for analytics falls back to 'anonymous' when no companyProfileId in iron-session
@@ -143,10 +148,10 @@ None yet.
 - [RESOLVED - Phase 1]: PDF generation strategy validated on Vercel. @react-pdf/renderer works, needs custom font for ă/ș/ț.
 - [Phase 2]: Moldovan registry scraping reliability unknown until live testing
 - [Phase 5]: Romanian AI output quality requires native speaker validation
-- [Phase 5]: PDF diacritics fix (Font.register with Romanian font) must be implemented in EXPRT-02
+- [RESOLVED - Phase 5 Plan 03]: PDF diacritics fixed -- Font.register with Geist Sans Regular/Bold from node_modules
 
 ## Session Continuity
 
-Last session: 2026-03-21T22:40:40Z
-Stopped at: Completed 05-04-PLAN.md (settings page and analytics tracking)
+Last session: 2026-03-21T22:46:06.260Z
+Stopped at: Completed 05-03-PLAN.md (export functionality with PDF, email, clipboard)
 Resume file: None

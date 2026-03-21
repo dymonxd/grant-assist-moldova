@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog (completed 2026-03-21)
 - [x] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links (completed 2026-03-21)
 - [x] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants (completed 2026-03-21)
-- [ ] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export
+- [x] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export (completed 2026-03-21)
 - [ ] **Phase 6: Admin Tooling and Automation** - Admin dashboard, grant CRUD with PDF extraction wizard, cron jobs, email notifications
 
 ## Phase Details
@@ -139,5 +139,5 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
-| 5. AI Grant Writer and Export | 3/4 | In Progress|  |
+| 5. AI Grant Writer and Export | 4/4 | Complete   | 2026-03-21 |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |

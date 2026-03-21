@@ -69,12 +69,12 @@
 
 ### Export (EXPRT)
 
-- [ ] **EXPRT-01**: "Copiaza tot" copies all sections to clipboard
-- [ ] **EXPRT-02**: "Descarca PDF" generates and downloads PDF with all sections
-- [ ] **EXPRT-03**: "Trimite pe email" sends formatted application via Resend
-- [ ] **EXPRT-04**: Unauthenticated users see account modal for PDF/email (copy works without account)
-- [ ] **EXPRT-05**: Deadline reminder opt-in: "Notifica-ma cu 7 zile si 3 zile inainte"
-- [ ] **EXPRT-06**: Required documents checklist with completion status shown
+- [x] **EXPRT-01**: "Copiaza tot" copies all sections to clipboard
+- [x] **EXPRT-02**: "Descarca PDF" generates and downloads PDF with all sections
+- [x] **EXPRT-03**: "Trimite pe email" sends formatted application via Resend
+- [x] **EXPRT-04**: Unauthenticated users see account modal for PDF/email (copy works without account)
+- [x] **EXPRT-05**: Deadline reminder opt-in: "Notifica-ma cu 7 zile si 3 zile inainte"
+- [x] **EXPRT-06**: Required documents checklist with completion status shown
 
 ### Grant Browse (BRWSE)
 
@@ -217,12 +217,12 @@
 | WRITE-11 | Phase 5 | Complete |
 | WRITE-12 | Phase 5 | Complete |
 | WRITE-13 | Phase 5 | Complete |
-| EXPRT-01 | Phase 5 | Pending |
-| EXPRT-02 | Phase 5 | Pending |
-| EXPRT-03 | Phase 5 | Pending |
-| EXPRT-04 | Phase 5 | Pending |
-| EXPRT-05 | Phase 5 | Pending |
-| EXPRT-06 | Phase 5 | Pending |
+| EXPRT-01 | Phase 5 | Complete |
+| EXPRT-02 | Phase 5 | Complete |
+| EXPRT-03 | Phase 5 | Complete |
+| EXPRT-04 | Phase 5 | Complete |
+| EXPRT-05 | Phase 5 | Complete |
+| EXPRT-06 | Phase 5 | Complete |
 | GEN-05 | Phase 5 | Complete |
 | GEN-06 | Phase 5 | Complete |
 | ADMIN-01 | Phase 6 | Pending |
