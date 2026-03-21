@@ -48,12 +48,13 @@ Plans:
   3. User who gets zero data from all three registries sees a manual entry form and can fill in company details by hand
   4. User can select a purchase need via quick-select chips or type a custom need, with chips pre-filling the text field
   5. User can visit /grants/browse without logging in and search, filter (by provider, funding, deadline), and see grant cards with name, provider, funding, deadline, and description
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md -- Vitest setup, shared types, IDNO validation, three Cheerio scrapers, aggregate orchestrator with confidence merge
+- [ ] 02-02-PLAN.md -- AI inference module, Server Actions (lookupCompany, inferFromIdea, saveManualProfile, savePurchaseNeed)
+- [ ] 02-03-PLAN.md -- Landing page UI: IDNO form, idea form, profile result, manual fallback, purchase chips, step flow
+- [ ] 02-04-PLAN.md -- Public grant browse page with search, filters, and grant cards
 
 ### Phase 3: Grant Matching
 **Goal**: Users receive personalized grant recommendations ranked by AI with match scores, explanations, and strategic advice -- the primary conversion point where users see the value of the platform and decide to apply.
@@ -134,7 +135,7 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
-| 2. Data Layer and Company Profiles | 0/3 | Not started | - |
+| 2. Data Layer and Company Profiles | 0/4 | Not started | - |
 | 3. Grant Matching | 0/3 | Not started | - |
 | 4. Authentication and Profile Merge | 0/3 | Not started | - |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |
