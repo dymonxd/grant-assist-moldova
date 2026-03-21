@@ -66,12 +66,13 @@ Plans:
   3. Grants below 50% match threshold show AI suggestions for what the user could change to become eligible
   4. User can click "Share" and get a /results/{token} link that anyone can view for 30 days without authentication
   5. User sees their company profile in a sidebar (desktop) or collapsible panel (mobile) with an edit link, and each grant card has "Aplica acum" and "Salveaza" action buttons
-**Plans**: 3 plans
+**Plans**: 4 plans
 
 Plans:
 - [ ] 03-01-PLAN.md -- Matching types, rule-based pre-filter, AI ranking with structured output, matchGrants server action
-- [ ] 03-02-PLAN.md -- Results UI components (hero card, match card, profile sidebar), results pages, share action, landing flow redirect
-- [ ] 03-03-PLAN.md -- End-to-end verification checkpoint: full flow test and human visual review
+- [ ] 03-02-PLAN.md -- Results UI components with TDD (hero card, match card, profile sidebar, score badge, match list, results layout)
+- [ ] 03-03-PLAN.md -- Results pages, share action, landing flow redirect
+- [ ] 03-04-PLAN.md -- End-to-end verification checkpoint: full flow test and human visual review
 
 ### Phase 4: Authentication and Profile Merge
 **Goal**: Users can create accounts and have their anonymous work preserved seamlessly -- the zero-friction-to-commitment transition where signing up feels like gaining features, not losing progress.
@@ -136,7 +137,7 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 |-------|----------------|--------|-----------|
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
-| 3. Grant Matching | 0/3 | Not started | - |
+| 3. Grant Matching | 0/4 | Not started | - |
 | 4. Authentication and Profile Merge | 0/3 | Not started | - |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |
