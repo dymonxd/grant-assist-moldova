@@ -84,12 +84,12 @@ Plans:
   3. User who signs up from the grant writer is redirected back to the exact grant writer page they came from (not the homepage)
   4. Authenticated user can save/bookmark grants and see them in a saved grants list
   5. Privacy policy page is accessible in Romanian at /privacy
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
+- [ ] 04-01-PLAN.md -- shadcn component install + auth server actions (signup with profile merge, signIn, signOut) + saved grants server actions
+- [ ] 04-02-PLAN.md -- Account wall modal, signup form, save button, auth-aware grant card wiring
+- [ ] 04-03-PLAN.md -- Privacy policy page in Romanian at /privacy
 
 ### Phase 5: AI Grant Writer and Export
 **Goal**: Users can write complete, rubric-optimized grant applications section by section with AI assistance in Romanian, and export their finished applications as PDF, clipboard copy, or email -- the core value delivery where days of grant writing become minutes.
