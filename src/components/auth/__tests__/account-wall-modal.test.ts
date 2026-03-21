@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { render, screen, cleanup, within } from '@testing-library/react'
 import { createElement } from 'react'
 
 // Mock server action and navigation
@@ -23,8 +23,8 @@ vi.mock('next/link', () => ({
 }))
 
 describe('AccountWallModal', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+  afterEach(() => {
+    cleanup()
   })
 
   it('renders dialog with title when open=true', async () => {
@@ -50,7 +50,6 @@ describe('AccountWallModal', () => {
         grantId: 'test-grant-123',
       })
     )
-    // The hidden input should have the redirect URL
     const hidden = document.querySelector(
       'input[name="redirectTo"]'
     ) as HTMLInputElement
@@ -88,43 +87,39 @@ describe('AccountWallModal', () => {
 })
 
 describe('SignupForm', () => {
-  beforeEach(() => {
-    vi.clearAllMocks()
+  afterEach(() => {
+    cleanup()
   })
 
   it('renders all required form fields', async () => {
     const { SignupForm } = await import('../signup-form')
-    render(
+    const { container } = render(
       createElement(SignupForm, {
         redirectTo: '/grants/test-grant-123',
       })
     )
 
-    // Name field
-    expect(document.querySelector('input[name="name"]')).not.toBeNull()
-    // Email field
+    expect(container.querySelector('input[name="name"]')).not.toBeNull()
     expect(
-      document.querySelector('input[name="email"][type="email"]')
+      container.querySelector('input[name="email"][type="email"]')
     ).not.toBeNull()
-    // Phone field
     expect(
-      document.querySelector('input[name="phone"][type="tel"]')
+      container.querySelector('input[name="phone"][type="tel"]')
     ).not.toBeNull()
-    // Password field
     expect(
-      document.querySelector('input[name="password"][type="password"]')
+      container.querySelector('input[name="password"][type="password"]')
     ).not.toBeNull()
   })
 
   it('renders hidden redirectTo input with provided value', async () => {
     const { SignupForm } = await import('../signup-form')
-    render(
+    const { container } = render(
       createElement(SignupForm, {
         redirectTo: '/grants/test-grant-123',
       })
     )
 
-    const hidden = document.querySelector(
+    const hidden = container.querySelector(
       'input[name="redirectTo"]'
     ) as HTMLInputElement
     expect(hidden).not.toBeNull()
@@ -134,25 +129,27 @@ describe('SignupForm', () => {
 
   it('renders notifications checkbox', async () => {
     const { SignupForm } = await import('../signup-form')
-    render(
+    const { container } = render(
       createElement(SignupForm, {
         redirectTo: '/grants/test-grant-123',
       })
     )
 
+    const scope = within(container)
     expect(
-      screen.getByText(/Doresc sa primesc notificari/i)
+      scope.getByText(/Doresc sa primesc notificari/i)
     ).toBeDefined()
   })
 
   it('renders submit button with "Creaza cont"', async () => {
     const { SignupForm } = await import('../signup-form')
-    render(
+    const { container } = render(
       createElement(SignupForm, {
         redirectTo: '/grants/test-grant-123',
       })
     )
 
-    expect(screen.getByText('Creaza cont')).toBeDefined()
+    const scope = within(container)
+    expect(scope.getByText('Creaza cont')).toBeDefined()
   })
 })
