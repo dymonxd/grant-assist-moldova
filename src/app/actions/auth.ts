@@ -6,13 +6,20 @@ import { getSession } from '@/lib/session'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
-export async function signup(formData: FormData) {
+export type AuthState = { error: string } | null
+
+function sanitizeRedirect(url: string | null): string {
+  if (!url || !url.startsWith('/') || url.startsWith('//')) return '/'
+  return url
+}
+
+export async function signup(_prevState: AuthState, formData: FormData) {
   const name = (formData.get('name') as string | null)?.trim() ?? ''
   const email = (formData.get('email') as string | null)?.trim() ?? ''
   const phone = (formData.get('phone') as string | null)?.trim() ?? ''
   const password = (formData.get('password') as string | null) ?? ''
   const notifications = formData.get('notifications')
-  const redirectTo = (formData.get('redirectTo') as string | null) ?? '/'
+  const redirectTo = sanitizeRedirect(formData.get('redirectTo') as string | null)
 
   // Validation
   if (!name || name.length < 2) {
@@ -47,34 +54,39 @@ export async function signup(formData: FormData) {
     const admin = createAdminClient()
 
     // Claim the anonymous company profile for this user
-    await admin.rpc('claim_company_profile', {
+    const { error: claimError } = await admin.rpc('claim_company_profile', {
       p_profile_id: session.companyProfileId,
       p_user_id: data.user.id,
     })
 
-    // Update profiles with phone and notification preference
-    // (handle_new_user trigger does NOT extract phone from metadata)
-    await admin
-      .from('profiles')
-      .update({
-        phone,
-        email_notifications: wantsNotifications,
-      })
-      .eq('id', data.user.id)
+    if (claimError) {
+      // Don't clear session — preserve anonymous profile for retry
+      console.error('Failed to claim company profile:', claimError)
+    } else {
+      // Update profiles with phone and notification preference
+      // (handle_new_user trigger does NOT extract phone from metadata)
+      await admin
+        .from('profiles')
+        .update({
+          phone,
+          email_notifications: wantsNotifications,
+        })
+        .eq('id', data.user.id)
 
-    // Clear anonymous session
-    session.companyProfileId = undefined
-    await session.save()
+      // Only clear anonymous session after successful claim
+      session.companyProfileId = undefined
+      await session.save()
+    }
   }
 
   revalidatePath('/', 'layout')
   redirect(redirectTo)
 }
 
-export async function signIn(formData: FormData) {
+export async function signIn(_prevState: AuthState, formData: FormData) {
   const email = (formData.get('email') as string | null)?.trim() ?? ''
   const password = (formData.get('password') as string | null) ?? ''
-  const redirectTo = (formData.get('redirectTo') as string | null) ?? '/'
+  const redirectTo = sanitizeRedirect(formData.get('redirectTo') as string | null)
 
   const supabase = await createClient()
 

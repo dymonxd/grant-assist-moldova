@@ -110,7 +110,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -143,7 +143,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -172,7 +172,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -203,7 +203,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -214,7 +214,7 @@ describe('signup', () => {
     })
   })
 
-  it('clears iron-session companyProfileId after merge', async () => {
+  it('clears iron-session companyProfileId after successful merge', async () => {
     mockSignUp.mockResolvedValue({
       data: { user: { id: 'user-1' } },
       error: null,
@@ -231,13 +231,41 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
 
     expect(mockSession.companyProfileId).toBeUndefined()
     expect(mockSave).toHaveBeenCalled()
+  })
+
+  it('preserves session when claim_company_profile RPC fails', async () => {
+    mockSignUp.mockResolvedValue({
+      data: { user: { id: 'user-1' } },
+      error: null,
+    })
+    mockAdminRpc.mockResolvedValue({ error: { message: 'RPC failed' } })
+    mockSession.companyProfileId = 'profile-1'
+
+    const fd = makeFormData({
+      name: 'Ion Popescu',
+      email: 'ion@example.com',
+      phone: '+37360123456',
+      password: 'securepass',
+    })
+
+    try {
+      await signup(null, fd)
+    } catch (e) {
+      // redirect throws
+    }
+
+    // Session NOT cleared — profile preserved for retry
+    expect(mockSession.companyProfileId).toBe('profile-1')
+    expect(mockSave).not.toHaveBeenCalled()
+    // Profile update NOT called
+    expect(mockAdminFrom).not.toHaveBeenCalled()
   })
 
   it('passes redirectTo as part of emailRedirectTo URL', async () => {
@@ -258,7 +286,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -270,6 +298,52 @@ describe('signup', () => {
         }),
       })
     )
+  })
+
+  it('sanitizes absolute URL redirectTo to /', async () => {
+    mockSignUp.mockResolvedValue({
+      data: { user: { id: 'user-1' } },
+      error: null,
+    })
+    mockSession.companyProfileId = undefined
+
+    const fd = makeFormData({
+      name: 'Ion Popescu',
+      email: 'ion@example.com',
+      password: 'securepass',
+      redirectTo: 'https://evil.com',
+    })
+
+    try {
+      await signup(null, fd)
+    } catch (e) {
+      if (e instanceof RedirectError) {
+        expect(e.url).toBe('/')
+      }
+    }
+  })
+
+  it('sanitizes protocol-relative URL redirectTo to /', async () => {
+    mockSignUp.mockResolvedValue({
+      data: { user: { id: 'user-1' } },
+      error: null,
+    })
+    mockSession.companyProfileId = undefined
+
+    const fd = makeFormData({
+      name: 'Ion Popescu',
+      email: 'ion@example.com',
+      password: 'securepass',
+      redirectTo: '//evil.com',
+    })
+
+    try {
+      await signup(null, fd)
+    } catch (e) {
+      if (e instanceof RedirectError) {
+        expect(e.url).toBe('/')
+      }
+    }
   })
 
   it('returns {error} when supabase.auth.signUp fails', async () => {
@@ -285,7 +359,7 @@ describe('signup', () => {
       password: 'securepass',
     })
 
-    const result = await signup(fd)
+    const result = await signup(null, fd)
 
     expect(result).toEqual({ error: 'Email already registered' })
     expect(mockAdminRpc).not.toHaveBeenCalled()
@@ -298,7 +372,7 @@ describe('signup', () => {
       password: 'securepass',
     })
 
-    const result = await signup(fd)
+    const result = await signup(null, fd)
 
     expect(result).toHaveProperty('error')
     expect(mockSignUp).not.toHaveBeenCalled()
@@ -311,7 +385,7 @@ describe('signup', () => {
       password: '123',
     })
 
-    const result = await signup(fd)
+    const result = await signup(null, fd)
 
     expect(result).toHaveProperty('error')
     expect(mockSignUp).not.toHaveBeenCalled()
@@ -332,7 +406,7 @@ describe('signup', () => {
     })
 
     try {
-      await signup(fd)
+      await signup(null, fd)
     } catch (e) {
       if (e instanceof RedirectError) {
         expect(e.url).toBe('/results')
@@ -361,7 +435,7 @@ describe('signIn', () => {
     })
 
     try {
-      await signIn(fd)
+      await signIn(null, fd)
     } catch (e) {
       // redirect throws
     }
@@ -383,7 +457,7 @@ describe('signIn', () => {
       password: 'wrongpass',
     })
 
-    const result = await signIn(fd)
+    const result = await signIn(null, fd)
 
     expect(result).toEqual({ error: 'Email sau parola incorecta' })
   })
@@ -401,7 +475,7 @@ describe('signIn', () => {
     })
 
     try {
-      await signIn(fd)
+      await signIn(null, fd)
     } catch (e) {
       if (e instanceof RedirectError) {
         expect(e.url).toBe('/dashboard')
@@ -409,6 +483,27 @@ describe('signIn', () => {
     }
 
     expect(mockRevalidatePath).toHaveBeenCalledWith('/', 'layout')
+  })
+
+  it('sanitizes absolute URL redirectTo to /', async () => {
+    mockSignInWithPassword.mockResolvedValue({
+      data: { user: { id: 'user-1' } },
+      error: null,
+    })
+
+    const fd = makeFormData({
+      email: 'ion@example.com',
+      password: 'securepass',
+      redirectTo: 'https://evil.com/steal',
+    })
+
+    try {
+      await signIn(null, fd)
+    } catch (e) {
+      if (e instanceof RedirectError) {
+        expect(e.url).toBe('/')
+      }
+    }
   })
 })
 

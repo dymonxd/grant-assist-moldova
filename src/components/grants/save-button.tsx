@@ -32,7 +32,7 @@ export function SaveButton({
     setPending(true)
     try {
       const result = await toggleSavedGrant(grantId)
-      if ('saved' in result) {
+      if ('saved' in result && typeof result.saved === 'boolean') {
         setSaved(result.saved)
       }
     } finally {

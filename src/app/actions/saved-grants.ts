@@ -24,21 +24,29 @@ export async function toggleSavedGrant(grantId: string) {
 
   if (existing) {
     // Remove bookmark
-    await supabase
+    const { error: deleteError } = await supabase
       .from('saved_grants')
       .delete()
       .eq('user_id', user.id)
       .eq('grant_id', grantId)
+
+    if (deleteError) {
+      return { error: 'Nu am putut sterge grantul salvat' }
+    }
 
     revalidatePath('/', 'layout')
     return { saved: false }
   }
 
   // Add bookmark
-  await supabase.from('saved_grants').insert({
+  const { error: insertError } = await supabase.from('saved_grants').insert({
     user_id: user.id,
     grant_id: grantId,
   })
+
+  if (insertError) {
+    return { error: 'Nu am putut salva grantul' }
+  }
 
   revalidatePath('/', 'layout')
   return { saved: true }
