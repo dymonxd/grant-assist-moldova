@@ -31,12 +31,12 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. proxy.ts refreshes Supabase sessions on every request and redirects unauthenticated users from /admin to login
   4. Anonymous user visiting the site gets an encrypted iron-session cookie that persists across page navigations
   5. A test PDF route deployed to Vercel either generates a PDF with Romanian diacritics successfully, or the fallback strategy (jspdf) is confirmed and documented
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md -- Project scaffolding with Next.js 16, Tailwind v4, shadcn/ui, Geist + Supabase schema with 10 tables and RLS
+- [ ] 01-02-PLAN.md -- Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback
+- [ ] 01-03-PLAN.md -- PDF generation validation on Vercel (react-pdf vs jspdf decision)
 
 ### Phase 2: Data Layer and Company Profiles
 **Goal**: Users can enter their IDNO or describe their business idea and get a populated company profile, select what they want to purchase, and browse the full grant catalog -- the "magic moment" where company data appears automatically from public registries.
