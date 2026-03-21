@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
+stopped_at: "Completed 01-02-PLAN.md (Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback)"
+last_updated: "2026-03-21T11:16:17.336Z"
+last_activity: "2026-03-21 -- Completed 01-02-PLAN.md (Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback)"
+progress:
+  total_phases: 6
+  completed_phases: 0
+  total_plans: 3
+  completed_plans: 2
+  percent: 67
+---
+
 # Project State
 
 ## Project Reference
@@ -10,28 +26,28 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 ## Current Position
 
 Phase: 1 of 6 (Foundation and Validation)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: Executing
-Last activity: 2026-03-21 -- Completed 01-01-PLAN.md (Project scaffolding and database schema)
+Last activity: 2026-03-21 -- Completed 01-02-PLAN.md (Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback)
 
-Progress: [█░░░░░░░░░] 5%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 1
-- Average duration: 11min
-- Total execution time: 0.2 hours
+- Total plans completed: 2
+- Average duration: 7.5min
+- Total execution time: 0.25 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 1 - Foundation | 1 | 11min | 11min |
+| 1 - Foundation | 2 | 15min | 7.5min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (11min)
-- Trend: Starting
+- Last 5 plans: 01-01 (11min), 01-02 (4min)
+- Trend: Accelerating
 
 *Updated after each plan completion*
 
@@ -49,6 +65,9 @@ Recent decisions affecting current work:
 - [01-01]: Kept shadcn/ui base-nova style with neutral base, added brand warm accent color in oklch
 - [01-01]: analytics_daily_summary uses composite PK with COALESCE for nullable device_type
 - [01-01]: Shared company_profiles readable via share_token without auth (RLS policy with expiry check)
+- [Phase 01-02]: proxy.ts uses getClaims() for JWT validation instead of getSession() for stronger server-side signature verification
+- [Phase 01-02]: proxy.ts creates Supabase client inline (not importing server.ts) because proxy needs request.cookies not next/headers cookies()
+- [Phase 01-02]: Auth callback preserves redirect URL via next query parameter for post-signup navigation
 
 ### Pending Todos
 
@@ -62,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21
-Stopped at: Completed 01-01-PLAN.md (Project scaffolding and database schema)
-Resume file: .planning/phases/01-foundation-and-validation/01-01-SUMMARY.md
+Last session: 2026-03-21T11:16:17.333Z
+Stopped at: Completed 01-02-PLAN.md (Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback)
+Resume file: .planning/phases/01-foundation-and-validation/01-02-SUMMARY.md

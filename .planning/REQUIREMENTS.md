@@ -9,10 +9,10 @@
 
 - [x] **FNDTN-01**: Project scaffolded with Next.js 16, Tailwind CSS, shadcn/ui, Geist fonts, and all dependencies
 - [x] **FNDTN-02**: Supabase schema deployed with 11 tables, RLS policies on all tables, indexes, triggers, and functions
-- [ ] **FNDTN-03**: proxy.ts refreshes Supabase sessions and protects `/admin` routes
-- [ ] **FNDTN-04**: Supabase client utilities (browser, server, admin service role) available
-- [ ] **FNDTN-05**: iron-session encrypted HTTP-only cookies for anonymous profile tracking
-- [ ] **FNDTN-06**: Auth callback route handles email confirmation and redirects
+- [x] **FNDTN-03**: proxy.ts refreshes Supabase sessions and protects `/admin` routes
+- [x] **FNDTN-04**: Supabase client utilities (browser, server, admin service role) available
+- [x] **FNDTN-05**: iron-session encrypted HTTP-only cookies for anonymous profile tracking
+- [x] **FNDTN-06**: Auth callback route handles email confirmation and redirects
 - [ ] **FNDTN-07**: PDF generation validated on Vercel (react-pdf or jspdf fallback determined)
 
 ### Company Profile (PROF)
@@ -167,10 +167,10 @@
 |-------------|-------|--------|
 | FNDTN-01 | Phase 1 | Complete |
 | FNDTN-02 | Phase 1 | Complete |
-| FNDTN-03 | Phase 1 | Pending |
-| FNDTN-04 | Phase 1 | Pending |
-| FNDTN-05 | Phase 1 | Pending |
-| FNDTN-06 | Phase 1 | Pending |
+| FNDTN-03 | Phase 1 | Complete |
+| FNDTN-04 | Phase 1 | Complete |
+| FNDTN-05 | Phase 1 | Complete |
+| FNDTN-06 | Phase 1 | Complete |
 | FNDTN-07 | Phase 1 | Pending |
 | GEN-01 | Phase 1 | Complete |
 | GEN-02 | Phase 1 | Complete |
