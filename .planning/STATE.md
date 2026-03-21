@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 02-03-PLAN.md (profile UI flow) -- Phase 2 fully complete
-last_updated: "2026-03-21T16:01:14.272Z"
-last_activity: 2026-03-21 -- Completed 02-03-PLAN.md (landing page profile creation flow with audit fixes)
+status: in-progress
+stopped_at: Completed 03-01-PLAN.md (matching engine)
+last_updated: "2026-03-21T16:48:16Z"
+last_activity: 2026-03-21 -- Completed 03-01-PLAN.md (two-stage matching engine with pre-filter and AI ranking)
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 7
-  completed_plans: 7
-  percent: 100
+  total_plans: 11
+  completed_plans: 8
+  percent: 72
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 2 complete. Ready for Phase 3 (Grant Matching) or Phase 4 (Auth).
+**Current focus:** Phase 3 in progress -- Grant Matching engine built (03-01), results UI next (03-02).
 
 ## Current Position
 
-Phase: 2 of 6 (Data Layer and Company Profiles) -- COMPLETE
-Plan: 4 of 4 in current phase (all plans complete)
-Status: Phase 2 fully complete -- all 4 plans (scrapers, server actions, profile UI, grant browse) finished
-Last activity: 2026-03-21 -- Completed 02-03-PLAN.md (landing page profile creation flow with audit fixes)
+Phase: 3 of 6 (Grant Matching) -- IN PROGRESS
+Plan: 1 of 4 in current phase (03-01 complete)
+Status: Matching engine implemented -- pre-filter, AI ranking, matchGrants server action
+Last activity: 2026-03-21 -- Completed 03-01-PLAN.md (two-stage matching engine)
 
-Progress: [██████████] 100%
+Progress: [███████░░░] 72%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
-- Average duration: 10min
-- Total execution time: 1.1 hours
+- Total plans completed: 8
+- Average duration: 9min
+- Total execution time: 1.2 hours
 
 **By Phase:**
 
@@ -45,14 +45,16 @@ Progress: [██████████] 100%
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
 | 2 - Data Layer | 4 | 40min | 10min |
+| 3 - Grant Matching | 1/4 | 4min | 4min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (5min), 02-02 (5min), 02-04 (5min), 02-03 (25min)
-- Trend: Stable (02-03 longer due to verification checkpoint + audit fixes)
+- Last 5 plans: 02-02 (5min), 02-04 (5min), 02-03 (25min), 03-01 (4min)
+- Trend: Fast (03-01 TDD with clean implementation, no blockers)
 
 *Updated after each plan completion*
 | Phase 02 P04 | 5min | 3 tasks | 11 files |
 | Phase 02 P03 | 25min | 3 tasks | 23 files |
+| Phase 03 P01 | 4min | 2 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -89,6 +91,10 @@ Recent decisions affecting current work:
 - [02-03]: CompanyFields expanded with status, registration_date, activities, directors, founders during verification audit
 - [02-03]: Supabase upsert replaced with select-then-insert/update for safer conflict handling
 - [02-03]: Profile result limits activities display to 3 items to avoid UI overflow
+- [03-01]: Pre-filter treats missing profile fields as non-disqualifying (passes through for AI assessment)
+- [03-01]: Sequential grant labels in AI prompts prevent UUID hallucination in structured output
+- [03-01]: Lean profile builder strips raw scraper HTML to minimize AI token cost
+- [03-01]: matchGrants returns grants: GrantWithRules[] alongside scores for UI card rendering
 
 ### Pending Todos
 
@@ -103,6 +109,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T15:52:00Z
-Stopped at: Completed 02-03-PLAN.md (profile UI flow) -- Phase 2 fully complete
+Last session: 2026-03-21T16:48:16Z
+Stopped at: Completed 03-01-PLAN.md (matching engine)
 Resume file: None
