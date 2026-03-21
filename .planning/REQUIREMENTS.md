@@ -13,7 +13,7 @@
 - [x] **FNDTN-04**: Supabase client utilities (browser, server, admin service role) available
 - [x] **FNDTN-05**: iron-session encrypted HTTP-only cookies for anonymous profile tracking
 - [x] **FNDTN-06**: Auth callback route handles email confirmation and redirects
-- [ ] **FNDTN-07**: PDF generation validated on Vercel (react-pdf or jspdf fallback determined)
+- [x] **FNDTN-07**: PDF generation validated on Vercel (react-pdf or jspdf fallback determined)
 
 ### Company Profile (PROF)
 
@@ -171,7 +171,7 @@
 | FNDTN-04 | Phase 1 | Complete |
 | FNDTN-05 | Phase 1 | Complete |
 | FNDTN-06 | Phase 1 | Complete |
-| FNDTN-07 | Phase 1 | Pending |
+| FNDTN-07 | Phase 1 | Complete |
 | GEN-01 | Phase 1 | Complete |
 | GEN-02 | Phase 1 | Complete |
 | GEN-03 | Phase 1 | Complete |

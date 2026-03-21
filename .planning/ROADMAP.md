@@ -12,7 +12,7 @@ GrantAssist Moldova delivers an AI-powered grant discovery and application platf
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation and Validation** - Supabase schema with RLS, auth plumbing, session infrastructure, PDF validation, project scaffolding
+- [x] **Phase 1: Foundation and Validation** - Supabase schema with RLS, auth plumbing, session infrastructure, PDF validation, project scaffolding (completed 2026-03-21)
 - [ ] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog
 - [ ] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links
 - [ ] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants
@@ -34,9 +34,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Plans**: 3 plans
 
 Plans:
-- [ ] 01-01-PLAN.md -- Project scaffolding with Next.js 16, Tailwind v4, shadcn/ui, Geist + Supabase schema with 10 tables and RLS
-- [ ] 01-02-PLAN.md -- Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback
-- [ ] 01-03-PLAN.md -- PDF generation validation on Vercel (react-pdf vs jspdf decision)
+- [x] 01-01-PLAN.md -- Project scaffolding with Next.js 16, Tailwind v4, shadcn/ui, Geist + Supabase schema with 10 tables and RLS
+- [x] 01-02-PLAN.md -- Auth plumbing: Supabase clients, proxy.ts, iron-session, auth callback
+- [x] 01-03-PLAN.md -- PDF generation validation on Vercel (react-pdf vs jspdf decision)
 
 ### Phase 2: Data Layer and Company Profiles
 **Goal**: Users can enter their IDNO or describe their business idea and get a populated company profile, select what they want to purchase, and browse the full grant catalog -- the "magic moment" where company data appears automatically from public registries.
@@ -133,7 +133,7 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation and Validation | 2/3 | In Progress | - |
+| 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
 | 2. Data Layer and Company Profiles | 0/3 | Not started | - |
 | 3. Grant Matching | 0/3 | Not started | - |
 | 4. Authentication and Profile Merge | 0/3 | Not started | - |
