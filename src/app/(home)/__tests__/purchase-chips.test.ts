@@ -1,6 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
+import { createElement } from 'react'
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
@@ -13,13 +14,17 @@ vi.mock('@/app/actions/purchase', () => ({
 // Import after mock setup
 import { PurchaseChips } from '../purchase-chips'
 
+function renderChips() {
+  return render(createElement(PurchaseChips, { onSaved: vi.fn() }))
+}
+
 describe('PurchaseChips', () => {
   afterEach(() => {
     cleanup()
   })
 
   it('renders 4 chips initially', () => {
-    render(PurchaseChips({ onSaved: vi.fn() }))
+    renderChips()
 
     // First 4 chips should be visible
     expect(screen.getByText('Echipament si utilaje')).toBeInTheDocument()
@@ -38,7 +43,7 @@ describe('PurchaseChips', () => {
   })
 
   it('expands to show all 8 chips on Mai multe click', () => {
-    render(PurchaseChips({ onSaved: vi.fn() }))
+    renderChips()
 
     fireEvent.click(screen.getByText('Mai multe...'))
 
@@ -57,7 +62,7 @@ describe('PurchaseChips', () => {
   })
 
   it('clicking chip pre-fills textarea', () => {
-    render(PurchaseChips({ onSaved: vi.fn() }))
+    renderChips()
 
     fireEvent.click(screen.getByText('Echipament si utilaje'))
 
@@ -68,7 +73,7 @@ describe('PurchaseChips', () => {
   })
 
   it('clicking different chip replaces textarea value', () => {
-    render(PurchaseChips({ onSaved: vi.fn() }))
+    renderChips()
 
     fireEvent.click(screen.getByText('Echipament si utilaje'))
     fireEvent.click(screen.getByText('Software si digitalizare'))
@@ -80,7 +85,7 @@ describe('PurchaseChips', () => {
   })
 
   it('textarea accepts custom text', () => {
-    render(PurchaseChips({ onSaved: vi.fn() }))
+    renderChips()
 
     const textarea = screen.getByPlaceholderText(
       'Descrie ce doresti sa achizitionezi...'
