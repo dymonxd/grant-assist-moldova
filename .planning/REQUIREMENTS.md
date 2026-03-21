@@ -7,8 +7,8 @@
 
 ### Foundation (FNDTN)
 
-- [ ] **FNDTN-01**: Project scaffolded with Next.js 16, Tailwind CSS, shadcn/ui, Geist fonts, and all dependencies
-- [ ] **FNDTN-02**: Supabase schema deployed with 11 tables, RLS policies on all tables, indexes, triggers, and functions
+- [x] **FNDTN-01**: Project scaffolded with Next.js 16, Tailwind CSS, shadcn/ui, Geist fonts, and all dependencies
+- [x] **FNDTN-02**: Supabase schema deployed with 11 tables, RLS policies on all tables, indexes, triggers, and functions
 - [ ] **FNDTN-03**: proxy.ts refreshes Supabase sessions and protects `/admin` routes
 - [ ] **FNDTN-04**: Supabase client utilities (browser, server, admin service role) available
 - [ ] **FNDTN-05**: iron-session encrypted HTTP-only cookies for anonymous profile tracking
@@ -123,9 +123,9 @@
 
 ### General (GEN)
 
-- [ ] **GEN-01**: All UI and AI output in Romanian using simple everyday language
-- [ ] **GEN-02**: Mobile-responsive design at 375px (mobile-first)
-- [ ] **GEN-03**: Loading, error, and empty states for every interactive screen
+- [x] **GEN-01**: All UI and AI output in Romanian using simple everyday language
+- [x] **GEN-02**: Mobile-responsive design at 375px (mobile-first)
+- [x] **GEN-03**: Loading, error, and empty states for every interactive screen
 - [ ] **GEN-04**: Privacy policy page in Romanian
 - [ ] **GEN-05**: Analytics event tracking at each funnel stage
 - [ ] **GEN-06**: Notification preferences page (settings)
@@ -165,16 +165,16 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| FNDTN-01 | Phase 1 | Pending |
-| FNDTN-02 | Phase 1 | Pending |
+| FNDTN-01 | Phase 1 | Complete |
+| FNDTN-02 | Phase 1 | Complete |
 | FNDTN-03 | Phase 1 | Pending |
 | FNDTN-04 | Phase 1 | Pending |
 | FNDTN-05 | Phase 1 | Pending |
 | FNDTN-06 | Phase 1 | Pending |
 | FNDTN-07 | Phase 1 | Pending |
-| GEN-01 | Phase 1 | Pending |
-| GEN-02 | Phase 1 | Pending |
-| GEN-03 | Phase 1 | Pending |
+| GEN-01 | Phase 1 | Complete |
+| GEN-02 | Phase 1 | Complete |
+| GEN-03 | Phase 1 | Complete |
 | PROF-01 | Phase 2 | Pending |
 | PROF-02 | Phase 2 | Pending |
 | PROF-03 | Phase 2 | Pending |
