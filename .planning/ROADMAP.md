@@ -87,9 +87,9 @@ Plans:
 **Plans**: 3 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- shadcn component install + auth server actions (signup with profile merge, signIn, signOut) + saved grants server actions
+- [x] 04-01-PLAN.md -- shadcn component install + auth server actions (signup with profile merge, signIn, signOut) + saved grants server actions
 - [ ] 04-02-PLAN.md -- Account wall modal, signup form, save button, auth-aware grant card wiring
-- [ ] 04-03-PLAN.md -- Privacy policy page in Romanian at /privacy
+- [x] 04-03-PLAN.md -- Privacy policy page in Romanian at /privacy
 
 ### Phase 5: AI Grant Writer and Export
 **Goal**: Users can write complete, rubric-optimized grant applications section by section with AI assistance in Romanian, and export their finished applications as PDF, clipboard copy, or email -- the core value delivery where days of grant writing become minutes.
@@ -138,6 +138,6 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
-| 4. Authentication and Profile Merge | 0/3 | Not started | - |
+| 4. Authentication and Profile Merge | 2/3 | In Progress | - |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |

@@ -126,7 +126,7 @@
 - [x] **GEN-01**: All UI and AI output in Romanian using simple everyday language
 - [x] **GEN-02**: Mobile-responsive design at 375px (mobile-first)
 - [x] **GEN-03**: Loading, error, and empty states for every interactive screen
-- [ ] **GEN-04**: Privacy policy page in Romanian
+- [x] **GEN-04**: Privacy policy page in Romanian
 - [ ] **GEN-05**: Analytics event tracking at each funnel stage
 - [ ] **GEN-06**: Notification preferences page (settings)
 
@@ -203,7 +203,7 @@
 | AUTH-05 | Phase 4 | Pending |
 | AUTH-06 | Phase 4 | Pending |
 | AUTH-07 | Phase 4 | Pending |
-| GEN-04 | Phase 4 | Pending |
+| GEN-04 | Phase 4 | Complete |
 | WRITE-01 | Phase 5 | Pending |
 | WRITE-02 | Phase 5 | Pending |
 | WRITE-03 | Phase 5 | Pending |

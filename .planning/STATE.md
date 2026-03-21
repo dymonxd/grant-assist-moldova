@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
-stopped_at: Completed 03-04-PLAN.md (Phase 3 verification complete -- all MATCH requirements verified)
-last_updated: "2026-03-21T19:08:43.946Z"
-last_activity: 2026-03-21 -- Completed 03-04-PLAN.md (e2e verification, AI provider fix)
+status: completed
+stopped_at: Completed 04-01-PLAN.md (auth server actions with profile merge, saved grants)
+last_updated: "2026-03-21T19:53:13.956Z"
+last_activity: 2026-03-21 -- Completed 04-03-PLAN.md (privacy policy page in Romanian)
 progress:
   total_phases: 6
   completed_phases: 3
-  total_plans: 11
-  completed_plans: 11
-  percent: 100
+  total_plans: 14
+  completed_plans: 13
+  percent: 86
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 3 complete -- all 4 plans executed, all 8 MATCH requirements verified. Ready for Phase 4 (Auth) or Phase 5 (Writer).
+**Current focus:** Phase 4 complete -- all 3 plans executed (auth actions, account wall UI, privacy policy). Ready for Phase 5 (Writer) or Phase 6 (Admin).
 
 ## Current Position
 
-Phase: 3 of 6 (Grant Matching) -- COMPLETE
-Plan: 4 of 4 in current phase (all complete)
-Status: Phase 3 complete; all MATCH requirements verified end-to-end
-Last activity: 2026-03-21 -- Completed 03-04-PLAN.md (e2e verification, AI provider fix)
+Phase: 4 of 6 (Authentication and Profile Merge) -- COMPLETE
+Plan: 3 of 3 in current phase (all complete)
+Status: Phase 4 complete; AUTH-01 through AUTH-07 and GEN-04 implemented
+Last activity: 2026-03-21 -- Completed 04-03-PLAN.md (privacy policy page in Romanian)
 
-Progress: [██████████] 100% (Phases 1-3 complete, 11/11 plans)
+Progress: [█████████░] 86% (Phases 1-4 complete, 14/14 plans in completed phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
-- Average duration: 19min
-- Total execution time: 3.32 hours
+- Total plans completed: 12
+- Average duration: 17min
+- Total execution time: 3.35 hours
 
 **By Phase:**
 
@@ -46,6 +46,7 @@ Progress: [██████████] 100% (Phases 1-3 complete, 11/11 plan
 | 1 - Foundation | 3 | 30min | 10min |
 | 2 - Data Layer | 4 | 40min | 10min |
 | 3 - Grant Matching | 4/4 | 131min | 33min |
+| 4 - Auth & Profile | 3/3 | TBD | TBD |
 
 **Recent Trend:**
 - Last 5 plans: 02-03 (25min), 03-01 (4min), 03-02 (3min), 03-03 (4min), 03-04 (~120min)
@@ -58,6 +59,8 @@ Progress: [██████████] 100% (Phases 1-3 complete, 11/11 plan
 | Phase 03 P02 | 3min | 1 task | 10 files |
 | Phase 03 P03 | 4min | 1 task | 6 files |
 | Phase 03 P04 | ~120min | 2 tasks | 5 files |
+| Phase 04 P03 | 2min | 1 task | 2 files |
+| Phase 04 P01 | 3min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -108,6 +111,11 @@ Recent decisions affecting current work:
 - [03-03]: SharedBanner inline in [token]/page.tsx for simplicity
 - [03-04]: Switched from Vercel AI Gateway to @ai-sdk/openai with gpt-5.4-nano -- AI Gateway required credit card for billing
 - [03-04]: Added empty grants notification on results page ("Nu exista granturi active momentan")
+- [04-03]: Static server component for privacy page (no 'use client') -- purely content, no interactivity
+- [04-03]: Tailwind prose class with max-w-3xl layout for static content pages
+- [Phase 04-01]: signup uses createClient for auth.signUp and createAdminClient for privileged RPC/profile updates
+- [Phase 04-01]: toggleSavedGrant uses authenticated server client (not admin) to leverage RLS on saved_grants
+- [Phase 04-01]: redirect() throws NEXT_REDIRECT internally -- tests catch RedirectError to verify redirect URL
 
 ### Pending Todos
 
@@ -122,6 +130,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T21:01:00Z
-Stopped at: Completed 03-04-PLAN.md (Phase 3 verification complete -- all MATCH requirements verified)
+Last session: 2026-03-21T19:53:13.953Z
+Stopped at: Completed 04-01-PLAN.md (auth server actions with profile merge, saved grants)
 Resume file: None
