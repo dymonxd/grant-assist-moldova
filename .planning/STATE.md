@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: in-progress
-stopped_at: Completed 02-01-PLAN.md (scraping foundation). Phase 2 in progress.
-last_updated: "2026-03-21T13:03:41Z"
-last_activity: 2026-03-21 -- Completed 02-01-PLAN.md (Vitest, IDNO validation, scrapers, aggregate orchestrator)
+status: completed
+stopped_at: Completed 02-04-PLAN.md (grant browse page)
+last_updated: "2026-03-21T13:15:14.284Z"
+last_activity: 2026-03-21 -- Completed 02-04-PLAN.md (grant browse page with search/filters)
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 7
-  completed_plans: 4
-  percent: 57
+  completed_plans: 6
+  percent: 86
 ---
 
 # Project State
@@ -21,36 +21,37 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 2: Data Layer and Company Profiles -- scraping foundation complete, server actions next
+**Current focus:** Phase 2: Data Layer and Company Profiles -- grant browse page complete, 02-03 remaining
 
 ## Current Position
 
 Phase: 2 of 6 (Data Layer and Company Profiles)
-Plan: 1 of 4 in current phase (02-01 complete)
-Status: Phase 2 in progress -- scraping foundation done, ready for 02-02
-Last activity: 2026-03-21 -- Completed 02-01-PLAN.md (Vitest, IDNO validation, scrapers, aggregate orchestrator)
+Plan: 4 of 4 in current phase (02-04 complete, 02-03 remaining)
+Status: Phase 2 nearly complete -- grant browse page done, 02-03 (profile UI) is the last remaining plan
+Last activity: 2026-03-21 -- Completed 02-04-PLAN.md (grant browse page with search/filters)
 
-Progress: [█████░░░░░] 57%
+Progress: [█████████░] 86%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 9min
-- Total execution time: 0.6 hours
+- Total plans completed: 6
+- Average duration: 7min
+- Total execution time: 0.75 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
-| 2 - Data Layer | 1 | 5min | 5min |
+| 2 - Data Layer | 3 | 15min | 5min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (11min), 01-02 (4min), 01-03 (15min), 02-01 (5min)
+- Last 5 plans: 01-03 (15min), 02-01 (5min), 02-02 (5min), 02-04 (5min)
 - Trend: Accelerating
 
 *Updated after each plan completion*
+| Phase 02 P04 | 5min | 3 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,13 @@ Recent decisions affecting current work:
 - [02-01]: IDNO test value corrected -- plan's 1003600070650 doesn't pass 7,3,1 checksum; used 1003600070656 (algorithm matches python-stdnum)
 - [02-01]: OpenMoney scraper checks Content-Type for JSON first (Angular SPA), falls back to Cheerio HTML parsing
 - [02-01]: Scraper CSS selectors are placeholder best-guesses -- need live-testing refinement
+- [02-02]: All server actions return {error: string} on failure (not exceptions) for safe Client Component consumption
+- [02-02]: AI inference uses generateText + Output.object() with Zod schema (AI SDK v6 pattern, not deprecated generateObject)
+- [02-02]: Romanian error messages in all server action validation paths
+- [02-04]: Native HTML select for provider filter instead of shadcn Select (base-ui popover) -- simpler for URL-param-driven client component
+- [02-04]: jsdom vitest environment per-file annotation to preserve node environment for non-UI tests
+- [02-04]: Intl.NumberFormat/DateTimeFormat with 'ro-MD' locale for Romanian formatting
+- [Phase 02]: Native HTML select for provider filter instead of shadcn Select (simpler for URL-param client component)
 
 ### Pending Todos
 
@@ -89,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T13:03:41Z
-Stopped at: Completed 02-01-PLAN.md (scraping foundation). Phase 2 in progress.
+Last session: 2026-03-21T13:15:09.210Z
+Stopped at: Completed 02-04-PLAN.md (grant browse page)
 Resume file: None

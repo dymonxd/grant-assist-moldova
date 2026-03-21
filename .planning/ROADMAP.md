@@ -51,8 +51,8 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 02-01-PLAN.md -- Vitest setup, shared types, IDNO validation, three Cheerio scrapers, aggregate orchestrator with confidence merge
-- [ ] 02-02-PLAN.md -- AI inference module, Server Actions (lookupCompany, inferFromIdea, saveManualProfile, savePurchaseNeed)
+- [x] 02-01-PLAN.md -- Vitest setup, shared types, IDNO validation, three Cheerio scrapers, aggregate orchestrator with confidence merge
+- [x] 02-02-PLAN.md -- AI inference module, Server Actions (lookupCompany, inferFromIdea, saveManualProfile, savePurchaseNeed)
 - [ ] 02-03-PLAN.md -- Landing page UI: IDNO form, idea form, profile result, manual fallback, purchase chips, step flow
 - [ ] 02-04-PLAN.md -- Public grant browse page with search, filters, and grant cards
 
@@ -135,7 +135,7 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
-| 2. Data Layer and Company Profiles | 0/4 | Not started | - |
+| 2. Data Layer and Company Profiles | 2/4 | In progress | - |
 | 3. Grant Matching | 0/3 | Not started | - |
 | 4. Authentication and Profile Merge | 0/3 | Not started | - |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |

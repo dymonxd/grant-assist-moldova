@@ -18,17 +18,17 @@
 ### Company Profile (PROF)
 
 - [x] **PROF-01**: User can enter 13-digit IDNO and get auto-populated company data from Moldovan registries
-- [ ] **PROF-02**: User can describe business idea in free text and get AI-inferred company profile
+- [x] **PROF-02**: User can describe business idea in free text and get AI-inferred company profile
 - [x] **PROF-03**: System scrapes OpenMoney.md, idno.md, srl.md in parallel with 8s timeouts and confidence-based merge
-- [ ] **PROF-04**: Manual entry form appears when all data sources fail (company name, industry, location, legal form)
-- [ ] **PROF-05**: Company profile stored with enriched_data JSONB, reused across all writer sections
+- [x] **PROF-04**: Manual entry form appears when all data sources fail (company name, industry, location, legal form)
+- [x] **PROF-05**: Company profile stored with enriched_data JSONB, reused across all writer sections
 - [x] **PROF-06**: "Date partiale" indicator shown when some sources fail but others succeed
 
 ### Purchase Need (PURCH)
 
-- [ ] **PURCH-01**: User can select purchase need via quick-select chips (top 4 visible, expandable)
-- [ ] **PURCH-02**: User can type custom purchase need in free text field
-- [ ] **PURCH-03**: Tapping a chip pre-fills the text field, user can add details
+- [x] **PURCH-01**: User can select purchase need via quick-select chips (top 4 visible, expandable)
+- [x] **PURCH-02**: User can type custom purchase need in free text field
+- [x] **PURCH-03**: Tapping a chip pre-fills the text field, user can add details
 
 ### Grant Matching (MATCH)
 
@@ -78,10 +78,10 @@
 
 ### Grant Browse (BRWSE)
 
-- [ ] **BRWSE-01**: Public `/grants/browse` page shows all active grants without auth
-- [ ] **BRWSE-02**: Search grants by name
-- [ ] **BRWSE-03**: Filter by provider agency, max funding range, deadline
-- [ ] **BRWSE-04**: Grant card: name, provider, funding, deadline, short description, "Aplica" CTA
+- [x] **BRWSE-01**: Public `/grants/browse` page shows all active grants without auth
+- [x] **BRWSE-02**: Search grants by name
+- [x] **BRWSE-03**: Filter by provider agency, max funding range, deadline
+- [x] **BRWSE-04**: Grant card: name, provider, funding, deadline, short description, "Aplica" CTA
 
 ### Admin Analytics (ADMIN)
 
@@ -176,18 +176,18 @@
 | GEN-02 | Phase 1 | Complete |
 | GEN-03 | Phase 1 | Complete |
 | PROF-01 | Phase 2 | Complete |
-| PROF-02 | Phase 2 | Pending |
+| PROF-02 | Phase 2 | Complete |
 | PROF-03 | Phase 2 | Complete |
-| PROF-04 | Phase 2 | Pending |
-| PROF-05 | Phase 2 | Pending |
+| PROF-04 | Phase 2 | Complete |
+| PROF-05 | Phase 2 | Complete |
 | PROF-06 | Phase 2 | Complete |
-| PURCH-01 | Phase 2 | Pending |
-| PURCH-02 | Phase 2 | Pending |
-| PURCH-03 | Phase 2 | Pending |
-| BRWSE-01 | Phase 2 | Pending |
-| BRWSE-02 | Phase 2 | Pending |
-| BRWSE-03 | Phase 2 | Pending |
-| BRWSE-04 | Phase 2 | Pending |
+| PURCH-01 | Phase 2 | Complete |
+| PURCH-02 | Phase 2 | Complete |
+| PURCH-03 | Phase 2 | Complete |
+| BRWSE-01 | Phase 2 | Complete |
+| BRWSE-02 | Phase 2 | Complete |
+| BRWSE-03 | Phase 2 | Complete |
+| BRWSE-04 | Phase 2 | Complete |
 | MATCH-01 | Phase 3 | Pending |
 | MATCH-02 | Phase 3 | Pending |
 | MATCH-03 | Phase 3 | Pending |
