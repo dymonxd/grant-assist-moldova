@@ -1,15 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { IdnoForm } from './idno-form'
 import { IdeaForm } from './idea-form'
 import { ProfileResult } from './profile-result'
 import { ManualForm } from './manual-form'
 import { PurchaseChips } from './purchase-chips'
-import { CheckCircle2 } from 'lucide-react'
 
-type Step = 'input' | 'profile' | 'manual' | 'purchase' | 'complete'
+type Step = 'input' | 'profile' | 'manual' | 'purchase'
 type InputMode = 'idno' | 'idea'
 
 interface ProfileData {
@@ -21,6 +20,7 @@ interface ProfileData {
 }
 
 export function LandingFlow() {
+  const router = useRouter()
   const [step, setStep] = useState<Step>('input')
   const [inputMode, setInputMode] = useState<InputMode>('idno')
   const [profile, setProfile] = useState<ProfileData | null>(null)
@@ -130,29 +130,6 @@ export function LandingFlow() {
     )
   }
 
-  // Step: Purchase need selection
-  if (step === 'purchase') {
-    return <PurchaseChips onSaved={() => setStep('complete')} />
-  }
-
-  // Step: Complete
-  return (
-    <div className="text-center space-y-6 py-8">
-      <div className="flex justify-center">
-        <CheckCircle2 className="size-16 text-green-500" />
-      </div>
-      <div className="space-y-2">
-        <h2 className="text-2xl font-bold">Profilul tau a fost creat!</h2>
-        <p className="text-muted-foreground">
-          Acum poti descoperi granturile potrivite pentru afacerea ta
-        </p>
-      </div>
-      <Link
-        href="/grants/browse"
-        className="inline-flex h-11 items-center justify-center rounded-lg bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
-      >
-        Cauta granturi potrivite
-      </Link>
-    </div>
-  )
+  // Step: Purchase need selection -- redirect to results after save
+  return <PurchaseChips onSaved={() => router.push('/results')} />
 }
