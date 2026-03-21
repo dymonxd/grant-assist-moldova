@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: completed
 stopped_at: Completed 04-01-PLAN.md (auth server actions with profile merge, saved grants)
-last_updated: "2026-03-21T19:53:13.956Z"
+last_updated: "2026-03-21T19:53:25.304Z"
 last_activity: 2026-03-21 -- Completed 04-03-PLAN.md (privacy policy page in Romanian)
 progress:
   total_phases: 6
