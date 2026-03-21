@@ -43,10 +43,10 @@
 
 ### Authentication (AUTH)
 
-- [ ] **AUTH-01**: Account wall modal appears on "Aplica acum" click for unauthenticated users
+- [x] **AUTH-01**: Account wall modal appears on "Aplica acum" click for unauthenticated users
 - [x] **AUTH-02**: User can sign up with name, email, phone
 - [x] **AUTH-03**: Notification checkbox on signup: "Doresc sa primesc notificari..."
-- [ ] **AUTH-04**: "Continua fara cont" skip option allows writer access without account
+- [x] **AUTH-04**: "Continua fara cont" skip option allows writer access without account
 - [x] **AUTH-05**: Anonymous company profile linked to user on signup via DB merge function
 - [x] **AUTH-06**: Intended redirect URL preserved through signup flow (returns to grant writer)
 - [x] **AUTH-07**: Saved grants feature for authenticated users (bookmark grants)
@@ -196,10 +196,10 @@
 | MATCH-06 | Phase 3 | Complete |
 | MATCH-07 | Phase 3 | Complete |
 | MATCH-08 | Phase 3 | Complete |
-| AUTH-01 | Phase 4 | Pending |
+| AUTH-01 | Phase 4 | Complete |
 | AUTH-02 | Phase 4 | Complete |
 | AUTH-03 | Phase 4 | Complete |
-| AUTH-04 | Phase 4 | Pending |
+| AUTH-04 | Phase 4 | Complete |
 | AUTH-05 | Phase 4 | Complete |
 | AUTH-06 | Phase 4 | Complete |
 | AUTH-07 | Phase 4 | Complete |

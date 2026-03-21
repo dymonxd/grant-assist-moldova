@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation and Validation** - Supabase schema with RLS, auth plumbing, session infrastructure, PDF validation, project scaffolding (completed 2026-03-21)
 - [x] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog (completed 2026-03-21)
 - [x] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links (completed 2026-03-21)
-- [ ] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants
+- [x] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants (completed 2026-03-21)
 - [ ] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export
 - [ ] **Phase 6: Admin Tooling and Automation** - Admin dashboard, grant CRUD with PDF extraction wizard, cron jobs, email notifications
 
@@ -88,7 +88,7 @@ Plans:
 
 Plans:
 - [x] 04-01-PLAN.md -- shadcn component install + auth server actions (signup with profile merge, signIn, signOut) + saved grants server actions
-- [ ] 04-02-PLAN.md -- Account wall modal, signup form, save button, auth-aware grant card wiring
+- [x] 04-02-PLAN.md -- Account wall modal, signup form, save button, auth-aware grant card wiring
 - [x] 04-03-PLAN.md -- Privacy policy page in Romanian at /privacy
 
 ### Phase 5: AI Grant Writer and Export
@@ -138,6 +138,6 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
-| 4. Authentication and Profile Merge | 2/3 | In Progress|  |
+| 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |

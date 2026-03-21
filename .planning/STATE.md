@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: completed
-stopped_at: Completed 04-01-PLAN.md (auth server actions with profile merge, saved grants)
-last_updated: "2026-03-21T19:53:25.304Z"
-last_activity: 2026-03-21 -- Completed 04-03-PLAN.md (privacy policy page in Romanian)
+stopped_at: Completed 04-02-PLAN.md (account wall modal, signup form, save button, auth-aware cards)
+last_updated: "2026-03-21T20:01:56Z"
+last_activity: 2026-03-21 -- Completed 04-02-PLAN.md (account wall modal and auth-aware grant cards)
 progress:
   total_phases: 6
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 14
-  completed_plans: 13
-  percent: 86
+  completed_plans: 14
+  percent: 100
 ---
 
 # Project State
@@ -28,9 +28,9 @@ See: .planning/PROJECT.md (updated 2026-03-21)
 Phase: 4 of 6 (Authentication and Profile Merge) -- COMPLETE
 Plan: 3 of 3 in current phase (all complete)
 Status: Phase 4 complete; AUTH-01 through AUTH-07 and GEN-04 implemented
-Last activity: 2026-03-21 -- Completed 04-03-PLAN.md (privacy policy page in Romanian)
+Last activity: 2026-03-21 -- Completed 04-02-PLAN.md (account wall modal and auth-aware grant cards)
 
-Progress: [█████████░] 86% (Phases 1-4 complete, 14/14 plans in completed phases)
+Progress: [██████████] 100% (Phases 1-4 complete, 14/14 plans in completed phases)
 
 ## Performance Metrics
 
@@ -61,6 +61,7 @@ Progress: [█████████░] 86% (Phases 1-4 complete, 14/14 plans
 | Phase 03 P04 | ~120min | 2 tasks | 5 files |
 | Phase 04 P03 | 2min | 1 task | 2 files |
 | Phase 04 P01 | 3min | 3 tasks | 7 files |
+| Phase 04 P02 | 6min | 2 tasks | 15 files |
 
 ## Accumulated Context
 
@@ -116,6 +117,9 @@ Recent decisions affecting current work:
 - [Phase 04-01]: signup uses createClient for auth.signUp and createAdminClient for privileged RPC/profile updates
 - [Phase 04-01]: toggleSavedGrant uses authenticated server client (not admin) to leverage RLS on saved_grants
 - [Phase 04-01]: redirect() throws NEXT_REDIRECT internally -- tests catch RedirectError to verify redirect URL
+- [Phase 04-02]: Grant cards converted to 'use client' with useState for modal -- auth state passed as props from server pages
+- [Phase 04-02]: Shared results page passes isAuthenticated=false since it is a public view with no auth context
+- [Phase 04-02]: SaveButton handles both authenticated (toggle) and unauthenticated (modal trigger) states in a single component
 
 ### Pending Todos
 
@@ -130,6 +134,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T19:53:13.953Z
-Stopped at: Completed 04-01-PLAN.md (auth server actions with profile merge, saved grants)
+Last session: 2026-03-21T20:01:56Z
+Stopped at: Completed 04-02-PLAN.md (account wall modal, signup form, save button, auth-aware cards)
 Resume file: None
