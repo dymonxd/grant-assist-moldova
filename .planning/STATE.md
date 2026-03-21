@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 03-02-PLAN.md (results UI components)
-last_updated: "2026-03-21T16:55:06Z"
-last_activity: 2026-03-21 -- Completed 03-02-PLAN.md (7 grant matching UI components with TDD)
+stopped_at: Completed 03-03-PLAN.md (results pages, share action, landing redirect)
+last_updated: "2026-03-21T17:02:26Z"
+last_activity: 2026-03-21 -- Completed 03-03-PLAN.md (results pages, share action, landing redirect)
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 11
-  completed_plans: 9
-  percent: 81
+  completed_plans: 10
+  percent: 90
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 3 in progress -- Matching engine (03-01) and results UI (03-02) complete, results pages next (03-03).
+**Current focus:** Phase 3 in progress -- Matching engine (03-01), results UI (03-02), and results pages (03-03) complete; verification next (03-04).
 
 ## Current Position
 
 Phase: 3 of 6 (Grant Matching) -- IN PROGRESS
-Plan: 2 of 4 in current phase (03-01, 03-02 complete)
-Status: Matching engine + results UI components built; results pages next
-Last activity: 2026-03-21 -- Completed 03-02-PLAN.md (7 grant matching UI components)
+Plan: 3 of 4 in current phase (03-01, 03-02, 03-03 complete)
+Status: Matching engine + results UI + results pages built; verification next
+Last activity: 2026-03-21 -- Completed 03-03-PLAN.md (results pages, share action, landing redirect)
 
-Progress: [████████░░] 81%
+Progress: [█████████░] 90%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 9
+- Total plans completed: 10
 - Average duration: 8min
-- Total execution time: 1.25 hours
+- Total execution time: 1.32 hours
 
 **By Phase:**
 
@@ -45,17 +45,18 @@ Progress: [████████░░] 81%
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
 | 2 - Data Layer | 4 | 40min | 10min |
-| 3 - Grant Matching | 2/4 | 7min | 3.5min |
+| 3 - Grant Matching | 3/4 | 11min | 3.7min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (5min), 02-04 (5min), 02-03 (25min), 03-01 (4min), 03-02 (3min)
-- Trend: Fast (03-02 TDD with clean first-pass GREEN, no blockers)
+- Last 5 plans: 02-04 (5min), 02-03 (25min), 03-01 (4min), 03-02 (3min), 03-03 (4min)
+- Trend: Fast (03-03 TDD with clean first-pass GREEN, no blockers)
 
 *Updated after each plan completion*
 | Phase 02 P04 | 5min | 3 tasks | 11 files |
 | Phase 02 P03 | 25min | 3 tasks | 23 files |
 | Phase 03 P01 | 4min | 2 tasks | 7 files |
 | Phase 03 P02 | 3min | 1 task | 10 files |
+| Phase 03 P03 | 4min | 1 task | 6 files |
 
 ## Accumulated Context
 
@@ -100,6 +101,10 @@ Recent decisions affecting current work:
 - [03-02]: formatFunding/formatDeadline helpers duplicated per component for self-containment (same as grant-card.tsx)
 - [03-02]: Styled Link for Aplica acum, base-ui Button for disabled Salveaza -- consistent with existing GrantCard pattern
 - [03-02]: Share-to-clipboard uses useState toggle for "Copiat!" toast (no external toast library)
+- [03-03]: Idempotent share token: returns existing valid token before generating new (prevents link invalidation on refresh)
+- [03-03]: Landing flow removes 'complete' step -- router.push('/results') replaces static success message
+- [03-03]: Shared results page re-runs full matching pipeline for fresh results (not cached)
+- [03-03]: SharedBanner inline in [token]/page.tsx for simplicity
 
 ### Pending Todos
 
@@ -114,6 +119,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T16:55:06Z
-Stopped at: Completed 03-02-PLAN.md (results UI components)
+Last session: 2026-03-21T17:02:26Z
+Stopped at: Completed 03-03-PLAN.md (results pages, share action, landing redirect)
 Resume file: None
