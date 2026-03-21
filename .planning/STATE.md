@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 03-01-PLAN.md (matching engine)
-last_updated: "2026-03-21T16:48:16Z"
-last_activity: 2026-03-21 -- Completed 03-01-PLAN.md (two-stage matching engine with pre-filter and AI ranking)
+stopped_at: Completed 03-02-PLAN.md (results UI components)
+last_updated: "2026-03-21T16:55:06Z"
+last_activity: 2026-03-21 -- Completed 03-02-PLAN.md (7 grant matching UI components with TDD)
 progress:
   total_phases: 6
   completed_phases: 2
   total_plans: 11
-  completed_plans: 8
-  percent: 72
+  completed_plans: 9
+  percent: 81
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 3 in progress -- Grant Matching engine built (03-01), results UI next (03-02).
+**Current focus:** Phase 3 in progress -- Matching engine (03-01) and results UI (03-02) complete, results pages next (03-03).
 
 ## Current Position
 
 Phase: 3 of 6 (Grant Matching) -- IN PROGRESS
-Plan: 1 of 4 in current phase (03-01 complete)
-Status: Matching engine implemented -- pre-filter, AI ranking, matchGrants server action
-Last activity: 2026-03-21 -- Completed 03-01-PLAN.md (two-stage matching engine)
+Plan: 2 of 4 in current phase (03-01, 03-02 complete)
+Status: Matching engine + results UI components built; results pages next
+Last activity: 2026-03-21 -- Completed 03-02-PLAN.md (7 grant matching UI components)
 
-Progress: [███████░░░] 72%
+Progress: [████████░░] 81%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
-- Average duration: 9min
-- Total execution time: 1.2 hours
+- Total plans completed: 9
+- Average duration: 8min
+- Total execution time: 1.25 hours
 
 **By Phase:**
 
@@ -45,16 +45,17 @@ Progress: [███████░░░] 72%
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
 | 2 - Data Layer | 4 | 40min | 10min |
-| 3 - Grant Matching | 1/4 | 4min | 4min |
+| 3 - Grant Matching | 2/4 | 7min | 3.5min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (5min), 02-04 (5min), 02-03 (25min), 03-01 (4min)
-- Trend: Fast (03-01 TDD with clean implementation, no blockers)
+- Last 5 plans: 02-02 (5min), 02-04 (5min), 02-03 (25min), 03-01 (4min), 03-02 (3min)
+- Trend: Fast (03-02 TDD with clean first-pass GREEN, no blockers)
 
 *Updated after each plan completion*
 | Phase 02 P04 | 5min | 3 tasks | 11 files |
 | Phase 02 P03 | 25min | 3 tasks | 23 files |
 | Phase 03 P01 | 4min | 2 tasks | 7 files |
+| Phase 03 P02 | 3min | 1 task | 10 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,10 @@ Recent decisions affecting current work:
 - [03-01]: Sequential grant labels in AI prompts prevent UUID hallucination in structured output
 - [03-01]: Lean profile builder strips raw scraper HTML to minimize AI token cost
 - [03-01]: matchGrants returns grants: GrantWithRules[] alongside scores for UI card rendering
+- [03-02]: FieldRow duplicated in profile-sidebar (not imported from profile-result) to avoid coupling results to home page
+- [03-02]: formatFunding/formatDeadline helpers duplicated per component for self-containment (same as grant-card.tsx)
+- [03-02]: Styled Link for Aplica acum, base-ui Button for disabled Salveaza -- consistent with existing GrantCard pattern
+- [03-02]: Share-to-clipboard uses useState toggle for "Copiat!" toast (no external toast library)
 
 ### Pending Todos
 
@@ -109,6 +114,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T16:48:16Z
-Stopped at: Completed 03-01-PLAN.md (matching engine)
+Last session: 2026-03-21T16:55:06Z
+Stopped at: Completed 03-02-PLAN.md (results UI components)
 Resume file: None

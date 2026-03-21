@@ -34,10 +34,10 @@
 
 - [x] **MATCH-01**: Rule-based SQL pre-filter eliminates clearly ineligible grants
 - [x] **MATCH-02**: AI ranking produces 0-100% match scores with one-paragraph Romanian explanations
-- [ ] **MATCH-03**: Top recommendation displayed as hero card (name, provider, score, funding, deadline, explanation)
+- [x] **MATCH-03**: Top recommendation displayed as hero card (name, provider, score, funding, deadline, explanation)
 - [x] **MATCH-04**: Below-threshold (<50%) matches show AI suggestions for becoming eligible
-- [ ] **MATCH-05**: Each grant card has "Aplica acum" and "Salveaza" actions
-- [ ] **MATCH-06**: Profile panel (sidebar desktop, collapsible mobile) shows company data with edit link
+- [x] **MATCH-05**: Each grant card has "Aplica acum" and "Salveaza" actions
+- [x] **MATCH-06**: Profile panel (sidebar desktop, collapsible mobile) shows company data with edit link
 - [ ] **MATCH-07**: Share button generates `/results/{share_token}` link with 30-day expiry
 - [x] **MATCH-08**: Server-side ownership validation for profile access (auth check or cookie)
 
@@ -190,10 +190,10 @@
 | BRWSE-04 | Phase 2 | Complete |
 | MATCH-01 | Phase 3 | Complete |
 | MATCH-02 | Phase 3 | Complete |
-| MATCH-03 | Phase 3 | Pending |
+| MATCH-03 | Phase 3 | Complete |
 | MATCH-04 | Phase 3 | Complete |
-| MATCH-05 | Phase 3 | Pending |
-| MATCH-06 | Phase 3 | Pending |
+| MATCH-05 | Phase 3 | Complete |
+| MATCH-06 | Phase 3 | Complete |
 | MATCH-07 | Phase 3 | Pending |
 | MATCH-08 | Phase 3 | Complete |
 | AUTH-01 | Phase 4 | Pending |
