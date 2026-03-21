@@ -1,8 +1,8 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { describe, it, expect, afterEach } from 'vitest'
+import { render, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
 import { GrantCard } from '../grant-card'
 
@@ -43,7 +43,7 @@ const expiringGrant: Grant = {
   id: '3',
   name: 'Grant Urgent',
   provider_agency: 'ODA',
-  description: 'Expira curand',
+  description: 'Grant cu termen scurt',
   max_funding: 100000,
   currency: 'MDL',
   deadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
@@ -62,6 +62,10 @@ const safeGrant: Grant = {
 // --- Tests ---
 
 describe('GrantCard', () => {
+  afterEach(() => {
+    cleanup()
+  })
+
   it('renders all fields: name, provider badge, formatted funding, deadline, description, and Aplica CTA', () => {
     render(GrantCard({ grant: fullGrant }))
 
@@ -80,7 +84,7 @@ describe('GrantCard', () => {
 
     expect(screen.getByText('Fara descriere')).toBeInTheDocument()
     expect(screen.getByText('Suma necunoscuta')).toBeInTheDocument()
-    expect(screen.getByText('Fara termen limita')).toBeInTheDocument()
+    expect(screen.getByText(/Fara termen limita/)).toBeInTheDocument()
   })
 
   it('shows red "Expira curand" badge when deadline is within 14 days', () => {
