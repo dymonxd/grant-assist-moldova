@@ -7,6 +7,7 @@ import { ProgressBar } from '@/components/writer/progress-bar'
 import { DocumentChecklist } from '@/components/writer/document-checklist'
 import { saveSection } from '@/app/actions/writer'
 import { trackEvent } from '@/app/actions/analytics'
+import { ExportBar } from './export-bar'
 
 /**
  * Writer client orchestrator.
@@ -65,6 +66,7 @@ interface WriterClientProps {
   grant: GrantData
   isUrgent: boolean
   companyProfile: Record<string, unknown>
+  isAuthenticated: boolean
 }
 
 export function WriterClient({
@@ -74,6 +76,7 @@ export function WriterClient({
   grant,
   isUrgent,
   companyProfile,
+  isAuthenticated,
 }: WriterClientProps) {
   const [sections, setSections] = useState<SectionData[]>(initialSections)
   const [checkedDocs, setCheckedDocs] = useState<Set<number>>(new Set())
@@ -252,6 +255,25 @@ export function WriterClient({
         documents={grant.required_documents}
         checkedIds={checkedDocs}
         onToggle={handleDocToggle}
+      />
+
+      {/* Export bar with copy/PDF/email buttons */}
+      <ExportBar
+        grantId={grant.id}
+        grantName={grant.name}
+        providerAgency={grant.provider_agency}
+        sections={sections
+          .filter((s) => s.final_text)
+          .map((s) => {
+            const field = fields.find((f) => f.id === s.grant_field_id)
+            return {
+              fieldLabel: field?.field_label ?? '',
+              finalText: s.final_text!,
+            }
+          })}
+        isAuthenticated={isAuthenticated}
+        requiredDocuments={grant.required_documents}
+        checkedDocuments={checkedDocs}
       />
     </div>
   )

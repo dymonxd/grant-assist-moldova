@@ -3,6 +3,7 @@ import { AlertTriangle } from 'lucide-react'
 import { getOrCreateApplication } from '@/app/actions/writer'
 import { getSession } from '@/lib/session'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import { WriterClient } from './writer-client'
 import type { Metadata } from 'next'
 
@@ -65,6 +66,13 @@ export default async function WritePage({ params }: WritePageProps) {
       </main>
     )
   }
+
+  // Fetch auth state for export bar gating
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const isAuthenticated = !!user
 
   // Fetch company profile for AI context
   const session = await getSession()
@@ -134,6 +142,7 @@ export default async function WritePage({ params }: WritePageProps) {
         }
         isUrgent={result.isUrgent ?? false}
         companyProfile={companyProfile}
+        isAuthenticated={isAuthenticated}
       />
     </main>
   )
