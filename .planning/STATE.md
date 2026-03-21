@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 03-03-PLAN.md (results pages, share action, landing redirect)
-last_updated: "2026-03-21T17:02:26Z"
-last_activity: 2026-03-21 -- Completed 03-03-PLAN.md (results pages, share action, landing redirect)
+stopped_at: Completed 03-04-PLAN.md (Phase 3 verification -- all MATCH requirements verified)
+last_updated: "2026-03-21T21:01:00Z"
+last_activity: 2026-03-21 -- Completed 03-04-PLAN.md (e2e verification, AI provider fix, Phase 3 complete)
 progress:
   total_phases: 6
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 11
-  completed_plans: 10
-  percent: 90
+  completed_plans: 11
+  percent: 100
 ---
 
 # Project State
@@ -21,23 +21,23 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 3 in progress -- Matching engine (03-01), results UI (03-02), and results pages (03-03) complete; verification next (03-04).
+**Current focus:** Phase 3 complete -- all 4 plans executed, all 8 MATCH requirements verified. Ready for Phase 4 (Auth) or Phase 5 (Writer).
 
 ## Current Position
 
-Phase: 3 of 6 (Grant Matching) -- IN PROGRESS
-Plan: 3 of 4 in current phase (03-01, 03-02, 03-03 complete)
-Status: Matching engine + results UI + results pages built; verification next
-Last activity: 2026-03-21 -- Completed 03-03-PLAN.md (results pages, share action, landing redirect)
+Phase: 3 of 6 (Grant Matching) -- COMPLETE
+Plan: 4 of 4 in current phase (all complete)
+Status: Phase 3 complete; all MATCH requirements verified end-to-end
+Last activity: 2026-03-21 -- Completed 03-04-PLAN.md (e2e verification, AI provider fix)
 
-Progress: [█████████░] 90%
+Progress: [██████████] 100% (Phases 1-3 complete, 11/11 plans)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
-- Average duration: 8min
-- Total execution time: 1.32 hours
+- Total plans completed: 11
+- Average duration: 19min
+- Total execution time: 3.32 hours
 
 **By Phase:**
 
@@ -45,11 +45,11 @@ Progress: [█████████░] 90%
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
 | 2 - Data Layer | 4 | 40min | 10min |
-| 3 - Grant Matching | 3/4 | 11min | 3.7min |
+| 3 - Grant Matching | 4/4 | 131min | 33min |
 
 **Recent Trend:**
-- Last 5 plans: 02-04 (5min), 02-03 (25min), 03-01 (4min), 03-02 (3min), 03-03 (4min)
-- Trend: Fast (03-03 TDD with clean first-pass GREEN, no blockers)
+- Last 5 plans: 02-03 (25min), 03-01 (4min), 03-02 (3min), 03-03 (4min), 03-04 (~120min)
+- Trend: 03-04 was a verification checkpoint with human-in-the-loop review and AI provider fix
 
 *Updated after each plan completion*
 | Phase 02 P04 | 5min | 3 tasks | 11 files |
@@ -57,6 +57,7 @@ Progress: [█████████░] 90%
 | Phase 03 P01 | 4min | 2 tasks | 7 files |
 | Phase 03 P02 | 3min | 1 task | 10 files |
 | Phase 03 P03 | 4min | 1 task | 6 files |
+| Phase 03 P04 | ~120min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -105,6 +106,8 @@ Recent decisions affecting current work:
 - [03-03]: Landing flow removes 'complete' step -- router.push('/results') replaces static success message
 - [03-03]: Shared results page re-runs full matching pipeline for fresh results (not cached)
 - [03-03]: SharedBanner inline in [token]/page.tsx for simplicity
+- [03-04]: Switched from Vercel AI Gateway to @ai-sdk/openai with gpt-5.4-nano -- AI Gateway required credit card for billing
+- [03-04]: Added empty grants notification on results page ("Nu exista granturi active momentan")
 
 ### Pending Todos
 
@@ -119,6 +122,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T17:02:26Z
-Stopped at: Completed 03-03-PLAN.md (results pages, share action, landing redirect)
+Last session: 2026-03-21T21:01:00Z
+Stopped at: Completed 03-04-PLAN.md (Phase 3 verification complete -- all MATCH requirements verified)
 Resume file: None

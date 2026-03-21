@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation and Validation** - Supabase schema with RLS, auth plumbing, session infrastructure, PDF validation, project scaffolding (completed 2026-03-21)
 - [x] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog (completed 2026-03-21)
-- [ ] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links
+- [x] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links (completed 2026-03-21)
 - [ ] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants
 - [ ] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export
 - [ ] **Phase 6: Admin Tooling and Automation** - Admin dashboard, grant CRUD with PDF extraction wizard, cron jobs, email notifications
@@ -72,7 +72,7 @@ Plans:
 - [x] 03-01-PLAN.md -- Matching types, rule-based pre-filter, AI ranking with structured output, matchGrants server action
 - [x] 03-02-PLAN.md -- Results UI components with TDD (hero card, match card, profile sidebar, score badge, match list, results layout)
 - [x] 03-03-PLAN.md -- Results pages, share action, landing flow redirect
-- [ ] 03-04-PLAN.md -- End-to-end verification checkpoint: full flow test and human visual review
+- [x] 03-04-PLAN.md -- End-to-end verification checkpoint: full flow test and human visual review
 
 ### Phase 4: Authentication and Profile Merge
 **Goal**: Users can create accounts and have their anonymous work preserved seamlessly -- the zero-friction-to-commitment transition where signing up feels like gaining features, not losing progress.
@@ -137,7 +137,7 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 |-------|----------------|--------|-----------|
 | 1. Foundation and Validation | 3/3 | Complete   | 2026-03-21 |
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
-| 3. Grant Matching | 3/4 | In Progress|  |
+| 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 0/3 | Not started | - |
 | 5. AI Grant Writer and Export | 0/4 | Not started | - |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |
