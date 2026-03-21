@@ -30,10 +30,15 @@ describe('scrapeIdnoMd', () => {
     const html = `
       <html>
         <body>
-          <h1 class="company-name">SC EXAMPLE SRL</h1>
-          <span class="industry-field">IT si Comunicatii</span>
-          <span class="location-field">Chisinau</span>
-          <span class="legal-form-field">SRL</span>
+          <table id="companies">
+            <tr><td>Denumirea</td><td>Conducatori</td><td>Localitatea</td><td>Anul</td></tr>
+            <tr>
+              <td><a href="companie?idno=1003600070656/example">SC EXAMPLE SRL</a></td>
+              <td>Fondatori</td>
+              <td>Chisinau</td>
+              <td>2020</td>
+            </tr>
+          </table>
         </body>
       </html>
     `
@@ -48,9 +53,14 @@ describe('scrapeIdnoMd', () => {
       confidence: 0.9,
       data: {
         company_name: 'SC EXAMPLE SRL',
-        industry: 'IT si Comunicatii',
+        industry: null,
         location: 'Chisinau',
-        legal_form: 'SRL',
+        legal_form: null,
+        status: null,
+        registration_date: '2020',
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
   })
@@ -82,18 +92,16 @@ describe('scrapeIdnoMd', () => {
     expect(result.error).toBeDefined()
   })
 
-  it('returns null for fields with missing selectors', async () => {
-    const html = `<html><body><h1 class="company-name">SC EXAMPLE SRL</h1></body></html>`
+  it('returns null data when no matching table row found', async () => {
+    const html = `<html><body><table><tr><td>No results</td></tr></table></body></html>`
     mockFetch.mockResolvedValueOnce(mockHtmlResponse(html))
 
     const { scrapeIdnoMd } = await import('../idno-md')
     const result = await scrapeIdnoMd('1003600070656')
 
     expect(result.status).toBe('success')
-    expect(result.data!.company_name).toBe('SC EXAMPLE SRL')
-    expect(result.data!.industry).toBeNull()
-    expect(result.data!.location).toBeNull()
-    expect(result.data!.legal_form).toBeNull()
+    expect(result.confidence).toBe(0)
+    expect(result.data).toBeNull()
   })
 })
 
@@ -111,10 +119,14 @@ describe('scrapeSrlMd', () => {
     const html = `
       <html>
         <body>
-          <h2 class="company-title">SC EXAMPLE SRL</h2>
-          <div class="company-industry">Comert</div>
-          <div class="company-location">Balti</div>
-          <div class="company-legal-form">SRL</div>
+          <div class="entity-info"><p class="entity-info-label">Denumire</p><h1 class="entity-info-title">SC EXAMPLE SRL</h1></div>
+          <div class="entity-info"><p class="entity-info-label">Adresa</p><p class="entity-info-value">Balti</p></div>
+          <div class="entity-info"><p class="entity-info-label">Forma organizatorico-juridica</p><p class="entity-info-value">SRL</p></div>
+          <div class="entity-info"><p class="entity-info-label">Statut</p><p class="entity-info-value"><span class="label label-success">Activa</span></p></div>
+          <div class="entity-info"><p class="entity-info-label">Data înregistrării</p><p class="entity-info-value">01.01.2020</p></div>
+          <div class="entity-info"><p class="entity-info-label">Conducători</p><a class="entity-info-name" href="/person/test">Ion Popescu</a></div>
+          <div class="entity-info"><p class="entity-info-label">Fondatori</p><a class="entity-info-name" href="/person/test2">Maria Ionescu</a></div>
+          <div class="entity-info"><p class="entity-info-label">Genuri de activitate nelicențiate</p><ul class="list-group"><li class="list-group-item">Comert</li><li class="list-group-item">Transport</li></ul></div>
         </body>
       </html>
     `
@@ -132,6 +144,11 @@ describe('scrapeSrlMd', () => {
         industry: 'Comert',
         location: 'Balti',
         legal_form: 'SRL',
+        status: 'Activa',
+        registration_date: '01.01.2020',
+        activities: ['Comert', 'Transport'],
+        directors: ['Ion Popescu'],
+        founders: ['Maria Ionescu'],
       },
     })
   })
@@ -200,6 +217,11 @@ describe('scrapeOpenMoney', () => {
         industry: null,
         location: 'Chisinau',
         legal_form: null,
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
   })

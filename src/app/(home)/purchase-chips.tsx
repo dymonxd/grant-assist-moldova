@@ -88,6 +88,7 @@ export function PurchaseChips({
       </div>
 
       <textarea
+        aria-label="Descrierea achizitiei"
         placeholder="Descrie ce doresti sa achizitionezi..."
         value={text}
         onChange={(e) => {

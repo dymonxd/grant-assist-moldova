@@ -3,6 +3,11 @@ export interface CompanyFields {
   industry: string | null
   location: string | null
   legal_form: string | null
+  status: string | null
+  registration_date: string | null
+  activities: string[]
+  directors: string[]
+  founders: string[]
 }
 
 export interface SourceResult {

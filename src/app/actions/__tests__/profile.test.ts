@@ -26,13 +26,15 @@ vi.mock('@/lib/ai/infer-profile', () => ({
 
 // Mock Supabase admin client with chainable query builder
 const mockSingle = vi.fn()
+const mockMaybeSingle = vi.fn()
 const mockSelect = vi.fn(() => ({ single: mockSingle }))
-const mockUpsert = vi.fn(() => ({ select: mockSelect }))
 const mockInsert = vi.fn(() => ({ select: mockSelect }))
 const mockEq = vi.fn()
 const mockUpdate = vi.fn(() => ({ eq: mockEq }))
-const mockFrom = vi.fn((table: string) => ({
-  upsert: mockUpsert,
+const mockSelectEq = vi.fn(() => ({ maybeSingle: mockMaybeSingle }))
+const mockSelectQuery = vi.fn(() => ({ eq: mockSelectEq }))
+const mockFrom = vi.fn(() => ({
+  select: mockSelectQuery,
   insert: mockInsert,
   update: mockUpdate,
 }))
@@ -70,7 +72,7 @@ describe('lookupCompany', () => {
     expect(mockAggregate).not.toHaveBeenCalled()
   })
 
-  it('calls aggregate and stores session on valid IDNO', async () => {
+  it('calls aggregate and stores session on valid IDNO (insert path)', async () => {
     mockValidateIdno.mockReturnValue({ valid: true, idno: '1003600070656' })
     mockAggregate.mockResolvedValue({
       merged: {
@@ -78,12 +80,20 @@ describe('lookupCompany', () => {
         industry: 'IT',
         location: 'Chisinau',
         legal_form: 'SRL',
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
       raw: {},
       sourceStatus: { 'idno.md': 'success' },
       isPartial: false,
       allFailed: false,
     })
+    // No existing profile — select returns null
+    mockMaybeSingle.mockResolvedValue({ data: null })
+    // Insert succeeds
     mockSingle.mockResolvedValue({
       data: { id: 'uuid-1', company_name: 'Test SRL' },
       error: null,
@@ -93,9 +103,8 @@ describe('lookupCompany', () => {
 
     expect(mockAggregate).toHaveBeenCalledWith('1003600070656')
     expect(mockFrom).toHaveBeenCalledWith('company_profiles')
-    expect(mockUpsert).toHaveBeenCalledWith(
-      expect.objectContaining({ idno: '1003600070656' }),
-      { onConflict: 'idno' }
+    expect(mockInsert).toHaveBeenCalledWith(
+      expect.objectContaining({ idno: '1003600070656' })
     )
     expect(mockSession.companyProfileId).toBe('uuid-1')
     expect(mockSave).toHaveBeenCalled()

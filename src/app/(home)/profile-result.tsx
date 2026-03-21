@@ -15,6 +15,15 @@ interface ProfileData {
   industry?: string | null
   location?: string | null
   legal_form?: string | null
+  enriched_data?: {
+    merged?: {
+      status?: string | null
+      registration_date?: string | null
+      activities?: string[]
+      directors?: string[]
+      founders?: string[]
+    }
+  } & Record<string, unknown>
   [key: string]: unknown
 }
 
@@ -34,6 +43,22 @@ function FieldRow({ label, value }: { label: string; value?: string | null }) {
       <span className="text-sm font-medium">
         {value || 'Necunoscut'}
       </span>
+    </div>
+  )
+}
+
+function ListField({ label, items }: { label: string; items?: string[] }) {
+  if (!items || items.length === 0) return null
+  return (
+    <div className="flex flex-col gap-1 col-span-2">
+      <span className="text-xs text-muted-foreground">{label}</span>
+      <ul className="text-sm space-y-0.5">
+        {items.map((item, i) => (
+          <li key={i} className="font-medium">
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
@@ -65,6 +90,8 @@ export function ProfileResult({
     )
   }
 
+  const enriched = profile.enriched_data?.merged
+
   return (
     <Card>
       <CardHeader>
@@ -83,9 +110,15 @@ export function ProfileResult({
       <CardContent>
         <div className="grid grid-cols-2 gap-4">
           <FieldRow label="Denumire" value={profile.company_name} />
-          <FieldRow label="Industrie" value={profile.industry} />
-          <FieldRow label="Locatie" value={profile.location} />
           <FieldRow label="Forma juridica" value={profile.legal_form} />
+          <FieldRow label="Locatie" value={profile.location} />
+          <FieldRow label="Statut" value={enriched?.status} />
+          <FieldRow label="Data inregistrarii" value={enriched?.registration_date} />
+          <FieldRow label="Activitate principala" value={profile.industry} />
+
+          <ListField label="Genuri de activitate" items={enriched?.activities?.slice(0, 3)} />
+          <ListField label="Conducatori" items={enriched?.directors} />
+          <ListField label="Fondatori" items={enriched?.founders} />
         </div>
       </CardContent>
 

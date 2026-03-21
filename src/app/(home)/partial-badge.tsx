@@ -5,9 +5,9 @@ import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
 
 const SOURCE_LABELS: Record<string, string> = {
-  openmoney: 'OpenMoney.md',
-  idno: 'idno.md',
-  srl: 'srl.md',
+  'openmoney.md': 'OpenMoney',
+  'idno.md': 'IDNO.md',
+  'srl.md': 'SRL.md',
 }
 
 const STATUS_LABELS: Record<string, string> = {

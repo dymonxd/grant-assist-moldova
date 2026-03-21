@@ -16,21 +16,35 @@ export async function lookupCompany(idno: string) {
 
   const admin = createAdminClient()
 
-  const { data, error } = await admin
+  // Check if profile already exists for this IDNO (upsert requires a UNIQUE
+  // CONSTRAINT but the DB only has a unique INDEX, which PostgREST can't resolve)
+  const { data: existing } = await admin
     .from('company_profiles')
-    .upsert(
-      {
-        idno: validated.idno,
-        company_name: result.merged.company_name,
-        industry: result.merged.industry,
-        location: result.merged.location,
-        legal_form: result.merged.legal_form,
-        enriched_data: result.raw,
-      },
-      { onConflict: 'idno' }
-    )
-    .select()
-    .single()
+    .select('id')
+    .eq('idno', validated.idno)
+    .maybeSingle()
+
+  const profilePayload = {
+    idno: validated.idno,
+    company_name: result.merged.company_name,
+    industry: result.merged.industry,
+    location: result.merged.location,
+    legal_form: result.merged.legal_form,
+    enriched_data: { sources: result.raw, merged: result.merged },
+  }
+
+  const { data, error } = existing
+    ? await admin
+        .from('company_profiles')
+        .update(profilePayload)
+        .eq('id', existing.id)
+        .select()
+        .single()
+    : await admin
+        .from('company_profiles')
+        .insert(profilePayload)
+        .select()
+        .single()
 
   if (error) {
     return { error: 'Eroare la salvarea profilului companiei' }

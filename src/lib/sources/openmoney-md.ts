@@ -1,4 +1,4 @@
-import type { SourceResult, CompanyFields } from './types'
+import type { SourceResult } from './types'
 
 const TIMEOUT_MS = 8000
 
@@ -7,6 +7,9 @@ export async function scrapeOpenMoney(idno: string): Promise<SourceResult> {
   const timeout = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
   try {
+    // openmoney.md is an Angular SPA with no server-rendered IDNO lookup API.
+    // We attempt a search but the site is focused on public contract beneficiaries,
+    // not general IDNO lookups. This source provides low-confidence fallback data.
     const res = await fetch(`https://openmoney.md/api/search?q=${idno}`, {
       signal: controller.signal,
       headers: {
@@ -18,36 +21,43 @@ export async function scrapeOpenMoney(idno: string): Promise<SourceResult> {
 
     const contentType = res.headers.get('content-type') || ''
 
-    let data: CompanyFields
-
     if (contentType.includes('application/json')) {
-      // Angular SPA backend likely returns JSON
       const json = await res.json()
-      data = {
-        company_name: json.company_name ?? null,
-        industry: json.industry ?? null,
-        location: json.location ?? null,
-        legal_form: json.legal_form ?? null,
+      // Try to extract from various possible JSON shapes
+      const item = Array.isArray(json) ? json[0] : json
+      if (!item) {
+        return {
+          source: 'openmoney.md',
+          status: 'success',
+          confidence: 0,
+          data: null,
+        }
       }
-    } else {
-      // Fallback: parse HTML with Cheerio
-      const cheerio = await import('cheerio')
-      const html = await res.text()
-      const $ = cheerio.load(html)
 
-      data = {
-        company_name: $('.company-name').text().trim() || null,
-        industry: $('.industry').text().trim() || null,
-        location: $('.location').text().trim() || null,
-        legal_form: $('.legal-form').text().trim() || null,
+      return {
+        source: 'openmoney.md',
+        status: 'success',
+        confidence: 0.7,
+        data: {
+          company_name: item.name ?? item.company_name ?? null,
+          industry: item.industry ?? null,
+          location: item.location ?? item.address ?? null,
+          legal_form: item.legal_form ?? null,
+          status: null,
+          registration_date: null,
+          activities: [],
+          directors: [],
+          founders: [],
+        },
       }
     }
 
+    // Angular SPA returned HTML — no usable data available server-side
     return {
       source: 'openmoney.md',
       status: 'success',
-      confidence: 0.7,
-      data,
+      confidence: 0,
+      data: null,
     }
   } catch (err) {
     const isTimeout =

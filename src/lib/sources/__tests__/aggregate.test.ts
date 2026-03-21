@@ -36,6 +36,11 @@ describe('aggregate', () => {
         industry: 'IT',
         location: 'Chisinau',
         legal_form: 'SRL',
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
     mockSrl.mockResolvedValue({
@@ -47,6 +52,11 @@ describe('aggregate', () => {
         industry: 'Comert',
         location: 'Balti',
         legal_form: 'SRL',
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
     mockOpen.mockResolvedValue({
@@ -58,6 +68,11 @@ describe('aggregate', () => {
         industry: null,
         location: 'Chisinau',
         legal_form: null,
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
 
@@ -69,6 +84,11 @@ describe('aggregate', () => {
       industry: 'IT',
       location: 'Chisinau',
       legal_form: 'SRL',
+      status: null,
+      registration_date: null,
+      activities: [],
+      directors: [],
+      founders: [],
     })
     expect(result.isPartial).toBe(false)
     expect(result.allFailed).toBe(false)
@@ -89,6 +109,11 @@ describe('aggregate', () => {
         industry: 'IT',
         location: null,
         legal_form: 'SRL',
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
     mockSrl.mockResolvedValue({
@@ -145,6 +170,11 @@ describe('aggregate', () => {
       industry: null,
       location: null,
       legal_form: null,
+      status: null,
+      registration_date: null,
+      activities: [],
+      directors: [],
+      founders: [],
     })
     expect(result.isPartial).toBe(false)
     expect(result.allFailed).toBe(true)
@@ -161,6 +191,11 @@ describe('aggregate', () => {
         industry: null,
         location: 'Chisinau',
         legal_form: null,
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
     // srl.md has industry and legal_form
@@ -173,6 +208,11 @@ describe('aggregate', () => {
         industry: 'Agricultura',
         location: null,
         legal_form: 'SRL',
+        status: null,
+        registration_date: null,
+        activities: [],
+        directors: [],
+        founders: [],
       },
     })
     mockOpen.mockResolvedValue({
@@ -200,7 +240,7 @@ describe('aggregate', () => {
       source: 'idno.md',
       status: 'success',
       confidence: 0.9,
-      data: { company_name: 'Test', industry: null, location: null, legal_form: null },
+      data: { company_name: 'Test', industry: null, location: null, legal_form: null, status: null, registration_date: null, activities: [], directors: [], founders: [] },
     }
     const srlResult: SourceResult = {
       source: 'srl.md',

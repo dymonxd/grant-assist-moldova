@@ -13,16 +13,30 @@ function mergeFields(results: SourceResult[]): CompanyFields {
     industry: null,
     location: null,
     legal_form: null,
+    status: null,
+    registration_date: null,
+    activities: [],
+    directors: [],
+    founders: [],
   }
 
-  // For each field, use the first non-null value (highest confidence first)
+  // For scalar fields, use the first non-null value (highest confidence first)
   for (const result of successful) {
     if (!result.data) continue
-    for (const key of Object.keys(merged) as (keyof CompanyFields)[]) {
-      if (merged[key] === null && result.data[key]) {
-        merged[key] = result.data[key]
-      }
-    }
+    if (merged.company_name === null && result.data.company_name) merged.company_name = result.data.company_name
+    if (merged.industry === null && result.data.industry) merged.industry = result.data.industry
+    if (merged.location === null && result.data.location) merged.location = result.data.location
+    if (merged.legal_form === null && result.data.legal_form) merged.legal_form = result.data.legal_form
+    if (merged.status === null && result.data.status) merged.status = result.data.status
+    if (merged.registration_date === null && result.data.registration_date) merged.registration_date = result.data.registration_date
+  }
+
+  // For array fields, use the longest non-empty array (richest data)
+  for (const result of successful) {
+    if (!result.data) continue
+    if (result.data.activities.length > merged.activities.length) merged.activities = result.data.activities
+    if (result.data.directors.length > merged.directors.length) merged.directors = result.data.directors
+    if (result.data.founders.length > merged.founders.length) merged.founders = result.data.founders
   }
 
   return merged
