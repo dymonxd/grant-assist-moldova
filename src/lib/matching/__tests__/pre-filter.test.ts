@@ -96,7 +96,7 @@ describe('preFilterGrants', () => {
       }),
     ]
     const profile = makeProfile({
-      industry: 'Agricultura si cresterea animalelor',
+      industry: 'Servicii agricole si cresterea animalelor',
     })
 
     const result = preFilterGrants(grants, profile)
