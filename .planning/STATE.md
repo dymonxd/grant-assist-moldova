@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 01-03-PLAN.md (PDF generation validation). Phase 1 complete.
-last_updated: "2026-03-21T12:08:53.553Z"
-last_activity: 2026-03-21 -- Completed 01-03-PLAN.md (PDF generation validation on Vercel). Phase 1 complete.
+status: in-progress
+stopped_at: Completed 02-01-PLAN.md (scraping foundation). Phase 2 in progress.
+last_updated: "2026-03-21T13:03:41Z"
+last_activity: 2026-03-21 -- Completed 02-01-PLAN.md (Vitest, IDNO validation, scrapers, aggregate orchestrator)
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 3
-  completed_plans: 3
-  percent: 100
+  total_plans: 7
+  completed_plans: 4
+  percent: 57
 ---
 
 # Project State
@@ -21,33 +21,34 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 1 complete. Ready for Phase 2: Data Layer and Company Profiles
+**Current focus:** Phase 2: Data Layer and Company Profiles -- scraping foundation complete, server actions next
 
 ## Current Position
 
-Phase: 1 of 6 (Foundation and Validation) -- COMPLETE
-Plan: 3 of 3 in current phase (all done)
-Status: Phase 1 complete, ready for Phase 2
-Last activity: 2026-03-21 -- Completed 01-03-PLAN.md (PDF generation validation on Vercel). Phase 1 complete.
+Phase: 2 of 6 (Data Layer and Company Profiles)
+Plan: 1 of 4 in current phase (02-01 complete)
+Status: Phase 2 in progress -- scraping foundation done, ready for 02-02
+Last activity: 2026-03-21 -- Completed 02-01-PLAN.md (Vitest, IDNO validation, scrapers, aggregate orchestrator)
 
-Progress: [██████████] 100%
+Progress: [█████░░░░░] 57%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 10min
-- Total execution time: 0.5 hours
+- Total plans completed: 4
+- Average duration: 9min
+- Total execution time: 0.6 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 1 - Foundation | 3 | 30min | 10min |
+| 2 - Data Layer | 1 | 5min | 5min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (11min), 01-02 (4min), 01-03 (15min)
-- Trend: Steady
+- Last 5 plans: 01-01 (11min), 01-02 (4min), 01-03 (15min), 02-01 (5min)
+- Trend: Accelerating
 
 *Updated after each plan completion*
 
@@ -71,6 +72,9 @@ Recent decisions affecting current work:
 - [Phase 01-03]: @react-pdf/renderer confirmed working on Vercel serverless -- server-side PDF generation is the strategy
 - [Phase 01-03]: Default Helvetica font lacks Romanian ă/ș/ț glyphs -- Phase 5 must use Font.register() with Noto Sans or Geist Sans
 - [Phase 01-03]: jspdf retained as emergency fallback if Font.register() cannot resolve diacritics
+- [02-01]: IDNO test value corrected -- plan's 1003600070650 doesn't pass 7,3,1 checksum; used 1003600070656 (algorithm matches python-stdnum)
+- [02-01]: OpenMoney scraper checks Content-Type for JSON first (Angular SPA), falls back to Cheerio HTML parsing
+- [02-01]: Scraper CSS selectors are placeholder best-guesses -- need live-testing refinement
 
 ### Pending Todos
 
@@ -85,6 +89,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T11:32:36.225Z
-Stopped at: Completed 01-03-PLAN.md (PDF generation validation). Phase 1 complete.
+Last session: 2026-03-21T13:03:41Z
+Stopped at: Completed 02-01-PLAN.md (scraping foundation). Phase 2 in progress.
 Resume file: None

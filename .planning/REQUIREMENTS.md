@@ -17,12 +17,12 @@
 
 ### Company Profile (PROF)
 
-- [ ] **PROF-01**: User can enter 13-digit IDNO and get auto-populated company data from Moldovan registries
+- [x] **PROF-01**: User can enter 13-digit IDNO and get auto-populated company data from Moldovan registries
 - [ ] **PROF-02**: User can describe business idea in free text and get AI-inferred company profile
-- [ ] **PROF-03**: System scrapes OpenMoney.md, idno.md, srl.md in parallel with 8s timeouts and confidence-based merge
+- [x] **PROF-03**: System scrapes OpenMoney.md, idno.md, srl.md in parallel with 8s timeouts and confidence-based merge
 - [ ] **PROF-04**: Manual entry form appears when all data sources fail (company name, industry, location, legal form)
 - [ ] **PROF-05**: Company profile stored with enriched_data JSONB, reused across all writer sections
-- [ ] **PROF-06**: "Date partiale" indicator shown when some sources fail but others succeed
+- [x] **PROF-06**: "Date partiale" indicator shown when some sources fail but others succeed
 
 ### Purchase Need (PURCH)
 
@@ -175,12 +175,12 @@
 | GEN-01 | Phase 1 | Complete |
 | GEN-02 | Phase 1 | Complete |
 | GEN-03 | Phase 1 | Complete |
-| PROF-01 | Phase 2 | Pending |
+| PROF-01 | Phase 2 | Complete |
 | PROF-02 | Phase 2 | Pending |
-| PROF-03 | Phase 2 | Pending |
+| PROF-03 | Phase 2 | Complete |
 | PROF-04 | Phase 2 | Pending |
 | PROF-05 | Phase 2 | Pending |
-| PROF-06 | Phase 2 | Pending |
+| PROF-06 | Phase 2 | Complete |
 | PURCH-01 | Phase 2 | Pending |
 | PURCH-02 | Phase 2 | Pending |
 | PURCH-03 | Phase 2 | Pending |
