@@ -18,7 +18,7 @@ created: 2026-03-21
 | Property | Value |
 |----------|-------|
 | **Framework** | vitest |
-| **Config file** | vitest.config.ts or "none — Wave 0 installs" |
+| **Config file** | vitest.config.ts (created in Plan 02-01 Task 1) |
 | **Quick run command** | `npx vitest run --reporter=verbose` |
 | **Full suite command** | `npx vitest run` |
 | **Estimated runtime** | ~15 seconds |
@@ -36,21 +36,19 @@ created: 2026-03-21
 
 ## Per-Task Verification Map
 
-| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
-|---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 02-01-01 | 01 | 1 | PROF-01 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-01-02 | 01 | 1 | PROF-02 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-01-03 | 01 | 1 | PROF-03 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-02-01 | 02 | 1 | PROF-04 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-02-02 | 02 | 1 | PROF-05 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-02-03 | 02 | 1 | PROF-06 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-03-01 | 03 | 2 | PURCH-01 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-03-02 | 03 | 2 | PURCH-02 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-03-03 | 03 | 2 | PURCH-03 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-04-01 | 04 | 3 | BRWSE-01 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-04-02 | 04 | 3 | BRWSE-02 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-04-03 | 04 | 3 | BRWSE-03 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
-| 02-04-04 | 04 | 3 | BRWSE-04 | unit | `npx vitest run` | ❌ W0 | ⬜ pending |
+| Task ID | Plan | Wave | Requirement | Test Type | Automated Command | Test File | Status |
+|---------|------|------|-------------|-----------|-------------------|-----------|--------|
+| 02-01-T1 | 01 | 1 | PROF-01 | unit (TDD) | `npx vitest run src/lib/validation/__tests__/idno.test.ts` | Created in task | ⬜ pending |
+| 02-01-T2 | 01 | 1 | PROF-03 | unit (TDD) | `npx vitest run src/lib/sources/__tests__/` | Created in task | ⬜ pending |
+| 02-02-T1 | 02 | 2 | PROF-02 | unit (TDD) | `npx vitest run src/lib/ai/__tests__/infer-profile.test.ts` | Created in task | ⬜ pending |
+| 02-02-T2 | 02 | 2 | PROF-05 | type-check | `npx tsc --noEmit` | N/A | ⬜ pending |
+| 02-02-T3 | 02 | 2 | PROF-04, PROF-05 | unit (TDD) | `npx vitest run src/app/actions/__tests__/profile.test.ts` | Created in task | ⬜ pending |
+| 02-03-T1 | 03 | 3 | PROF-01, PROF-06 | type-check | `npx tsc --noEmit` | N/A | ⬜ pending |
+| 02-03-T2 | 03 | 3 | PURCH-01, PURCH-03 | unit (TDD) | `npx vitest run src/app/(home)/__tests__/purchase-chips.test.ts` | Created in task | ⬜ pending |
+| 02-03-T3 | 03 | 3 | All PROF, PURCH | manual | Human verification | N/A | ⬜ pending |
+| 02-04-T0 | 04 | 2 | BRWSE-04 | unit (TDD) | `npx vitest run src/app/grants/browse/__tests__/grant-card.test.ts` | Created in task | ⬜ pending |
+| 02-04-T1 | 04 | 2 | BRWSE-01..04 | unit | `npx vitest run src/app/grants/browse/__tests__/` | From Task 0 | ⬜ pending |
+| 02-04-T2 | 04 | 2 | BRWSE-01..04 | unit + type | `npx vitest run src/app/grants/browse/__tests__/ && npx tsc --noEmit` | From Task 0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -58,13 +56,16 @@ created: 2026-03-21
 
 ## Wave 0 Requirements
 
-- [ ] Test framework setup (vitest if not already installed)
-- [ ] `__tests__/lib/idno.test.ts` — IDNO validation unit tests (PROF-01)
-- [ ] `__tests__/lib/scrapers.test.ts` — scraper stubs for registry data (PROF-02, PROF-03)
-- [ ] `__tests__/lib/ai-inference.test.ts` — AI inference mock tests (PROF-04)
-- [ ] `__tests__/app/grants-browse.test.ts` — grants browse page tests (BRWSE-01..04)
+All Wave 0 test files are created inline within TDD tasks (no separate Wave 0 plan needed):
 
-*If none: "Existing infrastructure covers all phase requirements."*
+- [x] Test framework setup — vitest installed and configured in Plan 02-01 Task 1
+- [x] `src/lib/validation/__tests__/idno.test.ts` — IDNO validation (Plan 02-01 Task 1, TDD)
+- [x] `src/lib/sources/__tests__/scrapers.test.ts` — scraper mocks (Plan 02-01 Task 2, TDD)
+- [x] `src/lib/sources/__tests__/aggregate.test.ts` — aggregate merge (Plan 02-01 Task 2, TDD)
+- [x] `src/lib/ai/__tests__/infer-profile.test.ts` — AI inference mocks (Plan 02-02 Task 1, TDD)
+- [x] `src/app/actions/__tests__/profile.test.ts` — profile action tests (Plan 02-02 Task 3, TDD)
+- [x] `src/app/(home)/__tests__/purchase-chips.test.ts` — chip pre-fill tests (Plan 02-03 Task 2, TDD)
+- [x] `src/app/grants/browse/__tests__/grant-card.test.ts` — grant card tests (Plan 02-04 Task 0, TDD)
 
 ---
 
@@ -72,12 +73,11 @@ created: 2026-03-21
 
 | Behavior | Requirement | Why Manual | Test Instructions |
 |----------|-------------|------------|-------------------|
-| Scraper returns real data from idno.md | PROF-02 | External site dependency | Enter known IDNO, verify populated fields |
-| Scraper returns real data from srl.md | PROF-02 | External site dependency | Enter known IDNO, verify populated fields |
+| Scraper returns real data from idno.md | PROF-02 | External site, CSS selectors need live testing | Enter known IDNO, verify populated fields |
+| Scraper returns real data from srl.md | PROF-02 | External site, CSS selectors need live testing | Enter known IDNO, verify populated fields |
 | AI inference quality in Romanian | PROF-04 | LLM output quality subjective | Enter business description, verify inferred fields make sense |
-| "Date partiale" indicator shows correctly | PROF-05 | Visual UI verification | Test with IDNO where one source fails |
-
-*If none: "All phase behaviors have automated verification."*
+| "Date partiale" indicator shows correctly | PROF-06 | Visual UI verification | Test with IDNO where one source fails |
+| Complete landing page flow | All PROF, PURCH | E2E user flow | Plan 02-03 Task 3 human-verify checkpoint |
 
 ---
 
