@@ -1,11 +1,32 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, it, expect, afterEach } from 'vitest'
+import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
-import { HeroCard } from '../hero-card'
+import { createElement } from 'react'
 import type { GrantWithRules, GrantScore } from '@/lib/matching/types'
+
+vi.mock('@/app/actions/auth', () => ({
+  signup: vi.fn(),
+}))
+vi.mock('@/app/actions/saved-grants', () => ({
+  toggleSavedGrant: vi.fn(),
+}))
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn() }),
+}))
+vi.mock('next/link', () => ({
+  default: ({
+    children,
+    href,
+    ...props
+  }: {
+    children: React.ReactNode
+    href: string
+    [key: string]: unknown
+  }) => createElement('a', { href, ...props }, children),
+}))
 
 // --- Fixtures ---
 
@@ -36,26 +57,58 @@ describe('HeroCard', () => {
     cleanup()
   })
 
-  it('renders grant name as heading', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders grant name as heading', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('AIPA Agricultura Ecologica')).toBeInTheDocument()
   })
 
-  it('renders provider_agency in a badge', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders provider_agency in a badge', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('AIPA')).toBeInTheDocument()
   })
 
-  it('renders ScoreBadge with the correct score percentage', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders ScoreBadge with the correct score percentage', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('87%')).toBeInTheDocument()
   })
 
-  it('renders AI explanation text from score.explanation', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders AI explanation text from score.explanation', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(
       screen.getByText(
@@ -64,35 +117,80 @@ describe('HeroCard', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders formatted funding amount and currency', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders formatted funding amount and currency', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
-    // Intl.NumberFormat('ro-MD') formats 750000 as "750.000"
     expect(screen.getByText(/750\.000/)).toBeInTheDocument()
     expect(screen.getByText(/MDL/)).toBeInTheDocument()
   })
 
-  it('renders formatted deadline date', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders formatted deadline date', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
-    // Intl.DateTimeFormat('ro-MD') formats 2026-06-15 as "15 iunie 2026"
     expect(screen.getByText(/15/)).toBeInTheDocument()
     expect(screen.getByText(/2026/)).toBeInTheDocument()
   })
 
-  it('renders "Aplica acum" link pointing to /grants/{grant.id}', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders "Aplica acum" as a link when authenticated', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     const link = screen.getByRole('link', { name: /Aplica acum/i })
     expect(link).toBeInTheDocument()
     expect(link).toHaveAttribute('href', '/grants/grant-abc-123')
   })
 
-  it('renders disabled "Salveaza" button', () => {
-    render(HeroCard({ grant: mockGrant, score: mockScore }))
+  it('renders "Aplica acum" as a button when not authenticated', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: false,
+        isSaved: false,
+      })
+    )
+
+    const button = screen.getByRole('button', { name: /Aplica acum/i })
+    expect(button).toBeInTheDocument()
+  })
+
+  it('renders "Salveaza" button (enabled) for authenticated user', async () => {
+    const { HeroCard } = await import('../hero-card')
+    render(
+      createElement(HeroCard, {
+        grant: mockGrant,
+        score: mockScore,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     const button = screen.getByRole('button', { name: /Salveaza/i })
     expect(button).toBeInTheDocument()
-    expect(button).toBeDisabled()
+    expect(button).not.toBeDisabled()
   })
 })

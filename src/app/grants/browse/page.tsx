@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { getSavedGrants } from '@/app/actions/saved-grants'
 import { GrantFilters } from './filters'
 import { GrantList } from './grant-list'
 import type { Grant } from './grant-card'
@@ -27,9 +28,20 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   let providers: string[] = []
   let error: string | null = null
 
-  try {
-    const supabase = await createClient()
+  const supabase = await createClient()
 
+  // Check auth state
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const isAuthenticated = !!user
+
+  // Fetch saved grants if authenticated
+  const savedGrantIds: string[] = isAuthenticated
+    ? (await getSavedGrants()).grants
+    : []
+
+  try {
     // Build the main query
     let query = supabase
       .from('grants')
@@ -103,7 +115,11 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             {error}
           </div>
         ) : (
-          <GrantList grants={grants} />
+          <GrantList
+            grants={grants}
+            isAuthenticated={isAuthenticated}
+            savedGrantIds={savedGrantIds}
+          />
         )}
       </div>
     </main>

@@ -1,10 +1,31 @@
 /**
  * @vitest-environment jsdom
  */
-import { describe, it, expect, afterEach } from 'vitest'
+import { describe, it, expect, afterEach, vi } from 'vitest'
 import { render, screen, cleanup } from '@testing-library/react'
 import '@testing-library/jest-dom/vitest'
-import { GrantCard } from '../grant-card'
+import { createElement } from 'react'
+
+vi.mock('@/app/actions/auth', () => ({
+  signup: vi.fn(),
+}))
+vi.mock('@/app/actions/saved-grants', () => ({
+  toggleSavedGrant: vi.fn(),
+}))
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn() }),
+}))
+vi.mock('next/link', () => ({
+  default: ({
+    children,
+    href,
+    ...props
+  }: {
+    children: React.ReactNode
+    href: string
+    [key: string]: unknown
+  }) => createElement('a', { href, ...props }, children),
+}))
 
 // Grant type matching the grants table shape
 interface Grant {
@@ -66,8 +87,15 @@ describe('GrantCard', () => {
     cleanup()
   })
 
-  it('renders all fields: name, provider badge, formatted funding, deadline, description, and Aplica CTA', () => {
-    render(GrantCard({ grant: fullGrant }))
+  it('renders all fields: name, provider badge, formatted funding, deadline, description, and Aplica CTA', async () => {
+    const { GrantCard } = await import('../grant-card')
+    render(
+      createElement(GrantCard, {
+        grant: fullGrant,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('AIPA Agricultura')).toBeInTheDocument()
     expect(screen.getByText('AIPA')).toBeInTheDocument()
@@ -79,23 +107,58 @@ describe('GrantCard', () => {
     expect(aplicaLink).toBeInTheDocument()
   })
 
-  it('handles null fields: shows Romanian fallback text', () => {
-    render(GrantCard({ grant: nullFieldsGrant }))
+  it('handles null fields: shows Romanian fallback text', async () => {
+    const { GrantCard } = await import('../grant-card')
+    render(
+      createElement(GrantCard, {
+        grant: nullFieldsGrant,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('Fara descriere')).toBeInTheDocument()
     expect(screen.getByText('Suma necunoscuta')).toBeInTheDocument()
     expect(screen.getByText(/Fara termen limita/)).toBeInTheDocument()
   })
 
-  it('shows red "Expira curand" badge when deadline is within 14 days', () => {
-    render(GrantCard({ grant: expiringGrant }))
+  it('shows red "Expira curand" badge when deadline is within 14 days', async () => {
+    const { GrantCard } = await import('../grant-card')
+    render(
+      createElement(GrantCard, {
+        grant: expiringGrant,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.getByText('Expira curand')).toBeInTheDocument()
   })
 
-  it('does NOT show "Expira curand" badge when deadline is more than 14 days away', () => {
-    render(GrantCard({ grant: safeGrant }))
+  it('does NOT show "Expira curand" badge when deadline is more than 14 days away', async () => {
+    const { GrantCard } = await import('../grant-card')
+    render(
+      createElement(GrantCard, {
+        grant: safeGrant,
+        isAuthenticated: true,
+        isSaved: false,
+      })
+    )
 
     expect(screen.queryByText('Expira curand')).not.toBeInTheDocument()
+  })
+
+  it('renders "Aplica" as button for unauthenticated user', async () => {
+    const { GrantCard } = await import('../grant-card')
+    render(
+      createElement(GrantCard, {
+        grant: fullGrant,
+        isAuthenticated: false,
+        isSaved: false,
+      })
+    )
+
+    const button = screen.getByRole('button', { name: /Aplica/i })
+    expect(button).toBeInTheDocument()
   })
 })

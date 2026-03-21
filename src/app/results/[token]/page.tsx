@@ -67,7 +67,12 @@ export default async function SharedResultsPage({
         Am gasit {candidates.length} granturi potrivite din {grants.length}{' '}
         disponibile
       </p>
-      <MatchList scores={scores} grants={candidates} />
+      <MatchList
+        scores={scores}
+        grants={candidates}
+        isAuthenticated={false}
+        savedGrantIds={[]}
+      />
     </ResultsLayout>
   )
 }

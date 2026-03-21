@@ -6,9 +6,13 @@ import type { GrantWithRules, GrantScore } from '@/lib/matching/types'
 export function MatchList({
   scores,
   grants,
+  isAuthenticated,
+  savedGrantIds,
 }: {
   scores: GrantScore[]
   grants: GrantWithRules[]
+  isAuthenticated: boolean
+  savedGrantIds: string[]
 }) {
   if (scores.length === 0) {
     return (
@@ -34,12 +38,27 @@ export function MatchList({
 
   return (
     <div className="space-y-4">
-      {topGrant && <HeroCard grant={topGrant} score={topScore} />}
+      {topGrant && (
+        <HeroCard
+          grant={topGrant}
+          score={topScore}
+          isAuthenticated={isAuthenticated}
+          isSaved={savedGrantIds.includes(topGrant.id)}
+        />
+      )}
 
       {remaining.map((s) => {
         const grant = grantMap.get(s.grant_id)
         if (!grant) return null
-        return <MatchCard key={s.grant_id} grant={grant} score={s} />
+        return (
+          <MatchCard
+            key={s.grant_id}
+            grant={grant}
+            score={s}
+            isAuthenticated={isAuthenticated}
+            isSaved={savedGrantIds.includes(grant.id)}
+          />
+        )
       })}
     </div>
   )

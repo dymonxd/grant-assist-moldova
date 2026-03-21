@@ -1,7 +1,9 @@
 import { redirect } from 'next/navigation'
 import { getSession } from '@/lib/session'
+import { createClient } from '@/lib/supabase/server'
 import { matchGrants } from '@/app/actions/matching'
 import { generateShareLink } from '@/app/actions/share'
+import { getSavedGrants } from '@/app/actions/saved-grants'
 import { ResultsLayout } from '@/components/grants/results-layout'
 import { MatchList } from '@/components/grants/match-list'
 import { Card, CardContent } from '@/components/ui/card'
@@ -11,6 +13,18 @@ export default async function ResultsPage() {
   if (!session.companyProfileId) {
     redirect('/')
   }
+
+  // Check auth state
+  const supabase = await createClient()
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+  const isAuthenticated = !!user
+
+  // Fetch saved grants if authenticated
+  const savedGrantIds: string[] = isAuthenticated
+    ? (await getSavedGrants()).grants
+    : []
 
   const result = await matchGrants()
 
@@ -52,7 +66,12 @@ export default async function ResultsPage() {
         Am gasit {result.filteredCount} granturi potrivite din{' '}
         {result.totalGrants} disponibile
       </p>
-      <MatchList scores={result.scores} grants={result.grants} />
+      <MatchList
+        scores={result.scores}
+        grants={result.grants}
+        isAuthenticated={isAuthenticated}
+        savedGrantIds={savedGrantIds}
+      />
     </ResultsLayout>
   )
 }

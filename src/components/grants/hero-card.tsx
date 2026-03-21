@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import {
   Card,
@@ -7,8 +10,9 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { ScoreBadge } from './score-badge'
+import { SaveButton } from './save-button'
+import { AccountWallModal } from '@/components/auth/account-wall-modal'
 import type { GrantWithRules, GrantScore } from '@/lib/matching/types'
 
 function formatFunding(amount: number | null, currency: string): string {
@@ -30,10 +34,16 @@ function formatDeadline(deadline: string | null): string {
 export function HeroCard({
   grant,
   score,
+  isAuthenticated,
+  isSaved,
 }: {
   grant: GrantWithRules
   score: GrantScore
+  isAuthenticated: boolean
+  isSaved: boolean
 }) {
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <Card>
       <CardHeader>
@@ -60,19 +70,32 @@ export function HeroCard({
       </CardContent>
 
       <CardFooter className="gap-2">
-        <Link
-          href={`/grants/${grant.id}`}
-          className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
-        >
-          Aplica acum
-        </Link>
-        <Button
-          variant="outline"
-          disabled
-          title="Disponibil dupa autentificare"
-        >
-          Salveaza
-        </Button>
+        {isAuthenticated ? (
+          <Link
+            href={`/grants/${grant.id}`}
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
+          >
+            Aplica acum
+          </Link>
+        ) : (
+          <button
+            onClick={() => setShowModal(true)}
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
+          >
+            Aplica acum
+          </button>
+        )}
+        <SaveButton
+          grantId={grant.id}
+          initialSaved={isSaved}
+          isAuthenticated={isAuthenticated}
+          onAuthRequired={() => setShowModal(true)}
+        />
+        <AccountWallModal
+          open={showModal}
+          onOpenChange={setShowModal}
+          grantId={grant.id}
+        />
       </CardFooter>
     </Card>
   )

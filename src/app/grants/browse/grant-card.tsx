@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import {
   Card,
@@ -7,6 +10,8 @@ import {
   CardFooter,
 } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { SaveButton } from '@/components/grants/save-button'
+import { AccountWallModal } from '@/components/auth/account-wall-modal'
 
 export interface Grant {
   id: string
@@ -43,7 +48,16 @@ function isExpiringSoon(deadline: string | null): boolean {
   return diffDays >= 0 && diffDays <= 14
 }
 
-export function GrantCard({ grant }: { grant: Grant }) {
+export function GrantCard({
+  grant,
+  isAuthenticated,
+  isSaved,
+}: {
+  grant: Grant
+  isAuthenticated: boolean
+  isSaved: boolean
+}) {
+  const [showModal, setShowModal] = useState(false)
   const expiringSoon = isExpiringSoon(grant.deadline)
 
   return (
@@ -77,13 +91,33 @@ export function GrantCard({ grant }: { grant: Grant }) {
         </div>
       </CardContent>
 
-      <CardFooter>
-        <Link
-          href={`/grants/${grant.id}`}
-          className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
-        >
-          Aplica
-        </Link>
+      <CardFooter className="gap-2">
+        {isAuthenticated ? (
+          <Link
+            href={`/grants/${grant.id}`}
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
+          >
+            Aplica
+          </Link>
+        ) : (
+          <button
+            onClick={() => setShowModal(true)}
+            className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
+          >
+            Aplica
+          </button>
+        )}
+        <SaveButton
+          grantId={grant.id}
+          initialSaved={isSaved}
+          isAuthenticated={isAuthenticated}
+          onAuthRequired={() => setShowModal(true)}
+        />
+        <AccountWallModal
+          open={showModal}
+          onOpenChange={setShowModal}
+          grantId={grant.id}
+        />
       </CardFooter>
     </Card>
   )

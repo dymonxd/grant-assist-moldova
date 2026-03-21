@@ -4,9 +4,15 @@ import type { Grant } from './grant-card'
 
 interface GrantListProps {
   grants: Grant[]
+  isAuthenticated: boolean
+  savedGrantIds: string[]
 }
 
-export function GrantList({ grants }: GrantListProps) {
+export function GrantList({
+  grants,
+  isAuthenticated,
+  savedGrantIds,
+}: GrantListProps) {
   if (grants.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
@@ -29,7 +35,12 @@ export function GrantList({ grants }: GrantListProps) {
       <p className="mb-4 text-sm text-muted-foreground">{countLabel}</p>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {grants.map((grant) => (
-          <GrantCard key={grant.id} grant={grant} />
+          <GrantCard
+            key={grant.id}
+            grant={grant}
+            isAuthenticated={isAuthenticated}
+            isSaved={savedGrantIds.includes(grant.id)}
+          />
         ))}
       </div>
     </div>
