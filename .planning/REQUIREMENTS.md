@@ -53,19 +53,19 @@
 
 ### Grant Writer (WRITE)
 
-- [ ] **WRITE-01**: Grant application fields load from grant_application_fields table
-- [ ] **WRITE-02**: Auto-preview of Section 1 generated on first writer visit (grayed out, AI-only)
+- [x] **WRITE-01**: Grant application fields load from grant_application_fields table
+- [x] **WRITE-02**: Auto-preview of Section 1 generated on first writer visit (grayed out, AI-only)
 - [ ] **WRITE-03**: User writes brief answer, clicks "Genereaza cu AI", gets streaming Romanian text
-- [ ] **WRITE-04**: AI asks ONE clarifying question when input is too vague (<20 chars)
-- [ ] **WRITE-05**: AI uses company enriched_data + grant guidelines + scoring rubric in context
+- [x] **WRITE-04**: AI asks ONE clarifying question when input is too vague (<20 chars)
+- [x] **WRITE-05**: AI uses company enriched_data + grant guidelines + scoring rubric in context
 - [ ] **WRITE-06**: Inline scoring hints (collapsible) above each field showing rubric criteria
-- [ ] **WRITE-07**: Character count displayed with server-side truncation and user warning
+- [x] **WRITE-07**: Character count displayed with server-side truncation and user warning
 - [ ] **WRITE-08**: Buttons per section: Editeaza, Regenereaza, Salveaza, Urmatoarea
 - [ ] **WRITE-09**: Progress bar showing "X din Y sectiuni completate"
 - [ ] **WRITE-10**: Required documents checklist (checkable) at bottom of page
 - [ ] **WRITE-11**: Grant summary with deadline countdown at top of page
-- [ ] **WRITE-12**: Deadline check on page load: block if expired, warn if <3 days
-- [ ] **WRITE-13**: Field snapshot saved at application creation (grant changes don't break in-progress apps)
+- [x] **WRITE-12**: Deadline check on page load: block if expired, warn if <3 days
+- [x] **WRITE-13**: Field snapshot saved at application creation (grant changes don't break in-progress apps)
 
 ### Export (EXPRT)
 
@@ -204,19 +204,19 @@
 | AUTH-06 | Phase 4 | Complete |
 | AUTH-07 | Phase 4 | Complete |
 | GEN-04 | Phase 4 | Complete |
-| WRITE-01 | Phase 5 | Pending |
-| WRITE-02 | Phase 5 | Pending |
+| WRITE-01 | Phase 5 | Complete |
+| WRITE-02 | Phase 5 | Complete |
 | WRITE-03 | Phase 5 | Pending |
-| WRITE-04 | Phase 5 | Pending |
-| WRITE-05 | Phase 5 | Pending |
+| WRITE-04 | Phase 5 | Complete |
+| WRITE-05 | Phase 5 | Complete |
 | WRITE-06 | Phase 5 | Pending |
-| WRITE-07 | Phase 5 | Pending |
+| WRITE-07 | Phase 5 | Complete |
 | WRITE-08 | Phase 5 | Pending |
 | WRITE-09 | Phase 5 | Pending |
 | WRITE-10 | Phase 5 | Pending |
 | WRITE-11 | Phase 5 | Pending |
-| WRITE-12 | Phase 5 | Pending |
-| WRITE-13 | Phase 5 | Pending |
+| WRITE-12 | Phase 5 | Complete |
+| WRITE-13 | Phase 5 | Complete |
 | EXPRT-01 | Phase 5 | Pending |
 | EXPRT-02 | Phase 5 | Pending |
 | EXPRT-03 | Phase 5 | Pending |

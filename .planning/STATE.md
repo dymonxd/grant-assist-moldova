@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 04-02-PLAN.md (account wall modal, signup form, save button, auth-aware cards)
-last_updated: "2026-03-21T20:09:17.486Z"
-last_activity: 2026-03-21 -- Completed 04-02-PLAN.md (account wall modal and auth-aware grant cards)
+status: in_progress
+stopped_at: Completed 05-01-PLAN.md (writer backend server actions and AI streaming route)
+last_updated: "2026-03-21T22:25:00Z"
+last_activity: 2026-03-21 -- Completed 05-01-PLAN.md (writer backend with AI streaming)
 progress:
   total_phases: 6
   completed_phases: 4
-  total_plans: 14
-  completed_plans: 14
-  percent: 100
+  total_plans: 18
+  completed_plans: 15
+  percent: 83
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 4 complete -- all 3 plans executed (auth actions, account wall UI, privacy policy). Ready for Phase 5 (Writer) or Phase 6 (Admin).
+**Current focus:** Phase 5 in progress -- Plan 01 complete (writer backend). Plans 02-04 remaining (writer UI, export, analytics).
 
 ## Current Position
 
-Phase: 4 of 6 (Authentication and Profile Merge) -- COMPLETE
-Plan: 3 of 3 in current phase (all complete)
-Status: Phase 4 complete; AUTH-01 through AUTH-07 and GEN-04 implemented
-Last activity: 2026-03-21 -- Completed 04-02-PLAN.md (account wall modal and auth-aware grant cards)
+Phase: 5 of 6 (AI Grant Writer and Export) -- IN PROGRESS
+Plan: 1 of 4 in current phase (1 complete, 3 remaining)
+Status: Phase 5 started; WRITE-01/02/04/05/07/12/13 implemented in Plan 01
+Last activity: 2026-03-21 -- Completed 05-01-PLAN.md (writer backend with AI streaming)
 
-Progress: [██████████] 100% (Phases 1-4 complete, 14/14 plans in completed phases)
+Progress: [████████░░] 83% (Phases 1-4 complete, Phase 5: 1/4 plans)
 
 ## Performance Metrics
 
@@ -62,6 +62,7 @@ Progress: [██████████] 100% (Phases 1-4 complete, 14/14 plan
 | Phase 04 P03 | 2min | 1 task | 2 files |
 | Phase 04 P01 | 3min | 3 tasks | 7 files |
 | Phase 04 P02 | 6min | 2 tasks | 15 files |
+| Phase 05 P01 | 5min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -120,6 +121,9 @@ Recent decisions affecting current work:
 - [Phase 04-02]: Grant cards converted to 'use client' with useState for modal -- auth state passed as props from server pages
 - [Phase 04-02]: Shared results page passes isAuthenticated=false since it is a public view with no auth context
 - [Phase 04-02]: SaveButton handles both authenticated (toggle) and unauthenticated (modal trigger) states in a single component
+- [05-01]: buildLeanProfile duplicated in generate-section.ts (not imported from rank-grants.ts) for module independence
+- [05-01]: checkDeadline is a pure synchronous function for easy testing and reuse in page.tsx
+- [05-01]: Streaming Route Handler pattern (streamText + toTextStreamResponse) for non-conversational AI generation
 
 ### Pending Todos
 
@@ -134,6 +138,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T20:01:56Z
-Stopped at: Completed 04-02-PLAN.md (account wall modal, signup form, save button, auth-aware cards)
+Last session: 2026-03-21T22:25:00Z
+Stopped at: Completed 05-01-PLAN.md (writer backend server actions and AI streaming route)
 Resume file: None
