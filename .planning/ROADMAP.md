@@ -101,13 +101,13 @@ Plans:
   3. Each section shows character count with warning near limits, and has Editeaza/Regenereaza/Salveaza/Urmatoarea buttons; progress bar shows "X din Y sectiuni completate" with a required documents checklist at the bottom
   4. Grant writer page checks deadline on load -- blocks access if the grant is expired, warns if deadline is less than 3 days away; grant summary with deadline countdown is visible at the top
   5. User can copy all sections to clipboard, download a PDF with Romanian diacritics rendered correctly, or send the application via email; unauthenticated users see the account modal for PDF/email (copy works without account); user can opt in to deadline reminders
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 05-01: TBD
-- [ ] 05-02: TBD
-- [ ] 05-03: TBD
-- [ ] 05-04: TBD
+- [ ] 05-01-PLAN.md -- Writer server actions (application CRUD, section save, deadline check) and AI streaming Route Handler with rubric-optimized prompts
+- [ ] 05-02-PLAN.md -- Writer page UI: section editor with streaming, progress bar, scoring hints, document checklist, grant header
+- [ ] 05-03-PLAN.md -- Export: PDF with Geist Sans diacritics, clipboard copy, email via Resend, auth gating, deadline reminder opt-in
+- [ ] 05-04-PLAN.md -- Settings page for notification preferences and analytics event tracking at funnel stages
 
 ### Phase 6: Admin Tooling and Automation
 **Goal**: Administrators can manage the grant catalog efficiently with AI-assisted PDF extraction, monitor platform usage through an analytics funnel, and the system automatically sends deadline reminders and re-engagement emails -- the operational backbone that keeps the platform running.
@@ -139,5 +139,5 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
-| 5. AI Grant Writer and Export | 0/4 | Not started | - |
+| 5. AI Grant Writer and Export | 0/4 | Planned | - |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |
