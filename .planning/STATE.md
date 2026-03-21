@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in_progress
-stopped_at: Completed 05-02-PLAN.md (writer page UI with section editors and streaming)
-last_updated: "2026-03-21T22:34:00Z"
-last_activity: 2026-03-21 -- Completed 05-02-PLAN.md (writer page UI)
+stopped_at: Completed 05-04-PLAN.md (settings page and analytics tracking)
+last_updated: "2026-03-21T22:40:40Z"
+last_activity: 2026-03-21 -- Completed 05-04-PLAN.md (settings & analytics)
 progress:
   total_phases: 6
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 18
-  completed_plans: 16
-  percent: 89
+  completed_plans: 18
+  percent: 100
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 5 in progress -- Plans 01-02 complete (writer backend + UI). Plans 03-04 remaining (export, analytics).
+**Current focus:** Phase 5 complete -- all 4 plans done (writer backend, writer UI, export, analytics/settings). Ready for Phase 6 (Admin Dashboard).
 
 ## Current Position
 
-Phase: 5 of 6 (AI Grant Writer and Export) -- IN PROGRESS
-Plan: 2 of 4 in current phase (2 complete, 2 remaining)
-Status: Phase 5 progressing; Plans 01-02 done, WRITE-01/02/03/04/05/06/07/08/09/10/11/12/13 implemented
-Last activity: 2026-03-21 -- Completed 05-02-PLAN.md (writer page UI)
+Phase: 5 of 6 (AI Grant Writer and Export) -- COMPLETE
+Plan: 4 of 4 in current phase (4 complete, 0 remaining)
+Status: Phase 5 complete; all plans done. Ready for Phase 6 (Admin Dashboard).
+Last activity: 2026-03-21 -- Completed 05-04-PLAN.md (settings & analytics)
 
-Progress: [█████████░] 89% (Phases 1-4 complete, Phase 5: 2/4 plans)
+Progress: [██████████] 100% (Phases 1-5 complete, Phase 6 remaining)
 
 ## Performance Metrics
 
@@ -64,6 +64,7 @@ Progress: [█████████░] 89% (Phases 1-4 complete, Phase 5: 2/
 | Phase 04 P02 | 6min | 2 tasks | 15 files |
 | Phase 05 P01 | 5min | 2 tasks | 6 files |
 | Phase 05 P02 | 5min | 2 tasks | 10 files |
+| Phase 05 P04 | 3min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -129,6 +130,9 @@ Recent decisions affecting current work:
 - [05-02]: fetch + ReadableStream reader for streaming (not @ai-sdk/react) -- no new dependency, full control over streaming UX
 - [05-02]: Section auto-preview uses useEffect with AbortController and previewTriggered flag to prevent Strict Mode double-fire
 - [05-02]: DocumentChecklist state managed by parent WriterClient for persistence flexibility
+- [05-04]: Checkbox uses base-ui onCheckedChange with useTransition for non-blocking toggle
+- [05-04]: Analytics fire-and-forget: trackEvent called without await in useEffect to avoid blocking UX
+- [05-04]: Session ID for analytics falls back to 'anonymous' when no companyProfileId in iron-session
 
 ### Pending Todos
 
@@ -143,6 +147,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T22:34:00Z
-Stopped at: Completed 05-02-PLAN.md (writer page UI with section editors and streaming)
+Last session: 2026-03-21T22:40:40Z
+Stopped at: Completed 05-04-PLAN.md (settings page and analytics tracking)
 Resume file: None

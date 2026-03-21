@@ -127,8 +127,8 @@
 - [x] **GEN-02**: Mobile-responsive design at 375px (mobile-first)
 - [x] **GEN-03**: Loading, error, and empty states for every interactive screen
 - [x] **GEN-04**: Privacy policy page in Romanian
-- [ ] **GEN-05**: Analytics event tracking at each funnel stage
-- [ ] **GEN-06**: Notification preferences page (settings)
+- [x] **GEN-05**: Analytics event tracking at each funnel stage
+- [x] **GEN-06**: Notification preferences page (settings)
 
 ## v2 Requirements
 
@@ -223,8 +223,8 @@
 | EXPRT-04 | Phase 5 | Pending |
 | EXPRT-05 | Phase 5 | Pending |
 | EXPRT-06 | Phase 5 | Pending |
-| GEN-05 | Phase 5 | Pending |
-| GEN-06 | Phase 5 | Pending |
+| GEN-05 | Phase 5 | Complete |
+| GEN-06 | Phase 5 | Complete |
 | ADMIN-01 | Phase 6 | Pending |
 | ADMIN-02 | Phase 6 | Pending |
 | ADMIN-03 | Phase 6 | Pending |

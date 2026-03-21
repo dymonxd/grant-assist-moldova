@@ -139,5 +139,5 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 2. Data Layer and Company Profiles | 4/4 | Complete | 2026-03-21 |
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
-| 5. AI Grant Writer and Export | 0/4 | Planned | - |
+| 5. AI Grant Writer and Export | 3/4 | In Progress|  |
 | 6. Admin Tooling and Automation | 0/4 | Not started | - |
