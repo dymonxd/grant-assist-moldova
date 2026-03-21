@@ -41,7 +41,9 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
 
     // Apply filters conditionally
     if (params.q) {
-      query = query.ilike('name', `%${params.q}%`)
+      // Escape LIKE wildcards (% and _) in user input to prevent pattern injection
+      const escapedQ = params.q.replace(/%/g, '\\%').replace(/_/g, '\\_')
+      query = query.ilike('name', `%${escapedQ}%`)
     }
     if (params.provider) {
       query = query.eq('provider_agency', params.provider)

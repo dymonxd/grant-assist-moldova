@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Input } from '@/components/ui/input'
 import { Search, X } from 'lucide-react'
 
@@ -14,27 +14,36 @@ export function GrantFilters({ providers }: GrantFiltersProps) {
   const searchParams = useSearchParams()
 
   const [searchValue, setSearchValue] = useState(searchParams.get('q') ?? '')
+  const isFirstRender = useRef(true)
 
-  const updateParams = useCallback(
-    (key: string, value: string) => {
+  function updateParams(key: string, value: string) {
+    const params = new URLSearchParams(searchParams.toString())
+    if (value) {
+      params.set(key, value)
+    } else {
+      params.delete(key)
+    }
+    router.push(`?${params.toString()}`)
+  }
+
+  // Debounced search — only fires on user input changes, not on mount
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    const timer = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString())
-      if (value) {
-        params.set(key, value)
+      if (searchValue) {
+        params.set('q', searchValue)
       } else {
-        params.delete(key)
+        params.delete('q')
       }
       router.push(`?${params.toString()}`)
-    },
-    [router, searchParams]
-  )
-
-  // Debounced search
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      updateParams('q', searchValue)
     }, 300)
     return () => clearTimeout(timer)
-  }, [searchValue, updateParams])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue])
 
   const resetFilters = () => {
     setSearchValue('')
