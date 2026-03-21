@@ -13,7 +13,7 @@ GrantAssist Moldova delivers an AI-powered grant discovery and application platf
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation and Validation** - Supabase schema with RLS, auth plumbing, session infrastructure, PDF validation, project scaffolding (completed 2026-03-21)
-- [ ] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog
+- [x] **Phase 2: Data Layer and Company Profiles** - Company data scraping, profile management, purchase need selection, public grant browse catalog (completed 2026-03-21)
 - [ ] **Phase 3: Grant Matching** - SQL pre-filter, AI ranking with match scores, results UI, shareable links
 - [ ] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants
 - [ ] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export
@@ -53,8 +53,8 @@ Plans:
 Plans:
 - [x] 02-01-PLAN.md -- Vitest setup, shared types, IDNO validation, three Cheerio scrapers, aggregate orchestrator with confidence merge
 - [x] 02-02-PLAN.md -- AI inference module, Server Actions (lookupCompany, inferFromIdea, saveManualProfile, savePurchaseNeed)
-- [ ] 02-03-PLAN.md -- Landing page UI: IDNO form, idea form, profile result, manual fallback, purchase chips, step flow
-- [ ] 02-04-PLAN.md -- Public grant browse page with search, filters, and grant cards
+- [x] 02-03-PLAN.md -- Landing page UI: IDNO form, idea form, profile result, manual fallback, purchase chips, step flow
+- [x] 02-04-PLAN.md -- Public grant browse page with search, filters, and grant cards
 
 ### Phase 3: Grant Matching
 **Goal**: Users receive personalized grant recommendations ranked by AI with match scores, explanations, and strategic advice -- the primary conversion point where users see the value of the platform and decide to apply.
