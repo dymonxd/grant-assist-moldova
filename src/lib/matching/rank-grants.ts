@@ -1,4 +1,5 @@
 import { generateText, Output } from 'ai'
+import { openai } from '@ai-sdk/openai'
 import { grantScoreSchema, type GrantScore, type GrantWithRules } from './types'
 
 /**
@@ -37,7 +38,7 @@ export async function rankGrants(
   })
 
   const { output } = await generateText({
-    model: 'anthropic/claude-sonnet-4.6',
+    model: openai('gpt-5.4-nano'),
     output: Output.array({
       element: grantScoreSchema,
     }),

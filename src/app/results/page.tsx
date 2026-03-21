@@ -26,6 +26,21 @@ export default async function ResultsPage() {
     )
   }
 
+  if (result.totalGrants === 0) {
+    return (
+      <ResultsLayout profile={result.profile} shareToken={null}>
+        <div className="py-12 text-center">
+          <p className="text-lg font-medium">
+            Nu exista granturi active in acest moment
+          </p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Revino mai tarziu — adaugam granturi noi in mod regulat.
+          </p>
+        </div>
+      </ResultsLayout>
+    )
+  }
+
   // Generate share token for the share button
   const shareResult = await generateShareLink()
   const shareToken =

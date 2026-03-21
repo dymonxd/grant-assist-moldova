@@ -1,4 +1,5 @@
 import { generateText, Output } from 'ai'
+import { openai } from '@ai-sdk/openai'
 import { z } from 'zod'
 
 const companyProfileSchema = z.object({
@@ -31,7 +32,7 @@ export async function inferProfileFromIdea(
 ): Promise<InferredProfile | null> {
   try {
     const { output } = await generateText({
-      model: 'anthropic/claude-sonnet-4.6',
+      model: openai('gpt-5.4-nano'),
       output: Output.object({ schema: companyProfileSchema }),
       system: `Esti un asistent care analizeaza idei de afaceri din Moldova.
 Extrage informatii despre companie din descrierea furnizata.
