@@ -33,12 +33,29 @@ export async function proxy(request: NextRequest) {
   // getClaims() validates the JWT signature (unlike getSession() which trusts the token)
   const { data } = await supabase.auth.getClaims()
 
-  // Protect /admin routes -- redirect unauthenticated users to /login
+  // Protect /admin routes
   const { pathname } = request.nextUrl
-  if (pathname.startsWith('/admin') && !data?.claims) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+
+  if (pathname.startsWith('/admin')) {
+    // Redirect unauthenticated users to /login
+    if (!data?.claims) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/login'
+      return NextResponse.redirect(url)
+    }
+
+    // Reject authenticated non-admin users -- redirect to /
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('is_admin')
+      .eq('id', data.claims.sub)
+      .single()
+
+    if (!profile?.is_admin) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/'
+      return NextResponse.redirect(url)
+    }
   }
 
   return supabaseResponse
