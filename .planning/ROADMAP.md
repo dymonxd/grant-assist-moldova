@@ -104,10 +104,10 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-01-PLAN.md -- Writer server actions (application CRUD, section save, deadline check) and AI streaming Route Handler with rubric-optimized prompts
-- [ ] 05-02-PLAN.md -- Writer page UI: section editor with streaming, progress bar, scoring hints, document checklist, grant header
-- [ ] 05-03-PLAN.md -- Export: PDF with Geist Sans diacritics, clipboard copy, email via Resend, auth gating, deadline reminder opt-in
-- [ ] 05-04-PLAN.md -- Settings page for notification preferences and analytics event tracking at funnel stages
+- [x] 05-01-PLAN.md -- Writer server actions (application CRUD, section save, deadline check) and AI streaming Route Handler with rubric-optimized prompts
+- [x] 05-02-PLAN.md -- Writer page UI: section editor with streaming, progress bar, scoring hints, document checklist, grant header
+- [x] 05-03-PLAN.md -- Export: PDF with Geist Sans diacritics, clipboard copy, email via Resend, auth gating, deadline reminder opt-in
+- [x] 05-04-PLAN.md -- Settings page for notification preferences and analytics event tracking at funnel stages
 
 ### Phase 6: Admin Tooling and Automation
 **Goal**: Administrators can manage the grant catalog efficiently with AI-assisted PDF extraction, monitor platform usage through an analytics funnel, and the system automatically sends deadline reminders and re-engagement emails -- the operational backbone that keeps the platform running.
@@ -119,13 +119,15 @@ Plans:
   3. Admin can onboard a new grant via a 3-step wizard: enter basic info, upload PDF (max 20MB) for AI extraction of eligibility rules, scoring rubric, application fields, and required documents, then review and publish; publishing triggers notification to matching existing profiles
   4. Admin can view notification logs filtered by type (deadline, abandoned draft, grant expiring, new match) and manually bulk-send notifications with confirmation preview
   5. Cron jobs run daily: deadline reminders at 7 and 3 days, abandoned draft nudges at 7 days inactivity, nightly analytics aggregation; all cron routes validate CRON_SECRET, prevent duplicate sends, respect user notification preferences, and include one-click unsubscribe links in every email
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
-- [ ] 06-03: TBD
-- [ ] 06-04: TBD
+- [ ] 06-01-PLAN.md -- Admin dashboard with analytics funnel, activity feed, applications table, DB migration, and admin auth hardening
+- [ ] 06-02-PLAN.md -- Grant catalog management table with status badges, inline deadline editing, CRUD actions, and publish validation
+- [ ] 06-03-PLAN.md -- Grant onboarding wizard with AI PDF extraction, SSRF-protected re-scrape, and publish notifications
+- [ ] 06-04-PLAN.md -- Notification email templates, one-click unsubscribe, notification log viewer, and bulk send
+- [ ] 06-05-PLAN.md -- Cron jobs for deadline reminders, abandoned draft nudges, and analytics aggregation
+- [ ] 06-06-PLAN.md -- End-to-end verification checkpoint with full test suite and human UI review
 
 ## Progress
 
@@ -140,4 +142,4 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
 | 5. AI Grant Writer and Export | 4/4 | Complete   | 2026-03-21 |
-| 6. Admin Tooling and Automation | 0/4 | Not started | - |
+| 6. Admin Tooling and Automation | 0/6 | Not started | - |
