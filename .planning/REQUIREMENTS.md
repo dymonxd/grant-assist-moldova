@@ -99,11 +99,11 @@
 - [x] **AGRANT-03**: Inline deadline quick-edit
 - [x] **AGRANT-04**: Actions: Edit, Duplicate, Deactivate, Re-scrape, View applications
 - [x] **AGRANT-05**: Publish validation: minimum name, provider, deadline, 1 eligibility rule, 1 field
-- [ ] **AGRANT-06**: 3-step grant onboarding wizard (basic info → AI extraction → review/publish)
-- [ ] **AGRANT-07**: PDF upload with MIME validation (application/pdf, max 20MB)
-- [ ] **AGRANT-08**: AI extraction: eligibility rules, scoring rubric, application fields, required documents
-- [ ] **AGRANT-09**: Form URL scraping with SSRF domain whitelist protection
-- [ ] **AGRANT-10**: On publish: trigger new grant match notification to existing profiles
+- [x] **AGRANT-06**: 3-step grant onboarding wizard (basic info → AI extraction → review/publish)
+- [x] **AGRANT-07**: PDF upload with MIME validation (application/pdf, max 20MB)
+- [x] **AGRANT-08**: AI extraction: eligibility rules, scoring rubric, application fields, required documents
+- [x] **AGRANT-09**: Form URL scraping with SSRF domain whitelist protection
+- [x] **AGRANT-10**: On publish: trigger new grant match notification to existing profiles
 
 ### Admin Notifications (ANOTIF)
 
@@ -236,11 +236,11 @@
 | AGRANT-03 | Phase 6 | Complete |
 | AGRANT-04 | Phase 6 | Complete |
 | AGRANT-05 | Phase 6 | Complete |
-| AGRANT-06 | Phase 6 | Pending |
-| AGRANT-07 | Phase 6 | Pending |
-| AGRANT-08 | Phase 6 | Pending |
-| AGRANT-09 | Phase 6 | Pending |
-| AGRANT-10 | Phase 6 | Pending |
+| AGRANT-06 | Phase 6 | Complete |
+| AGRANT-07 | Phase 6 | Complete |
+| AGRANT-08 | Phase 6 | Complete |
+| AGRANT-09 | Phase 6 | Complete |
+| AGRANT-10 | Phase 6 | Complete |
 | ANOTIF-01 | Phase 6 | Complete |
 | ANOTIF-02 | Phase 6 | Complete |
 | ANOTIF-03 | Phase 6 | Complete |
