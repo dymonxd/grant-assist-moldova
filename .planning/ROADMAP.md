@@ -124,9 +124,9 @@ Plans:
 Plans:
 - [x] 06-01-PLAN.md -- Admin dashboard with analytics funnel, activity feed, applications table, DB migration, and admin auth hardening
 - [x] 06-02-PLAN.md -- Grant catalog management table with status badges, inline deadline editing, CRUD actions, and publish validation
-- [ ] 06-03-PLAN.md -- Grant onboarding wizard with AI PDF extraction, SSRF-protected re-scrape, and publish notifications
-- [ ] 06-04-PLAN.md -- Notification email templates, one-click unsubscribe, notification log viewer, and bulk send
-- [ ] 06-05-PLAN.md -- Cron jobs for deadline reminders, abandoned draft nudges, and analytics aggregation
+- [x] 06-03-PLAN.md -- Grant onboarding wizard with AI PDF extraction, SSRF-protected re-scrape, and publish notifications
+- [x] 06-04-PLAN.md -- Notification email templates, one-click unsubscribe, notification log viewer, and bulk send
+- [x] 06-05-PLAN.md -- Cron jobs for deadline reminders, abandoned draft nudges, and analytics aggregation
 - [ ] 06-06-PLAN.md -- End-to-end verification checkpoint with full test suite and human UI review
 
 ## Progress
@@ -142,4 +142,4 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 3. Grant Matching | 4/4 | Complete | 2026-03-21 |
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
 | 5. AI Grant Writer and Export | 4/4 | Complete   | 2026-03-21 |
-| 6. Admin Tooling and Automation | 2/6 | In progress | - |
+| 6. Admin Tooling and Automation | 5/6 | In progress | - |

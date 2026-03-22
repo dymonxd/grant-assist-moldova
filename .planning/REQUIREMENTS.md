@@ -113,10 +113,10 @@
 
 ### Automation (AUTO)
 
-- [ ] **AUTO-01**: Cron: deadline reminders at 7 and 3 days before deadline (daily 9:00 UTC)
-- [ ] **AUTO-02**: Cron: abandoned draft nudge after 7 days inactivity (daily 10:00 UTC)
-- [ ] **AUTO-03**: Cron: nightly analytics aggregation (2:00 UTC)
-- [ ] **AUTO-04**: CRON_SECRET Bearer token validation on all cron routes
+- [x] **AUTO-01**: Cron: deadline reminders at 7 and 3 days before deadline (daily 9:00 UTC)
+- [x] **AUTO-02**: Cron: abandoned draft nudge after 7 days inactivity (daily 10:00 UTC)
+- [x] **AUTO-03**: Cron: nightly analytics aggregation (2:00 UTC)
+- [x] **AUTO-04**: CRON_SECRET Bearer token validation on all cron routes
 - [x] **AUTO-05**: Duplicate notification prevention via notifications_log
 - [x] **AUTO-06**: Respect `profiles.email_notifications` before sending
 - [x] **AUTO-07**: Every email includes one-click unsubscribe link
@@ -244,10 +244,10 @@
 | ANOTIF-01 | Phase 6 | Complete |
 | ANOTIF-02 | Phase 6 | Complete |
 | ANOTIF-03 | Phase 6 | Complete |
-| AUTO-01 | Phase 6 | Pending |
-| AUTO-02 | Phase 6 | Pending |
-| AUTO-03 | Phase 6 | Pending |
-| AUTO-04 | Phase 6 | Pending |
+| AUTO-01 | Phase 6 | Complete |
+| AUTO-02 | Phase 6 | Complete |
+| AUTO-03 | Phase 6 | Complete |
+| AUTO-04 | Phase 6 | Complete |
 | AUTO-05 | Phase 6 | Complete |
 | AUTO-06 | Phase 6 | Complete |
 | AUTO-07 | Phase 6 | Complete |

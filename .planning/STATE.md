@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 06-03-PLAN.md (grant onboarding wizard with AI PDF extraction)
-last_updated: "2026-03-22T16:29:45Z"
-last_activity: 2026-03-22 -- Completed 06-03-PLAN.md (grant onboarding wizard with AI PDF extraction)
+stopped_at: Completed 06-05-PLAN.md (cron jobs for deadline reminders, abandoned drafts, analytics)
+last_updated: "2026-03-22T16:37:53Z"
+last_activity: 2026-03-22 -- Completed 06-05-PLAN.md (cron jobs for deadline reminders, abandoned drafts, analytics)
 progress:
   total_phases: 6
   completed_phases: 5
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 6 in progress -- grant wizard, catalog, notifications, and dashboard complete. Cron jobs next.
+**Current focus:** Phase 6 in progress -- cron jobs complete. Final verification checkpoint (06-06) remaining.
 
 ## Current Position
 
 Phase: 6 of 6 (Admin Tooling and Automation) -- IN PROGRESS
 Plan: 6 of 6 in current phase (5 complete, 1 remaining)
-Status: Completed 06-03 (grant wizard with AI PDF extraction). Parallel: 06-04 also complete.
-Last activity: 2026-03-22 -- Completed 06-03-PLAN.md (grant onboarding wizard with AI PDF extraction)
+Status: Completed 06-05 (cron jobs). Only 06-06 (verification checkpoint) remains.
+Last activity: 2026-03-22 -- Completed 06-05-PLAN.md (cron jobs for deadline reminders, abandoned drafts, analytics)
 
-Progress: [█████████░] 83% (Phase 6: 5 of 6 plans complete)
+Progress: [█████████░] 95% (Phase 6: 5 of 6 plans complete)
 
 ## Performance Metrics
 
@@ -70,6 +70,7 @@ Progress: [█████████░] 83% (Phase 6: 5 of 6 plans complete)
 | Phase 06 P01 | 7min | 2 tasks | 11 files |
 | Phase 06 P03 | 7min | 2 tasks | 8 files |
 | Phase 06 P04 | 6min | 2 tasks | 9 files |
+| Phase 06 P05 | 4min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -157,6 +158,10 @@ Recent decisions affecting current work:
 - [06-04]: Shared wrapEmail base template for all 4 notification types with unsubscribe footer
 - [06-04]: Array.isArray guard for Supabase join results (same pattern as 06-02)
 - [06-04]: State-managed modal for bulk send dialog (div overlay, no external dialog library)
+- [06-05]: Shared validateCronSecret inlined in each route for self-containment (not shared module)
+- [06-05]: Analytics event_type to funnel stage mapping skips unmapped types (section_generated, section_saved)
+- [06-05]: Null device_type mapped to empty string for analytics_daily_summary composite PK compatibility
+- [06-05]: vi.hoisted() for mock variable declarations in Vitest 4 to avoid hoisting initialization errors
 
 ### Pending Todos
 
@@ -171,6 +176,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T16:29:45Z
-Stopped at: Completed 06-03-PLAN.md (grant onboarding wizard with AI PDF extraction)
+Last session: 2026-03-22T16:37:53Z
+Stopped at: Completed 06-05-PLAN.md (cron jobs for deadline reminders, abandoned drafts, analytics)
 Resume file: None
