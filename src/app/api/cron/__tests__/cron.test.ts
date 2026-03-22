@@ -1,9 +1,28 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
-// --- Mock setup ---
+// --- Mock setup (vi.hoisted ensures availability before vi.mock hoisting) ---
+
+const {
+  mockSend,
+  mockAdminFrom,
+  mockAdminRpc,
+  mockCheckDuplicate,
+  mockBuildDeadlineEmail,
+  mockBuildAbandonedEmail,
+  mockGetDeadlineSubject,
+  mockGetAbandonedSubject,
+} = vi.hoisted(() => ({
+  mockSend: vi.fn(),
+  mockAdminFrom: vi.fn(),
+  mockAdminRpc: vi.fn(),
+  mockCheckDuplicate: vi.fn(),
+  mockBuildDeadlineEmail: vi.fn().mockReturnValue('<html>deadline</html>'),
+  mockBuildAbandonedEmail: vi.fn().mockReturnValue('<html>abandoned</html>'),
+  mockGetDeadlineSubject: vi.fn().mockReturnValue('Memento: Grant IMM - 7 zile ramase'),
+  mockGetAbandonedSubject: vi.fn().mockReturnValue('Cererea ta pentru Grant IMM asteapta'),
+}))
 
 // Mock Resend SDK
-const mockSend = vi.fn()
 vi.mock('resend', () => ({
   Resend: class MockResend {
     emails = { send: mockSend }
@@ -11,9 +30,6 @@ vi.mock('resend', () => ({
 }))
 
 // Mock Supabase admin client (service role, bypasses RLS)
-const mockAdminFrom = vi.fn()
-const mockAdminRpc = vi.fn()
-
 vi.mock('@/lib/supabase/admin', () => ({
   createAdminClient: vi.fn(() => ({
     from: mockAdminFrom,
@@ -22,17 +38,11 @@ vi.mock('@/lib/supabase/admin', () => ({
 }))
 
 // Mock checkDuplicateNotification from admin-notifications
-const mockCheckDuplicate = vi.fn()
 vi.mock('@/app/actions/admin-notifications', () => ({
   checkDuplicateNotification: mockCheckDuplicate,
 }))
 
 // Mock notification-emails
-const mockBuildDeadlineEmail = vi.fn().mockReturnValue('<html>deadline</html>')
-const mockBuildAbandonedEmail = vi.fn().mockReturnValue('<html>abandoned</html>')
-const mockGetDeadlineSubject = vi.fn().mockReturnValue('Memento: Grant IMM - 7 zile ramase')
-const mockGetAbandonedSubject = vi.fn().mockReturnValue('Cererea ta pentru Grant IMM asteapta')
-
 vi.mock('@/lib/email/notification-emails', () => ({
   buildDeadlineReminderEmail: mockBuildDeadlineEmail,
   buildAbandonedDraftEmail: mockBuildAbandonedEmail,
