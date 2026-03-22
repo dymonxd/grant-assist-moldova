@@ -85,12 +85,12 @@
 
 ### Admin Analytics (ADMIN)
 
-- [ ] **ADMIN-01**: `/admin` restricted to users with `profiles.is_admin = true`
-- [ ] **ADMIN-02**: Analytics funnel pipeline view (Sessions → IDNO Entered → Grants Viewed → Account Created → Writer Started → Exported)
-- [ ] **ADMIN-03**: Each funnel stage clickable with daily trend, device breakdown, top referrers
-- [ ] **ADMIN-04**: Recent activity feed (last 50 events)
-- [ ] **ADMIN-05**: Active applications list (user, grant, last activity, completion %)
-- [ ] **ADMIN-06**: Stale applications (7+ days) with "Send reminder" button
+- [x] **ADMIN-01**: `/admin` restricted to users with `profiles.is_admin = true`
+- [x] **ADMIN-02**: Analytics funnel pipeline view (Sessions → IDNO Entered → Grants Viewed → Account Created → Writer Started → Exported)
+- [x] **ADMIN-03**: Each funnel stage clickable with daily trend, device breakdown, top referrers
+- [x] **ADMIN-04**: Recent activity feed (last 50 events)
+- [x] **ADMIN-05**: Active applications list (user, grant, last activity, completion %)
+- [x] **ADMIN-06**: Stale applications (7+ days) with "Send reminder" button
 
 ### Admin Grants (AGRANT)
 
@@ -225,12 +225,12 @@
 | EXPRT-06 | Phase 5 | Complete |
 | GEN-05 | Phase 5 | Complete |
 | GEN-06 | Phase 5 | Complete |
-| ADMIN-01 | Phase 6 | Pending |
-| ADMIN-02 | Phase 6 | Pending |
-| ADMIN-03 | Phase 6 | Pending |
-| ADMIN-04 | Phase 6 | Pending |
-| ADMIN-05 | Phase 6 | Pending |
-| ADMIN-06 | Phase 6 | Pending |
+| ADMIN-01 | Phase 6 | Complete |
+| ADMIN-02 | Phase 6 | Complete |
+| ADMIN-03 | Phase 6 | Complete |
+| ADMIN-04 | Phase 6 | Complete |
+| ADMIN-05 | Phase 6 | Complete |
+| ADMIN-06 | Phase 6 | Complete |
 | AGRANT-01 | Phase 6 | Pending |
 | AGRANT-02 | Phase 6 | Pending |
 | AGRANT-03 | Phase 6 | Pending |

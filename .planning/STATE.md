@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: completed
-stopped_at: Completed 05-03-PLAN.md (export functionality with PDF, email, clipboard)
-last_updated: "2026-03-21T22:46:06.262Z"
-last_activity: 2026-03-21 -- Completed 05-04-PLAN.md (settings & analytics)
+status: in-progress
+stopped_at: Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
+last_updated: "2026-03-22T16:18:23Z"
+last_activity: 2026-03-22 -- Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
 progress:
   total_phases: 6
   completed_phases: 5
-  total_plans: 18
-  completed_plans: 18
+  total_plans: 21
+  completed_plans: 21
   percent: 100
 ---
 
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 5 complete -- all 4 plans done (writer backend, writer UI, export, analytics/settings). Ready for Phase 6 (Admin Dashboard).
+**Current focus:** Phase 6 complete -- all plans done (admin dashboard, grant catalog, notifications/cron). v1.0 milestone achieved.
 
 ## Current Position
 
-Phase: 5 of 6 (AI Grant Writer and Export) -- COMPLETE
-Plan: 4 of 4 in current phase (4 complete, 0 remaining)
-Status: Phase 5 complete; all plans done. Ready for Phase 6 (Admin Dashboard).
-Last activity: 2026-03-21 -- Completed 05-04-PLAN.md (settings & analytics)
+Phase: 6 of 6 (Admin Tooling and Automation) -- COMPLETE
+Plan: 3 of 3 in current phase (3 complete, 0 remaining)
+Status: All phases complete. v1.0 milestone achieved.
+Last activity: 2026-03-22 -- Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
 
-Progress: [██████████] 100% (Phases 1-5 complete, Phase 6 remaining)
+Progress: [██████████] 100% (All 6 phases complete)
 
 ## Performance Metrics
 
@@ -66,6 +66,8 @@ Progress: [██████████] 100% (Phases 1-5 complete, Phase 6 re
 | Phase 05 P02 | 5min | 2 tasks | 10 files |
 | Phase 05 P03 | 6min | 2 tasks | 10 files |
 | Phase 05 P04 | 3min | 2 tasks | 8 files |
+| Phase 06 P02 | 6min | 2 tasks | 9 files |
+| Phase 06 P01 | 7min | 2 tasks | 11 files |
 
 ## Accumulated Context
 
@@ -138,6 +140,14 @@ Recent decisions affecting current work:
 - [05-04]: Checkbox uses base-ui onCheckedChange with useTransition for non-blocking toggle
 - [05-04]: Analytics fire-and-forget: trackEvent called without await in useEffect to avoid blocking UX
 - [05-04]: Session ID for analytics falls back to 'anonymous' when no companyProfileId in iron-session
+- [06-02]: Admin verification via profiles.is_admin check using createAdminClient (service role)
+- [06-02]: Supabase join profiles returns array in untyped context -- added Array.isArray guard
+- [06-02]: Record<string, unknown> typing for Supabase rows in applications page map callback
+- [06-01]: verifyAdmin() helper centralizes admin check: createClient + getUser + profiles.is_admin query
+- [06-01]: Div-based charts (no external library) for funnel bars and daily trends -- keeps bundle minimal
+- [06-01]: profiles.email column backfilled from auth.users for admin-queryable email
+- [06-01]: useTransition for non-blocking stage detail loading on funnel click
+- [06-01]: proxy.ts hardened with is_admin check for /admin routes (not just authentication)
 
 ### Pending Todos
 
@@ -152,6 +162,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-21T22:46:06.260Z
-Stopped at: Completed 05-03-PLAN.md (export functionality with PDF, email, clipboard)
+Last session: 2026-03-22T16:19:00Z
+Stopped at: Completed 06-02-PLAN.md (grant catalog management)
 Resume file: None
