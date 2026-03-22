@@ -85,8 +85,8 @@ export async function GET(request: Request) {
       const userId = app.user_id as string
       const grantId = app.grant_id as string
 
-      // Check notification preferences
-      if (!emailNotifications) {
+      // Skip users without email or with notifications disabled
+      if (!email || !emailNotifications) {
         skipped++
         continue
       }

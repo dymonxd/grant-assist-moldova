@@ -110,6 +110,9 @@ export async function getNotificationLog(
 /**
  * Check if a notification of the given type was already sent to a user
  * for a specific grant within the last 24 hours.
+ *
+ * NOTE: Also called from cron routes (server-to-server), so auth is
+ * checked at the caller level. Keeping this as a utility function.
  */
 export async function checkDuplicateNotification(
   userId: string,

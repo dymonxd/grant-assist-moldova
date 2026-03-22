@@ -449,8 +449,8 @@ describe('analytics cron', () => {
     const upsertCall = mockUpsert.mock.calls[0][0]
     expect(Array.isArray(upsertCall)).toBe(true)
 
-    // Check that session_start mapped to 'sessions' stage
-    const sessionsRows = upsertCall.filter((row: Record<string, unknown>) => row.stage === 'sessions')
+    // Check that session_start event maps to 'session_start' stage
+    const sessionsRows = upsertCall.filter((row: Record<string, unknown>) => row.stage === 'session_start')
     expect(sessionsRows.length).toBeGreaterThan(0)
 
     // Check that unmapped event_type 'section_generated' was not included

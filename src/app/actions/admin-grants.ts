@@ -3,6 +3,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { extractGrantFromPdf, validateScrapeUrl } from '@/lib/ai/extract-grant-pdf'
+import { escapeHtml } from '@/lib/email/notification-emails'
 import type { ExtractedGrantData } from '@/lib/ai/extract-grant-pdf'
 import { Resend } from 'resend'
 
@@ -470,8 +471,11 @@ export async function reScrapeGrant(grantId: string) {
   }
 
   try {
-    // Fetch URL content
-    const response = await fetch(url)
+    // Fetch URL content with 15s timeout
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 15_000)
+    const response = await fetch(url, { signal: controller.signal })
+    clearTimeout(timeout)
     const html = await response.text()
 
     // Extract text from HTML (strip tags)
@@ -592,6 +596,8 @@ export async function notifyMatchingProfiles(grantId: string) {
           }).format(new Date(grant.deadline as string))
         : 'Nespecificat'
 
+      const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+
       await resend.emails.send({
         from: 'GrantAssist <onboarding@resend.dev>',
         to: [email],
@@ -599,13 +605,13 @@ export async function notifyMatchingProfiles(grantId: string) {
         html: `
           <h2>Grant nou disponibil</h2>
           <p>Un grant care se potriveste profilului dvs. a fost publicat:</p>
-          <h3>${grant.name}</h3>
+          <h3>${escapeHtml(String(grant.name))}</h3>
           <ul>
-            <li><strong>Finantare maxima:</strong> ${funding}</li>
-            <li><strong>Termen limita:</strong> ${deadline}</li>
+            <li><strong>Finantare maxima:</strong> ${escapeHtml(funding)}</li>
+            <li><strong>Termen limita:</strong> ${escapeHtml(deadline)}</li>
           </ul>
           <p>
-            <a href="${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/grants/${grant.id}"
+            <a href="${escapeHtml(baseUrl)}/grants/${escapeHtml(String(grant.id))}"
                style="display:inline-block;padding:12px 24px;background:#e67e22;color:#fff;text-decoration:none;border-radius:6px;">
               Vezi detalii grant
             </a>

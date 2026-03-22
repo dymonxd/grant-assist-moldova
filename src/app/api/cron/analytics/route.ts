@@ -21,12 +21,12 @@ function validateCronSecret(request: Request): boolean {
 
 // Funnel stage mapping: event_type -> stage name
 const EVENT_TO_STAGE: Record<string, string> = {
-  session_start: 'sessions',
+  session_start: 'session_start',
   idno_entered: 'idno_entered',
   grants_viewed: 'grants_viewed',
   account_created: 'account_created',
   writer_started: 'writer_started',
-  application_exported: 'exported',
+  application_exported: 'application_exported',
 }
 
 interface AnalyticsEvent {
