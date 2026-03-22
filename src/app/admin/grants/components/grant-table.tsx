@@ -3,7 +3,11 @@
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import type { GrantCatalogItem } from '@/app/actions/admin-grants'
-import { duplicateGrant, deactivateGrant } from '@/app/actions/admin-grants'
+import {
+  duplicateGrant,
+  deactivateGrant,
+  reScrapeGrant,
+} from '@/app/actions/admin-grants'
 import { StatusBadge } from './status-badge'
 import { DeadlineEditor } from './deadline-editor'
 
@@ -16,6 +20,22 @@ export function GrantTable({ grants: initialGrants }: GrantTableProps) {
   const [grants, setGrants] = useState(initialGrants)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
+  const [reScrapeLoading, setReScrapeLoading] = useState<string | null>(null)
+
+  function handleReScrape(grantId: string) {
+    setOpenMenu(null)
+    setReScrapeLoading(grantId)
+    startTransition(async () => {
+      const result = await reScrapeGrant(grantId)
+      setReScrapeLoading(null)
+      if ('error' in result) {
+        window.alert(result.error)
+      } else {
+        window.alert('Datele au fost re-extrase cu succes')
+        router.refresh()
+      }
+    })
+  }
 
   function handleDeadlineUpdate(grantId: string, newDeadline: string) {
     setGrants((prev) =>
@@ -127,6 +147,17 @@ export function GrantTable({ grants: initialGrants }: GrantTableProps) {
                       >
                         Dezactiveaza
                       </button>
+                      {grant.source_form_url && (
+                        <button
+                          onClick={() => handleReScrape(grant.id)}
+                          disabled={reScrapeLoading === grant.id}
+                          className="block w-full px-4 py-2 text-left text-sm hover:bg-muted disabled:opacity-50"
+                        >
+                          {reScrapeLoading === grant.id
+                            ? 'Se re-extrage...'
+                            : 'Re-extragere'}
+                        </button>
+                      )}
                       <button
                         onClick={() => {
                           setOpenMenu(null)
