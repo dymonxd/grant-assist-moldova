@@ -186,8 +186,10 @@ async function getTargetUsers(
       .eq('status', 'in_progress')
 
     return (apps ?? []).map((app) => {
-      const profile = app.profiles as Record<string, unknown> | null
-      const grant = app.grants as Record<string, unknown> | null
+      const profileRaw = app.profiles as unknown
+      const profile = (Array.isArray(profileRaw) ? profileRaw[0] : profileRaw) as Record<string, unknown> | null
+      const grantRaw = app.grants as unknown
+      const grant = (Array.isArray(grantRaw) ? grantRaw[0] : grantRaw) as Record<string, unknown> | null
       return {
         userId: app.user_id as string,
         email: (profile?.email as string) ?? '',
@@ -217,8 +219,10 @@ async function getTargetUsers(
       .lt('updated_at', sevenDaysAgo.toISOString())
 
     return (apps ?? []).map((app) => {
-      const profile = app.profiles as Record<string, unknown> | null
-      const grant = app.grants as Record<string, unknown> | null
+      const profileRaw = app.profiles as unknown
+      const profile = (Array.isArray(profileRaw) ? profileRaw[0] : profileRaw) as Record<string, unknown> | null
+      const grantRaw = app.grants as unknown
+      const grant = (Array.isArray(grantRaw) ? grantRaw[0] : grantRaw) as Record<string, unknown> | null
       return {
         userId: app.user_id as string,
         email: (profile?.email as string) ?? '',
