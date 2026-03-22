@@ -180,12 +180,15 @@ AND sent_at > now() - interval '24 hours'
 ### 5. Schema Changes Needed
 
 **New migration required**:
-1. **notifications_log.unsubscribe_token**: UUID column for one-click unsubscribe without auth
-2. **Index on notifications_log**: (user_id, grant_id, type, sent_at) for duplicate prevention queries
-3. **Index on applications**: (status, updated_at) for stale application queries
-4. **Admin RLS for applications**: Admin needs SELECT on applications for dashboard — currently only user's own applications visible
-5. **Admin RLS for company_profiles**: Admin needs to see all profiles for notification targeting
-6. **Admin RLS for application_sections**: Admin needs read access for application view
+1. **profiles.email**: TEXT column — email lives in auth.users but admin/cron batch operations need it queryable. Backfill from auth.users, update handle_new_user trigger to copy email on signup.
+2. **notifications_log.unsubscribe_token**: UUID column for one-click unsubscribe without auth
+3. **Index on notifications_log**: (user_id, grant_id, type, sent_at) for duplicate prevention queries
+4. **Index on applications**: (status, updated_at) for stale application queries
+5. **Admin RLS for applications**: Admin needs SELECT on applications for dashboard — currently only user's own applications visible
+6. **Admin RLS for company_profiles**: Admin needs to see all profiles for notification targeting
+7. **Admin RLS for application_sections**: Admin needs read access for application view
+
+**Note on profiles column names**: The profiles table column is `name` (not `full_name`). Device_type in analytics_daily_summary uses `NOT NULL DEFAULT ''` — map null values from analytics_events to empty string.
 
 ### 6. Email Templates Needed
 
