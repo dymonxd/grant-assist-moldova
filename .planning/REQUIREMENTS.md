@@ -94,11 +94,11 @@
 
 ### Admin Grants (AGRANT)
 
-- [ ] **AGRANT-01**: Grant catalog table (name, provider, deadline, status, app count, last scraped, actions)
-- [ ] **AGRANT-02**: Status badges: Draft (grey), Active (green), Expiring soon (orange), Expired (red)
-- [ ] **AGRANT-03**: Inline deadline quick-edit
-- [ ] **AGRANT-04**: Actions: Edit, Duplicate, Deactivate, Re-scrape, View applications
-- [ ] **AGRANT-05**: Publish validation: minimum name, provider, deadline, 1 eligibility rule, 1 field
+- [x] **AGRANT-01**: Grant catalog table (name, provider, deadline, status, app count, last scraped, actions)
+- [x] **AGRANT-02**: Status badges: Draft (grey), Active (green), Expiring soon (orange), Expired (red)
+- [x] **AGRANT-03**: Inline deadline quick-edit
+- [x] **AGRANT-04**: Actions: Edit, Duplicate, Deactivate, Re-scrape, View applications
+- [x] **AGRANT-05**: Publish validation: minimum name, provider, deadline, 1 eligibility rule, 1 field
 - [ ] **AGRANT-06**: 3-step grant onboarding wizard (basic info → AI extraction → review/publish)
 - [ ] **AGRANT-07**: PDF upload with MIME validation (application/pdf, max 20MB)
 - [ ] **AGRANT-08**: AI extraction: eligibility rules, scoring rubric, application fields, required documents
@@ -231,11 +231,11 @@
 | ADMIN-04 | Phase 6 | Complete |
 | ADMIN-05 | Phase 6 | Complete |
 | ADMIN-06 | Phase 6 | Complete |
-| AGRANT-01 | Phase 6 | Pending |
-| AGRANT-02 | Phase 6 | Pending |
-| AGRANT-03 | Phase 6 | Pending |
-| AGRANT-04 | Phase 6 | Pending |
-| AGRANT-05 | Phase 6 | Pending |
+| AGRANT-01 | Phase 6 | Complete |
+| AGRANT-02 | Phase 6 | Complete |
+| AGRANT-03 | Phase 6 | Complete |
+| AGRANT-04 | Phase 6 | Complete |
+| AGRANT-05 | Phase 6 | Complete |
 | AGRANT-06 | Phase 6 | Pending |
 | AGRANT-07 | Phase 6 | Pending |
 | AGRANT-08 | Phase 6 | Pending |
