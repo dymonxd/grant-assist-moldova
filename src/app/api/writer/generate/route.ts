@@ -39,6 +39,21 @@ export async function POST(req: Request) {
     )
   }
 
+  // Guard against oversized payloads to prevent token cost abuse
+  const profileStr = JSON.stringify(companyProfile)
+  if (profileStr.length > 10_000) {
+    return NextResponse.json(
+      { error: 'Profilul companiei este prea mare' },
+      { status: 400 }
+    )
+  }
+  if (userBrief.length > 2000) {
+    return NextResponse.json(
+      { error: 'Raspunsul utilizatorului este prea lung' },
+      { status: 400 }
+    )
+  }
+
   // Build prompts using the AI prompt builder
   const sectionPrompt = buildSectionPrompt(
     {

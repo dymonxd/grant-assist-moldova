@@ -169,42 +169,42 @@ const testSections = [
 // --- Tests ---
 
 describe('checkDeadline', () => {
-  it('returns "expired" when deadline is in the past', () => {
+  it('returns "expired" when deadline is in the past', async () => {
     const pastDate = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-    const result = checkDeadline(pastDate)
+    const result = await checkDeadline(pastDate)
 
     expect(result.status).toBe('expired')
     expect(result.daysLeft).toBeLessThan(0)
   })
 
-  it('returns "urgent" when deadline is less than 3 days away', () => {
+  it('returns "urgent" when deadline is less than 3 days away', async () => {
     const urgentDate = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString()
-    const result = checkDeadline(urgentDate)
+    const result = await checkDeadline(urgentDate)
 
     expect(result.status).toBe('urgent')
     expect(result.daysLeft).toBeLessThanOrEqual(3)
     expect(result.daysLeft).toBeGreaterThan(0)
   })
 
-  it('returns "ok" when deadline is more than 3 days away', () => {
+  it('returns "ok" when deadline is more than 3 days away', async () => {
     const okDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
-    const result = checkDeadline(okDate)
+    const result = await checkDeadline(okDate)
 
     expect(result.status).toBe('ok')
     expect(result.daysLeft).toBeGreaterThan(3)
   })
 
-  it('returns "ok" with Infinity daysLeft when deadline is null', () => {
-    const result = checkDeadline(null)
+  it('returns "ok" with Infinity daysLeft when deadline is null', async () => {
+    const result = await checkDeadline(null)
 
     expect(result.status).toBe('ok')
     expect(result.daysLeft).toBe(Infinity)
   })
 
-  it('returns "urgent" for deadline exactly on the boundary (3 days)', () => {
+  it('returns "urgent" for deadline exactly on the boundary (3 days)', async () => {
     // 2.5 days from now -- should be urgent
     const boundary = new Date(Date.now() + 2.5 * 24 * 60 * 60 * 1000).toISOString()
-    const result = checkDeadline(boundary)
+    const result = await checkDeadline(boundary)
 
     expect(result.status).toBe('urgent')
   })

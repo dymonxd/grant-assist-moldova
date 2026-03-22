@@ -11,7 +11,7 @@ interface NotificationToggleProps {
 
 export function NotificationToggle({ initialValue }: NotificationToggleProps) {
   const [checked, setChecked] = useState(initialValue)
-  const [message, setMessage] = useState<string | null>(null)
+  const [message, setMessage] = useState<{ text: string; isError: boolean } | null>(null)
   const [isPending, startTransition] = useTransition()
 
   function handleChange(newChecked: boolean) {
@@ -24,11 +24,11 @@ export function NotificationToggle({ initialValue }: NotificationToggleProps) {
       if ('error' in result) {
         // Revert on error
         setChecked(!newChecked)
-        setMessage(result.error)
+        setMessage({ text: result.error, isError: true })
         return
       }
 
-      setMessage('Preferintele au fost salvate')
+      setMessage({ text: 'Preferintele au fost salvate', isError: false })
     })
   }
 
@@ -51,12 +51,12 @@ export function NotificationToggle({ initialValue }: NotificationToggleProps) {
       {message && (
         <p
           className={`text-sm ${
-            message.includes('salvate')
-              ? 'text-green-600 dark:text-green-400'
-              : 'text-destructive'
+            message.isError
+              ? 'text-destructive'
+              : 'text-green-600 dark:text-green-400'
           }`}
         >
-          {message}
+          {message.text}
         </p>
       )}
     </div>

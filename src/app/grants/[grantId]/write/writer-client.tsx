@@ -80,9 +80,7 @@ export function WriterClient({
 }: WriterClientProps) {
   const [sections, setSections] = useState<SectionData[]>(initialSections)
   const [checkedDocs, setCheckedDocs] = useState<Set<number>>(new Set())
-  const [previewTriggered, setPreviewTriggered] = useState(false)
   const sectionRefs = useRef<Map<string, HTMLDivElement | null>>(new Map())
-  const previewAbortRef = useRef<AbortController | null>(null)
 
   // Sort fields by field_order
   const sortedFields = [...fields].sort(
@@ -154,9 +152,10 @@ export function WriterClient({
   }, [])
 
   // WRITE-02: Auto-preview section 1 on first visit
+  // No state guard — AbortController handles Strict Mode cleanup naturally:
+  // Strict Mode: mount1 starts fetch → cleanup aborts → mount2 starts new fetch → completes
+  // Production: single mount → fetch completes
   useEffect(() => {
-    if (previewTriggered) return
-
     const firstField = sortedFields[0]
     if (!firstField) return
 
@@ -166,10 +165,7 @@ export function WriterClient({
     // Only auto-preview if section has no draft and no final text
     if (firstSection.ai_draft || firstSection.final_text) return
 
-    setPreviewTriggered(true)
-
     const controller = new AbortController()
-    previewAbortRef.current = controller
 
     fetch('/api/writer/generate', {
       method: 'POST',
@@ -209,7 +205,6 @@ export function WriterClient({
 
     return () => {
       controller.abort()
-      previewAbortRef.current = null
     }
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 

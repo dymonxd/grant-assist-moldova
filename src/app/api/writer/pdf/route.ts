@@ -1,6 +1,7 @@
 import React from 'react'
 import { renderToBuffer } from '@react-pdf/renderer'
 import { ApplicationPdfDocument } from '@/lib/pdf/application-pdf'
+import { createClient } from '@/lib/supabase/server'
 
 /**
  * POST /api/writer/pdf
@@ -8,9 +9,23 @@ import { ApplicationPdfDocument } from '@/lib/pdf/application-pdf'
  * Server-side PDF generation for grant application export.
  * Accepts section data, renders with Geist Sans font (Romanian diacritics),
  * and returns downloadable PDF binary.
+ * Requires authentication (EXPRT-04).
  */
 export async function POST(request: Request) {
   try {
+    // Auth gate — PDF export requires authentication
+    const supabase = await createClient()
+    const {
+      data: { user },
+    } = await supabase.auth.getUser()
+
+    if (!user) {
+      return new Response(
+        JSON.stringify({ error: 'Autentificarea este necesara pentru descarcarea PDF' }),
+        { status: 401, headers: { 'Content-Type': 'application/json' } }
+      )
+    }
+
     const body = await request.json()
     const { grantName, providerAgency, sections } = body
 

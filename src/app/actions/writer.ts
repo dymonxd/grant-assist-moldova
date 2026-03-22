@@ -45,7 +45,7 @@ interface SaveResult {
  * - urgent: deadline is within 3 days
  * - ok: deadline is more than 3 days away, or null (no deadline)
  */
-export function checkDeadline(deadline: string | null): DeadlineResult {
+export async function checkDeadline(deadline: string | null): Promise<DeadlineResult> {
   if (deadline === null) {
     return { status: 'ok', daysLeft: Infinity }
   }
@@ -100,7 +100,7 @@ export async function getOrCreateApplication(
   }
 
   // 2. Check deadline (WRITE-12)
-  const deadlineCheck = checkDeadline(grant.deadline)
+  const deadlineCheck = await checkDeadline(grant.deadline)
   if (deadlineCheck.status === 'expired') {
     return { error: 'Termenul limita pentru acest grant a expirat' }
   }
@@ -159,18 +159,21 @@ export async function getOrCreateApplication(
     return { error: 'Eroare la crearea aplicatiei' }
   }
 
-  // Pre-create application_sections for each field
+  // Pre-create application_sections for each field and return with IDs
   const sectionInserts = fields.map(
     (f: Record<string, unknown>) => ({
       application_id: newApp.id,
       grant_field_id: f.id,
     })
   )
-  await admin.from('application_sections').insert(sectionInserts)
+  const { data: createdSections } = await admin
+    .from('application_sections')
+    .insert(sectionInserts)
+    .select()
 
   return {
     application: newApp,
-    sections: sectionInserts,
+    sections: createdSections ?? [],
     fields,
     grant,
     isUrgent,

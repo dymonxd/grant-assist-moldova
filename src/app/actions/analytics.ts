@@ -42,8 +42,6 @@ export async function trackEvent({
         referrer_url: referrerUrl ?? null,
         device_type: deviceType ?? null,
       })
-      .select()
-      .single()
 
     if (error) {
       return { error: 'Nu am putut inregistra evenimentul' }

@@ -11,8 +11,7 @@ vi.mock('@/lib/session', () => ({
 }))
 
 // Mock Supabase admin client (analytics_events RLS is admin-only INSERT)
-const mockAdminSingle = vi.fn()
-const mockAdminInsert = vi.fn(() => ({ select: vi.fn(() => ({ single: mockAdminSingle })) }))
+const mockAdminInsert = vi.fn(() => ({ error: null }))
 const mockAdminFrom = vi.fn(() => ({
   insert: mockAdminInsert,
 }))
@@ -36,7 +35,7 @@ describe('trackEvent', () => {
   })
 
   it('inserts into analytics_events with correct fields', async () => {
-    mockAdminSingle.mockResolvedValue({ data: { id: 'evt-1' }, error: null })
+    mockAdminInsert.mockReturnValue({ error: null })
     mockSession.companyProfileId = 'cp-123'
 
     const result = await trackEvent({
@@ -62,7 +61,7 @@ describe('trackEvent', () => {
   })
 
   it('handles optional user_id gracefully (null when not provided)', async () => {
-    mockAdminSingle.mockResolvedValue({ data: { id: 'evt-2' }, error: null })
+    mockAdminInsert.mockReturnValue({ error: null })
     mockSession.companyProfileId = 'cp-456'
 
     const result = await trackEvent({
@@ -83,7 +82,7 @@ describe('trackEvent', () => {
   })
 
   it('uses fallback session_id when companyProfileId is missing', async () => {
-    mockAdminSingle.mockResolvedValue({ data: { id: 'evt-3' }, error: null })
+    mockAdminInsert.mockReturnValue({ error: null })
     mockSession.companyProfileId = undefined
 
     await trackEvent({ eventType: 'grants_viewed' })
@@ -96,8 +95,7 @@ describe('trackEvent', () => {
   })
 
   it('returns error when insert fails', async () => {
-    mockAdminSingle.mockResolvedValue({
-      data: null,
+    mockAdminInsert.mockReturnValue({
       error: { message: 'Insert failed' },
     })
     mockSession.companyProfileId = 'cp-789'

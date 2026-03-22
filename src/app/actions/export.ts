@@ -11,12 +11,23 @@ import { createClient } from '@/lib/supabase/server'
  * For production, configure a verified domain in Resend dashboard.
  */
 export async function sendApplicationEmail(
-  to: string,
+  _to: string,
   grantName: string,
   sections: Array<{ fieldLabel: string; finalText: string }>
 ): Promise<{ success: true } | { error: string }> {
   if (!process.env.RESEND_API_KEY) {
     return { error: 'Serviciul de email nu este configurat' }
+  }
+
+  // Resolve recipient from auth context (client passes '' placeholder)
+  const supabase = await createClient()
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser()
+
+  if (authError || !user?.email) {
+    return { error: 'Trebuie sa fiti autentificat cu un email valid' }
   }
 
   try {
@@ -26,7 +37,7 @@ export async function sendApplicationEmail(
 
     const { error } = await resend.emails.send({
       from: 'GrantAssist <onboarding@resend.dev>',
-      to: [to],
+      to: [user.email],
       subject: `Cererea ta de finantare: ${grantName}`,
       html,
     })

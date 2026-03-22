@@ -84,6 +84,17 @@ export function SectionEditor({
     }
   }, [])
 
+  // Sync with external ai_draft changes (auto-preview from parent)
+  useEffect(() => {
+    if (section.ai_draft && state === 'idle') {
+      setAiText(section.ai_draft)
+      setState('drafted')
+    } else if (section.ai_draft && state === 'drafted') {
+      // Progressive streaming update
+      setAiText(section.ai_draft)
+    }
+  }, [section.ai_draft]) // eslint-disable-line react-hooks/exhaustive-deps
+
   // Character count for current text
   const currentText = state === 'editing' ? editText : aiText
   const charCount = currentText.length

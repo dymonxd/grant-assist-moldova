@@ -41,9 +41,13 @@ describe('sendApplicationEmail', () => {
 
   it('calls resend.emails.send with correct to/subject/html', async () => {
     mockSend.mockResolvedValue({ data: { id: 'email_123' }, error: null })
+    mockGetUser.mockResolvedValue({
+      data: { user: { id: 'u-1', email: 'user@example.com' } },
+      error: null,
+    })
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('user@example.com', 'Grant IMM', sections)
+    const result = await sendApplicationEmail('', 'Grant IMM', sections)
 
     expect(mockSend).toHaveBeenCalledOnce()
     const call = mockSend.mock.calls[0][0]
@@ -57,11 +61,28 @@ describe('sendApplicationEmail', () => {
 
   it('returns error when Resend returns error', async () => {
     mockSend.mockResolvedValue({ data: null, error: { message: 'Invalid API key' } })
+    mockGetUser.mockResolvedValue({
+      data: { user: { id: 'u-1', email: 'user@example.com' } },
+      error: null,
+    })
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('user@example.com', 'Grant Test', sections)
+    const result = await sendApplicationEmail('', 'Grant Test', sections)
 
     expect(result).toHaveProperty('error')
+  })
+
+  it('returns error when user is not authenticated', async () => {
+    mockGetUser.mockResolvedValue({
+      data: { user: null },
+      error: { message: 'Not authenticated' },
+    })
+
+    const { sendApplicationEmail } = await import('@/app/actions/export')
+    const result = await sendApplicationEmail('', 'Grant Test', sections)
+
+    expect(result).toEqual({ error: 'Trebuie sa fiti autentificat cu un email valid' })
+    expect(mockSend).not.toHaveBeenCalled()
   })
 
   it('returns error when RESEND_API_KEY is not configured', async () => {
