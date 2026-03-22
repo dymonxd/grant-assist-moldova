@@ -109,15 +109,16 @@ export async function GET(request: Request) {
 
     const stagesSet = new Set<string>()
 
-    for (const [key, group] of groups) {
+    for (const [key, group] of Array.from(groups.entries())) {
       const [stage, deviceType] = key.split('|')
       stagesSet.add(stage)
 
       // Get top 5 referrers for this group
-      const topReferrers = Array.from(group.referrers.entries())
-        .sort((a, b) => b[1] - a[1])
+      const referrerEntries = Array.from(group.referrers.entries()) as [string, number][]
+      const topReferrers = referrerEntries
+        .sort((a: [string, number], b: [string, number]) => b[1] - a[1])
         .slice(0, 5)
-        .map(([url, count]) => ({ url, count }))
+        .map((entry: [string, number]) => ({ url: entry[0], count: entry[1] }))
 
       rows.push({
         date: yesterdayStr,
