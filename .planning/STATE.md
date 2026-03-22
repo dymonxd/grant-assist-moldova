@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: in-progress
-stopped_at: Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
+stopped_at: Completed 06-04-PLAN.md (notification management system)
 last_updated: "2026-03-22T16:18:23Z"
-last_activity: 2026-03-22 -- Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
+last_activity: 2026-03-22 -- Completed 06-04-PLAN.md (notification management system)
 progress:
   total_phases: 6
   completed_phases: 5
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-21)
 
 **Core value:** When a Moldovan entrepreneur enters their IDNO or describes their business idea, the platform matches them to eligible grants and generates polished, rubric-optimized application text in Romanian.
-**Current focus:** Phase 6 complete -- all plans done (admin dashboard, grant catalog, notifications/cron). v1.0 milestone achieved.
+**Current focus:** Phase 6 in progress -- notification management complete, cron jobs next.
 
 ## Current Position
 
-Phase: 6 of 6 (Admin Tooling and Automation) -- COMPLETE
-Plan: 3 of 3 in current phase (3 complete, 0 remaining)
-Status: All phases complete. v1.0 milestone achieved.
-Last activity: 2026-03-22 -- Completed 06-01-PLAN.md (admin dashboard with analytics funnel)
+Phase: 6 of 6 (Admin Tooling and Automation) -- IN PROGRESS
+Plan: 5 of 6 in current phase (4 complete, 2 remaining)
+Status: Completed 06-04 (notification management). Next: 06-05.
+Last activity: 2026-03-22 -- Completed 06-04-PLAN.md (notification management system)
 
-Progress: [██████████] 100% (All 6 phases complete)
+Progress: [████████░░] 83% (Phase 6: 4 of 6 plans complete)
 
 ## Performance Metrics
 
@@ -68,6 +68,7 @@ Progress: [██████████] 100% (All 6 phases complete)
 | Phase 05 P04 | 3min | 2 tasks | 8 files |
 | Phase 06 P02 | 6min | 2 tasks | 9 files |
 | Phase 06 P01 | 7min | 2 tasks | 11 files |
+| Phase 06 P04 | 6min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -148,6 +149,9 @@ Recent decisions affecting current work:
 - [06-01]: profiles.email column backfilled from auth.users for admin-queryable email
 - [06-01]: useTransition for non-blocking stage detail loading on funnel click
 - [06-01]: proxy.ts hardened with is_admin check for /admin routes (not just authentication)
+- [06-04]: Shared wrapEmail base template for all 4 notification types with unsubscribe footer
+- [06-04]: Array.isArray guard for Supabase join results (same pattern as 06-02)
+- [06-04]: State-managed modal for bulk send dialog (div overlay, no external dialog library)
 
 ### Pending Todos
 
@@ -162,6 +166,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-22T16:19:00Z
-Stopped at: Completed 06-02-PLAN.md (grant catalog management)
+Last session: 2026-03-22T16:28:47Z
+Stopped at: Completed 06-04-PLAN.md (notification management system)
 Resume file: None

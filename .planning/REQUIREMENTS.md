@@ -107,9 +107,9 @@
 
 ### Admin Notifications (ANOTIF)
 
-- [ ] **ANOTIF-01**: Notification log view (user, grant, type, channel, sent date)
-- [ ] **ANOTIF-02**: Filters by type: deadline reminder, abandoned draft, grant expiring, new grant match
-- [ ] **ANOTIF-03**: Manual bulk send with confirmation preview ("This will send X emails. Preview → Confirm")
+- [x] **ANOTIF-01**: Notification log view (user, grant, type, channel, sent date)
+- [x] **ANOTIF-02**: Filters by type: deadline reminder, abandoned draft, grant expiring, new grant match
+- [x] **ANOTIF-03**: Manual bulk send with confirmation preview ("This will send X emails. Preview → Confirm")
 
 ### Automation (AUTO)
 
@@ -117,9 +117,9 @@
 - [ ] **AUTO-02**: Cron: abandoned draft nudge after 7 days inactivity (daily 10:00 UTC)
 - [ ] **AUTO-03**: Cron: nightly analytics aggregation (2:00 UTC)
 - [ ] **AUTO-04**: CRON_SECRET Bearer token validation on all cron routes
-- [ ] **AUTO-05**: Duplicate notification prevention via notifications_log
-- [ ] **AUTO-06**: Respect `profiles.email_notifications` before sending
-- [ ] **AUTO-07**: Every email includes one-click unsubscribe link
+- [x] **AUTO-05**: Duplicate notification prevention via notifications_log
+- [x] **AUTO-06**: Respect `profiles.email_notifications` before sending
+- [x] **AUTO-07**: Every email includes one-click unsubscribe link
 
 ### General (GEN)
 
@@ -241,16 +241,16 @@
 | AGRANT-08 | Phase 6 | Pending |
 | AGRANT-09 | Phase 6 | Pending |
 | AGRANT-10 | Phase 6 | Pending |
-| ANOTIF-01 | Phase 6 | Pending |
-| ANOTIF-02 | Phase 6 | Pending |
-| ANOTIF-03 | Phase 6 | Pending |
+| ANOTIF-01 | Phase 6 | Complete |
+| ANOTIF-02 | Phase 6 | Complete |
+| ANOTIF-03 | Phase 6 | Complete |
 | AUTO-01 | Phase 6 | Pending |
 | AUTO-02 | Phase 6 | Pending |
 | AUTO-03 | Phase 6 | Pending |
 | AUTO-04 | Phase 6 | Pending |
-| AUTO-05 | Phase 6 | Pending |
-| AUTO-06 | Phase 6 | Pending |
-| AUTO-07 | Phase 6 | Pending |
+| AUTO-05 | Phase 6 | Complete |
+| AUTO-06 | Phase 6 | Complete |
+| AUTO-07 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 86 total
