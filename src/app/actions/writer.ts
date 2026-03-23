@@ -2,6 +2,7 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 import { getSession } from '@/lib/session'
+import { resolveCompanyProfileId } from '@/lib/auth/resolve-profile'
 
 /**
  * Writer server actions for application lifecycle management.
@@ -79,12 +80,12 @@ export async function checkDeadline(deadline: string | null): Promise<DeadlineRe
 export async function getOrCreateApplication(
   grantId: string
 ): Promise<ApplicationResult> {
-  const session = await getSession()
-  if (!session.companyProfileId) {
+  const admin = createAdminClient()
+  const companyProfileId = await resolveCompanyProfileId()
+
+  if (!companyProfileId) {
     return { error: 'Profilul companiei nu a fost creat inca' }
   }
-
-  const admin = createAdminClient()
 
   // 1. Fetch grant data
   const { data: grant, error: grantErr } = await admin
@@ -111,7 +112,7 @@ export async function getOrCreateApplication(
     .from('applications')
     .select('*')
     .eq('grant_id', grantId)
-    .eq('company_profile_id', session.companyProfileId)
+    .eq('company_profile_id', companyProfileId)
     .eq('status', 'in_progress')
     .single()
 
@@ -148,7 +149,7 @@ export async function getOrCreateApplication(
     .from('applications')
     .insert({
       grant_id: grantId,
-      company_profile_id: session.companyProfileId,
+      company_profile_id: companyProfileId,
       field_snapshot: fields,
       status: 'in_progress',
     })

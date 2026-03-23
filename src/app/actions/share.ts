@@ -1,7 +1,7 @@
 'use server'
 
-import { getSession } from '@/lib/session'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { resolveCompanyProfileId } from '@/lib/auth/resolve-profile'
 
 /**
  * Generates a shareable link for the current company profile results.
@@ -13,8 +13,8 @@ import { createAdminClient } from '@/lib/supabase/admin'
 export async function generateShareLink(): Promise<
   { shareToken: string } | { error: string }
 > {
-  const session = await getSession()
-  if (!session.companyProfileId) {
+  const companyProfileId = await resolveCompanyProfileId()
+  if (!companyProfileId) {
     return { error: 'Profilul companiei nu a fost creat inca' }
   }
 
@@ -24,7 +24,7 @@ export async function generateShareLink(): Promise<
   const { data: existing } = await admin
     .from('company_profiles')
     .select('share_token, share_token_expires_at')
-    .eq('id', session.companyProfileId)
+    .eq('id', companyProfileId)
     .single()
 
   if (
@@ -44,7 +44,7 @@ export async function generateShareLink(): Promise<
   const { data, error } = await admin
     .from('company_profiles')
     .update({ share_token, share_token_expires_at })
-    .eq('id', session.companyProfileId)
+    .eq('id', companyProfileId)
     .select('share_token')
     .single()
 

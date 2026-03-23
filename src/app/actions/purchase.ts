@@ -1,12 +1,12 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
-import { getSession } from '@/lib/session'
+import { resolveCompanyProfileId } from '@/lib/auth/resolve-profile'
 
 export async function savePurchaseNeed(purchaseNeed: string) {
-  const session = await getSession()
+  const companyProfileId = await resolveCompanyProfileId()
 
-  if (!session.companyProfileId) {
+  if (!companyProfileId) {
     return { error: 'Profilul companiei nu a fost creat inca' }
   }
 
@@ -19,7 +19,7 @@ export async function savePurchaseNeed(purchaseNeed: string) {
   const { error } = await admin
     .from('company_profiles')
     .update({ purchase_need: purchaseNeed.trim() })
-    .eq('id', session.companyProfileId)
+    .eq('id', companyProfileId)
 
   if (error) {
     return { error: 'Eroare la salvarea nevoii de achizitie' }

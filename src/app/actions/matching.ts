@@ -1,8 +1,7 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
-import { createClient } from '@/lib/supabase/server'
-import { getSession } from '@/lib/session'
+import { resolveCompanyProfileId } from '@/lib/auth/resolve-profile'
 import { preFilterGrants } from '@/lib/matching/pre-filter'
 import { rankGrants } from '@/lib/matching/rank-grants'
 import type { MatchResult } from '@/lib/matching/types'
@@ -20,28 +19,7 @@ export async function matchGrants(): Promise<
   MatchResult | { error: string }
 > {
   const admin = createAdminClient()
-
-  // Resolve company profile ID: session (anonymous) or authenticated user
-  const session = await getSession()
-  let companyProfileId = session.companyProfileId
-
-  if (!companyProfileId) {
-    // Check if authenticated user has a claimed company profile
-    const supabase = await createClient()
-    const { data: { user } } = await supabase.auth.getUser()
-    if (user) {
-      const { data: ownedProfile } = await admin
-        .from('company_profiles')
-        .select('id')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .maybeSingle()
-      if (ownedProfile) {
-        companyProfileId = ownedProfile.id
-      }
-    }
-  }
+  const companyProfileId = await resolveCompanyProfileId()
 
   if (!companyProfileId) {
     return { error: 'Profilul companiei nu a fost creat inca' }
