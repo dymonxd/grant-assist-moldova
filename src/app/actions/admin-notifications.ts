@@ -342,7 +342,7 @@ function buildEmailForType(
         grantName: target.grantName,
         deadline: target.grantDeadline ?? '',
         daysLeft,
-        ctaUrl: `${baseUrl}/grants/${target.grantId}`,
+        ctaUrl: `${baseUrl}/grants/${target.grantId}/write`,
         unsubscribeToken,
       }),
     }
@@ -354,7 +354,7 @@ function buildEmailForType(
       html: buildAbandonedDraftEmail({
         grantName: target.grantName,
         lastActivity: target.lastActivity ?? '',
-        ctaUrl: `${baseUrl}/grants/${target.grantId}`,
+        ctaUrl: `${baseUrl}/grants/${target.grantId}/write`,
         unsubscribeToken,
       }),
     }
@@ -366,7 +366,7 @@ function buildEmailForType(
       html: buildGrantExpiringEmail({
         grantName: target.grantName,
         deadline: target.grantDeadline ?? '',
-        ctaUrl: `${baseUrl}/grants/${target.grantId}`,
+        ctaUrl: `${baseUrl}/grants/${target.grantId}/write`,
         unsubscribeToken,
       }),
     }
@@ -378,7 +378,7 @@ function buildEmailForType(
     html: buildNewGrantMatchEmail({
       grantName: target.grantName,
       maxFunding: target.maxFunding ?? 0,
-      ctaUrl: `${baseUrl}/grants/${target.grantId}`,
+      ctaUrl: `${baseUrl}/grants/${target.grantId}/write`,
       unsubscribeToken,
     }),
   }

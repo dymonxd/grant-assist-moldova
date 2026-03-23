@@ -606,7 +606,7 @@ export async function notifyMatchingProfiles(grantId: string) {
             <li><strong>Termen limita:</strong> ${escapeHtml(deadline)}</li>
           </ul>
           <p>
-            <a href="${escapeHtml(baseUrl)}/grants/${escapeHtml(String(grant.id))}"
+            <a href="${escapeHtml(baseUrl)}/grants/${escapeHtml(String(grant.id))}/write"
                style="display:inline-block;padding:12px 24px;background:#e67e22;color:#fff;text-decoration:none;border-radius:6px;">
               Vezi detalii grant
             </a>

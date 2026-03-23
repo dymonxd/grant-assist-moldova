@@ -19,7 +19,7 @@ export function AccountWallModal({
   onOpenChange: (open: boolean) => void
   grantId: string
 }) {
-  const grantUrl = `/grants/${grantId}`
+  const grantUrl = `/grants/${grantId}/write`
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

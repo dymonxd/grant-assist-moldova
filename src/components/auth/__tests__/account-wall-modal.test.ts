@@ -54,7 +54,7 @@ describe('AccountWallModal', () => {
       'input[name="redirectTo"]'
     ) as HTMLInputElement
     expect(hidden).not.toBeNull()
-    expect(hidden.value).toBe('/grants/test-grant-123')
+    expect(hidden.value).toBe('/grants/test-grant-123/write')
   })
 
   it('renders "Continua fara cont" skip link pointing to grant page', async () => {
@@ -68,7 +68,7 @@ describe('AccountWallModal', () => {
     )
     const skipLink = screen.getByText('Continua fara cont')
     expect(skipLink).toBeDefined()
-    expect(skipLink.getAttribute('href')).toBe('/grants/test-grant-123')
+    expect(skipLink.getAttribute('href')).toBe('/grants/test-grant-123/write')
   })
 
   it('does not render dialog content when open=false', async () => {
@@ -95,7 +95,7 @@ describe('SignupForm', () => {
     const { SignupForm } = await import('../signup-form')
     const { container } = render(
       createElement(SignupForm, {
-        redirectTo: '/grants/test-grant-123',
+        redirectTo: '/grants/test-grant-123/write',
       })
     )
 
@@ -115,7 +115,7 @@ describe('SignupForm', () => {
     const { SignupForm } = await import('../signup-form')
     const { container } = render(
       createElement(SignupForm, {
-        redirectTo: '/grants/test-grant-123',
+        redirectTo: '/grants/test-grant-123/write',
       })
     )
 
@@ -124,14 +124,14 @@ describe('SignupForm', () => {
     ) as HTMLInputElement
     expect(hidden).not.toBeNull()
     expect(hidden.type).toBe('hidden')
-    expect(hidden.value).toBe('/grants/test-grant-123')
+    expect(hidden.value).toBe('/grants/test-grant-123/write')
   })
 
   it('renders notifications checkbox', async () => {
     const { SignupForm } = await import('../signup-form')
     const { container } = render(
       createElement(SignupForm, {
-        redirectTo: '/grants/test-grant-123',
+        redirectTo: '/grants/test-grant-123/write',
       })
     )
 
@@ -145,7 +145,7 @@ describe('SignupForm', () => {
     const { SignupForm } = await import('../signup-form')
     const { container } = render(
       createElement(SignupForm, {
-        redirectTo: '/grants/test-grant-123',
+        redirectTo: '/grants/test-grant-123/write',
       })
     )
 
