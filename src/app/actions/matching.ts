@@ -1,6 +1,7 @@
 'use server'
 
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 import { getSession } from '@/lib/session'
 import { preFilterGrants } from '@/lib/matching/pre-filter'
 import { rankGrants } from '@/lib/matching/rank-grants'
@@ -9,7 +10,7 @@ import type { MatchResult } from '@/lib/matching/types'
 /**
  * Two-stage grant matching server action.
  *
- * 1. Validates session ownership (MATCH-08)
+ * 1. Resolves company profile: session (anonymous) OR authenticated user's claimed profile
  * 2. Fetches company profile and active grants
  * 3. Pre-filters grants by eligibility rules (MATCH-01)
  * 4. AI-ranks candidates with structured output (MATCH-02, MATCH-04)
@@ -18,18 +19,39 @@ import type { MatchResult } from '@/lib/matching/types'
 export async function matchGrants(): Promise<
   MatchResult | { error: string }
 > {
+  const admin = createAdminClient()
+
+  // Resolve company profile ID: session (anonymous) or authenticated user
   const session = await getSession()
-  if (!session.companyProfileId) {
+  let companyProfileId = session.companyProfileId
+
+  if (!companyProfileId) {
+    // Check if authenticated user has a claimed company profile
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) {
+      const { data: ownedProfile } = await admin
+        .from('company_profiles')
+        .select('id')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .maybeSingle()
+      if (ownedProfile) {
+        companyProfileId = ownedProfile.id
+      }
+    }
+  }
+
+  if (!companyProfileId) {
     return { error: 'Profilul companiei nu a fost creat inca' }
   }
 
-  const admin = createAdminClient()
-
-  // 1. Fetch company profile (MATCH-08: ownership validation via session)
+  // 1. Fetch company profile
   const { data: profile, error: profileErr } = await admin
     .from('company_profiles')
     .select('*')
-    .eq('id', session.companyProfileId)
+    .eq('id', companyProfileId)
     .single()
 
   if (profileErr || !profile) {

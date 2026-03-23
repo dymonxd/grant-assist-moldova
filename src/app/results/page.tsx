@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation'
-import { getSession } from '@/lib/session'
 import { createClient } from '@/lib/supabase/server'
 import { matchGrants } from '@/app/actions/matching'
 import { generateShareLink } from '@/app/actions/share'
@@ -10,11 +8,6 @@ import { MatchList } from '@/components/grants/match-list'
 import { Card, CardContent } from '@/components/ui/card'
 
 export default async function ResultsPage() {
-  const session = await getSession()
-  if (!session.companyProfileId) {
-    redirect('/')
-  }
-
   // Check auth state
   const supabase = await createClient()
   const {
