@@ -71,7 +71,7 @@
 
 - [x] **EXPRT-01**: "Copiaza tot" copies all sections to clipboard
 - [x] **EXPRT-02**: "Descarca PDF" generates and downloads PDF with all sections
-- [x] **EXPRT-03**: "Trimite pe email" sends formatted application via Resend
+- [ ] **EXPRT-03**: "Trimite pe email" sends formatted application via Resend
 - [x] **EXPRT-04**: Unauthenticated users see account modal for PDF/email (copy works without account)
 - [x] **EXPRT-05**: Deadline reminder opt-in: "Notifica-ma cu 7 zile si 3 zile inainte"
 - [x] **EXPRT-06**: Required documents checklist with completion status shown
@@ -174,7 +174,7 @@
 | FNDTN-07 | Phase 1 | Complete |
 | GEN-01 | Phase 1 | Complete |
 | GEN-02 | Phase 1 | Complete |
-| GEN-03 | Phase 1 | Complete |
+| GEN-03 | Phase 9 | Pending |
 | PROF-01 | Phase 2 | Complete |
 | PROF-02 | Phase 2 | Complete |
 | PROF-03 | Phase 2 | Complete |
@@ -192,7 +192,7 @@
 | MATCH-02 | Phase 3 | Complete |
 | MATCH-03 | Phase 3 | Complete |
 | MATCH-04 | Phase 3 | Complete |
-| MATCH-05 | Phase 3 | Complete |
+| MATCH-05 | Phase 9 | Pending |
 | MATCH-06 | Phase 3 | Complete |
 | MATCH-07 | Phase 3 | Complete |
 | MATCH-08 | Phase 3 | Complete |
@@ -201,10 +201,10 @@
 | AUTH-03 | Phase 4 | Complete |
 | AUTH-04 | Phase 4 | Complete |
 | AUTH-05 | Phase 4 | Complete |
-| AUTH-06 | Phase 4 | Complete |
+| AUTH-06 | Phase 7 | Pending |
 | AUTH-07 | Phase 4 | Complete |
 | GEN-04 | Phase 4 | Complete |
-| WRITE-01 | Phase 5 | Complete |
+| WRITE-01 | Phase 7 | Pending |
 | WRITE-02 | Phase 5 | Complete |
 | WRITE-03 | Phase 5 | Complete |
 | WRITE-04 | Phase 5 | Complete |
@@ -219,14 +219,14 @@
 | WRITE-13 | Phase 5 | Complete |
 | EXPRT-01 | Phase 5 | Complete |
 | EXPRT-02 | Phase 5 | Complete |
-| EXPRT-03 | Phase 5 | Complete |
+| EXPRT-03 | Phase 7 | Pending |
 | EXPRT-04 | Phase 5 | Complete |
 | EXPRT-05 | Phase 5 | Complete |
 | EXPRT-06 | Phase 5 | Complete |
-| GEN-05 | Phase 5 | Complete |
+| GEN-05 | Phase 8 | Pending |
 | GEN-06 | Phase 5 | Complete |
 | ADMIN-01 | Phase 6 | Complete |
-| ADMIN-02 | Phase 6 | Complete |
+| ADMIN-02 | Phase 8 | Pending |
 | ADMIN-03 | Phase 6 | Complete |
 | ADMIN-04 | Phase 6 | Complete |
 | ADMIN-05 | Phase 6 | Complete |
@@ -240,7 +240,7 @@
 | AGRANT-07 | Phase 6 | Complete |
 | AGRANT-08 | Phase 6 | Complete |
 | AGRANT-09 | Phase 6 | Complete |
-| AGRANT-10 | Phase 6 | Complete |
+| AGRANT-10 | Phase 8 | Pending |
 | ANOTIF-01 | Phase 6 | Complete |
 | ANOTIF-02 | Phase 6 | Complete |
 | ANOTIF-03 | Phase 6 | Complete |
@@ -254,17 +254,22 @@
 
 **Coverage:**
 - v1 requirements: 86 total
+- Satisfied: 78
+- Pending (gap closure): 8
 - Mapped to phases: 86
 - Unmapped: 0
 
 | Phase | Requirement Count |
 |-------|-------------------|
-| Phase 1: Foundation and Validation | 10 |
+| Phase 1: Foundation and Validation | 9 |
 | Phase 2: Data Layer and Company Profiles | 13 |
-| Phase 3: Grant Matching | 8 |
-| Phase 4: Authentication and Profile Merge | 8 |
-| Phase 5: AI Grant Writer and Export | 21 |
-| Phase 6: Admin Tooling and Automation | 26 |
+| Phase 3: Grant Matching | 7 |
+| Phase 4: Authentication and Profile Merge | 7 |
+| Phase 5: AI Grant Writer and Export | 19 |
+| Phase 6: Admin Tooling and Automation | 24 |
+| Phase 7: Fix Apply Flow + Email Export | 3 |
+| Phase 8: Fix Notifications + Analytics | 3 |
+| Phase 9: Fix Zero-Grants Empty State | 2 |
 | **Total** | **86** |
 
 ---

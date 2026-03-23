@@ -18,6 +18,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants (completed 2026-03-21)
 - [x] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export (completed 2026-03-21)
 - [ ] **Phase 6: Admin Tooling and Automation** - Admin dashboard, grant CRUD with PDF extraction wizard, cron jobs, email notifications
+- [ ] **Phase 7: Fix Authenticated Apply Flow and Email Export** - Fix broken apply href, fix email recipient resolution (Gap Closure)
+- [ ] **Phase 8: Fix Notification Wiring and Analytics Events** - Fix publish notification schema, add landing funnel events (Gap Closure)
+- [ ] **Phase 9: Fix Zero-Grants Empty State** - Fix matchGrants error return, enable empty state UI (Gap Closure)
 
 ## Phase Details
 
@@ -129,11 +132,42 @@ Plans:
 - [x] 06-05-PLAN.md -- Cron jobs for deadline reminders, abandoned draft nudges, and analytics aggregation
 - [ ] 06-06-PLAN.md -- End-to-end verification checkpoint with full test suite and human UI review
 
+### Phase 7: Fix Authenticated Apply Flow and Email Export
+**Goal:** Authenticated users can click "Aplica acum" and reach the grant writer page, and email export resolves the recipient from auth context -- fixing the critical 404 and silent email failure.
+**Depends on**: Phase 4, Phase 5
+**Requirements**: AUTH-06, WRITE-01, EXPRT-03
+**Gap Closure:** Closes gaps from v1.0 audit (1 requirement, 1 integration, 1 flow)
+**Success Criteria** (what must be TRUE):
+  1. Clicking "Aplica acum" on a grant card as an authenticated user navigates to `/grants/{id}/write` (not 404)
+  2. "Trimite pe email" in the export bar sends the application to the authenticated user's email address
+  3. Unauthenticated users still see the account wall modal on "Aplica acum"
+
+### Phase 8: Fix Notification Wiring and Analytics Events
+**Goal:** Grant publish notifications reach users who opted in, and admin analytics funnel shows accurate counts for all stages -- fixing silent notification failures and empty funnel data.
+**Depends on**: Phase 6
+**Requirements**: AGRANT-10, GEN-05, ADMIN-02
+**Gap Closure:** Closes gaps from v1.0 audit (2 integration gaps)
+**Success Criteria** (what must be TRUE):
+  1. Publishing a grant triggers email notifications to profiles with `email_notifications = true`
+  2. Submitting an IDNO on the landing page writes an `idno_entered` analytics event
+  3. Submitting a business idea writes an `idea_entered` analytics event
+  4. Admin funnel dashboard shows non-zero counts for IDNO and idea stages
+
+### Phase 9: Fix Zero-Grants Empty State
+**Goal:** When no active grants exist, the results page shows a friendly empty state with a browse link instead of an error card -- fixing the unreachable dead code path.
+**Depends on**: Phase 3
+**Requirements**: MATCH-05, GEN-03
+**Gap Closure:** Closes gaps from v1.0 audit (1 flow gap)
+**Success Criteria** (what must be TRUE):
+  1. `matchGrants` returns `{ profile, scores: [], grants: [], totalGrants: 0 }` when no active grants exist
+  2. Results page renders the empty state UI with a link to `/grants/browse`
+  3. No error card is shown for the zero-grants scenario
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 > 2 > 3 > 4 > 5 > 6
-Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Phase 6 can proceed in parallel with Phase 5 (both depend on Phase 3).
+Phases execute in numeric order: 1 > 2 > 3 > 4 > 5 > 6 > 7 > 8 > 9
+Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Phase 6 can proceed in parallel with Phase 5 (both depend on Phase 3). Phases 7-9 are gap closure phases from the v1.0 audit.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -143,3 +177,6 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
 | 5. AI Grant Writer and Export | 4/4 | Complete   | 2026-03-21 |
 | 6. Admin Tooling and Automation | 5/6 | In progress | - |
+| 7. Fix Apply Flow + Email Export | 0/0 | Pending | - |
+| 8. Fix Notifications + Analytics | 0/0 | Pending | - |
+| 9. Fix Zero-Grants Empty State | 0/0 | Pending | - |
