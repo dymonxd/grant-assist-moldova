@@ -63,9 +63,13 @@ export default async function ResultsPage() {
   }
 
   // Generate share token for the share button
-  const shareResult = await generateShareLink()
-  const shareToken =
-    'shareToken' in shareResult ? shareResult.shareToken : null
+  let shareToken: string | null = null
+  try {
+    const shareResult = await generateShareLink()
+    shareToken = 'shareToken' in shareResult ? shareResult.shareToken : null
+  } catch {
+    // Non-critical — results still work without share link
+  }
 
   return (
     <ResultsLayout profile={result.profile} shareToken={shareToken}>

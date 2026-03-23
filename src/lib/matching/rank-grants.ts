@@ -37,12 +37,14 @@ export async function rankGrants(
     }
   })
 
-  const { output } = await generateText({
-    model: openai('gpt-5.4-nano'),
-    output: Output.array({
-      element: grantScoreSchema,
-    }),
-    system: `Esti un expert in granturi si finantari din Republica Moldova.
+  let output: GrantScore[] | undefined
+  try {
+    const result = await generateText({
+      model: openai('gpt-5.4-nano'),
+      output: Output.array({
+        element: grantScoreSchema,
+      }),
+      system: `Esti un expert in granturi si finantari din Republica Moldova.
 Analizeaza profilul companiei si evalueaza potrivirea cu fiecare grant.
 
 Reguli:
@@ -52,14 +54,25 @@ Reguli:
 - Tine cont de: eligibilitate, domeniu de activitate, forma juridica, locatie, nevoia de achizitie
 - Scorul reflecta cat de bine se potriveste profilul cu criteriile grantului
 - Foloseste eticheta grantului (grant_1, grant_2, etc.) ca grant_id in raspuns`,
-    prompt: `Profilul companiei:
+      prompt: `Profilul companiei:
 ${JSON.stringify(leanProfile, null, 2)}
 
 Granturile candidate:
 ${JSON.stringify(labeledCandidates, null, 2)}
 
 Evalueaza fiecare grant si returneaza scorul de potrivire.`,
-  })
+    })
+    output = result.output
+  } catch (error) {
+    console.error('AI ranking failed:', error)
+    // Return fallback scores (50 for all grants) when AI is unavailable
+    return candidates.map((c, i) => ({
+      grant_id: labelMap.get(`grant_${i + 1}`) ?? c.id,
+      score: 50,
+      explanation: 'Scorul nu a putut fi calculat automat. Verificati manual eligibilitatea.',
+      suggestions: [],
+    }))
+  }
 
   if (!output) return []
 
