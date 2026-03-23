@@ -18,9 +18,9 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 4: Authentication and Profile Merge** - Account wall, signup flow, anonymous-to-authenticated merge, saved grants (completed 2026-03-21)
 - [x] **Phase 5: AI Grant Writer and Export** - Section-by-section AI writing, rubric optimization, progress tracking, PDF/copy/email export (completed 2026-03-21)
 - [ ] **Phase 6: Admin Tooling and Automation** - Admin dashboard, grant CRUD with PDF extraction wizard, cron jobs, email notifications
-- [ ] **Phase 7: Fix Authenticated Apply Flow and Email Export** - Fix broken apply href, fix email recipient resolution (Gap Closure)
-- [ ] **Phase 8: Fix Notification Wiring and Analytics Events** - Fix publish notification schema, add landing funnel events (Gap Closure)
-- [ ] **Phase 9: Fix Zero-Grants Empty State** - Fix matchGrants error return, enable empty state UI (Gap Closure)
+- [x] **Phase 7: Fix Authenticated Apply Flow and Email Export** - Fix broken apply href, fix email recipient resolution (Gap Closure) (completed 2026-03-23)
+- [x] **Phase 8: Fix Notification Wiring and Analytics Events** - Fix publish notification schema, add landing funnel events (Gap Closure) (completed 2026-03-23)
+- [x] **Phase 9: Fix Zero-Grants Empty State** - Fix matchGrants error return, enable empty state UI (Gap Closure) (completed 2026-03-23)
 
 ## Phase Details
 
@@ -177,6 +177,6 @@ Note: Phase 4 can proceed in parallel with Phase 3 (both depend on Phase 2). Pha
 | 4. Authentication and Profile Merge | 3/3 | Complete | 2026-03-21 |
 | 5. AI Grant Writer and Export | 4/4 | Complete   | 2026-03-21 |
 | 6. Admin Tooling and Automation | 5/6 | In progress | - |
-| 7. Fix Apply Flow + Email Export | 0/0 | Pending | - |
-| 8. Fix Notifications + Analytics | 0/0 | Pending | - |
-| 9. Fix Zero-Grants Empty State | 0/0 | Pending | - |
+| 7. Fix Apply Flow + Email Export | 1/1 | Complete | 2026-03-23 |
+| 8. Fix Notifications + Analytics | 1/1 | Complete | 2026-03-23 |
+| 9. Fix Zero-Grants Empty State | 1/1 | Complete | 2026-03-23 |
