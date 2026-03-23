@@ -282,8 +282,8 @@ export async function getApplicationsList(): Promise<
 
     const result: ApplicationListItem[] = (apps ?? []).map((app) => {
       const updatedAt = new Date(app.updated_at as string)
-      const profile = app.profiles as { name: string; email: string } | null
-      const grant = app.grants as {
+      const profile = app.profiles as unknown as { name: string; email: string } | null
+      const grant = app.grants as unknown as {
         name: string
         deadline: string | null
       } | null
@@ -344,8 +344,8 @@ export async function sendStaleReminder(
       return { error: 'Aplicatia nu a fost gasita' }
     }
 
-    const profile = app.profiles as { name: string; email: string } | null
-    const grant = app.grants as {
+    const profile = app.profiles as unknown as { name: string; email: string } | null
+    const grant = app.grants as unknown as {
       name: string
       deadline: string | null
     } | null
