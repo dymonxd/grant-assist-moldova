@@ -539,13 +539,13 @@ export async function notifyMatchingProfiles(grantId: string) {
     return { error: 'Grantul nu a fost gasit' }
   }
 
-  // Query profiles with email_notifications enabled
-  const { data: profiles, error: profilesError } = await admin
-    .from('company_profiles')
-    .select('id, user_id, company_name, profiles(email)')
+  // Query profiles with email_notifications enabled (column is on profiles table, not company_profiles)
+  const { data: notifUsers, error: profilesError } = await admin
+    .from('profiles')
+    .select('id, email, company_profiles(id, company_name)')
     .eq('email_notifications', true)
 
-  if (profilesError || !profiles) {
+  if (profilesError || !notifUsers) {
     return { sent: 0 }
   }
 
@@ -556,12 +556,15 @@ export async function notifyMatchingProfiles(grantId: string) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   let sentCount = 0
 
-  for (const profile of profiles) {
+  for (const user of notifUsers) {
+    const email = user.email
+    if (!email) continue
+
     // Check for existing notification (prevent duplicates)
     const { data: existing } = await admin
       .from('notifications_log')
       .select('id')
-      .eq('user_id', profile.user_id)
+      .eq('user_id', user.id)
       .eq('grant_id', grantId)
       .eq('type', 'new_grant_match')
       .limit(1)
@@ -569,14 +572,6 @@ export async function notifyMatchingProfiles(grantId: string) {
     if (existing && existing.length > 0) {
       continue
     }
-
-    // Get email from profiles join
-    const profileData = Array.isArray(profile.profiles)
-      ? profile.profiles[0]
-      : profile.profiles
-    const email = (profileData as Record<string, unknown>)?.email as string | null
-
-    if (!email) continue
 
     try {
       // Format funding for email
@@ -621,7 +616,7 @@ export async function notifyMatchingProfiles(grantId: string) {
 
       // Log notification
       await admin.from('notifications_log').insert({
-        user_id: profile.user_id,
+        user_id: user.id,
         grant_id: grantId,
         type: 'new_grant_match',
         channel: 'email',

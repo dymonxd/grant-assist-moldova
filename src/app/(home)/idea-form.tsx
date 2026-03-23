@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import { inferFromIdea } from '@/app/actions/profile'
+import { trackEvent } from '@/app/actions/analytics'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
@@ -35,6 +36,7 @@ export function IdeaForm({
       if (result.error) {
         setError(result.error)
       } else {
+        trackEvent({ eventType: 'idea_entered' })
         onResult(result)
       }
     })

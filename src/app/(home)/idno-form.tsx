@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import { lookupCompany } from '@/app/actions/profile'
+import { trackEvent } from '@/app/actions/analytics'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
@@ -38,6 +39,7 @@ export function IdnoForm({
       if (result.error) {
         setError(result.error)
       } else {
+        trackEvent({ eventType: 'idno_entered' })
         onResult(result)
       }
     })
