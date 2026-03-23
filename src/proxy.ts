@@ -37,10 +37,10 @@ export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   if (pathname.startsWith('/admin')) {
-    // Redirect unauthenticated users to /login
+    // Redirect unauthenticated users to home (auth is via modal, no /login page)
     if (!data?.claims) {
       const url = request.nextUrl.clone()
-      url.pathname = '/login'
+      url.pathname = '/'
       return NextResponse.redirect(url)
     }
 
