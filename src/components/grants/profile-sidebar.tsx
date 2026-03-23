@@ -47,10 +47,10 @@ export function ProfileSidebar({
           />
         </div>
 
-        {profile.purchase_need && (
+        {typeof profile.purchase_need === 'string' && profile.purchase_need && (
           <FieldRow
             label="Necesitate achizitie"
-            value={profile.purchase_need as string}
+            value={profile.purchase_need}
           />
         )}
 

@@ -210,7 +210,7 @@ export async function saveSection(
   let textToSave = finalText
 
   const fieldSnapshot = (
-    section.application as { field_snapshot: Record<string, unknown>[] } | null
+    section.application as unknown as { field_snapshot: Record<string, unknown>[] } | null
   )?.field_snapshot
 
   if (fieldSnapshot && Array.isArray(fieldSnapshot)) {

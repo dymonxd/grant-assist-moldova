@@ -24,7 +24,7 @@ export function NotificationToggle({ initialValue }: NotificationToggleProps) {
       if ('error' in result) {
         // Revert on error
         setChecked(!newChecked)
-        setMessage({ text: result.error, isError: true })
+        setMessage({ text: result.error ?? 'Eroare necunoscuta', isError: true })
         return
       }
 

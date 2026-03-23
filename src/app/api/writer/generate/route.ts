@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     model: openai('gpt-5.4-nano'),
     system: buildSystemPrompt(),
     prompt: sectionPrompt,
-    maxTokens: 2000,
+    maxOutputTokens: 2000,
   })
 
   return result.toTextStreamResponse()

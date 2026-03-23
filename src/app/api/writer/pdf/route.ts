@@ -45,7 +45,8 @@ export async function POST(request: Request) {
     })
 
     // Render to buffer
-    const buffer = await renderToBuffer(element)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const buffer = await renderToBuffer(element as any)
 
     // Sanitize grant name for filename
     const sanitized = grantName
