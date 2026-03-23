@@ -160,7 +160,7 @@ describe('HeroCard', () => {
 
     const link = screen.getByRole('link', { name: /Aplica acum/i })
     expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/grants/grant-abc-123')
+    expect(link).toHaveAttribute('href', '/grants/grant-abc-123/write')
   })
 
   it('renders "Aplica acum" as a button when not authenticated', async () => {

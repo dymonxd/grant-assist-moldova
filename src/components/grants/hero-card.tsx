@@ -72,7 +72,7 @@ export function HeroCard({
       <CardFooter className="gap-2">
         {isAuthenticated ? (
           <Link
-            href={`/grants/${grant.id}`}
+            href={`/grants/${grant.id}/write`}
             className="inline-flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80"
           >
             Aplica acum

@@ -93,7 +93,7 @@ describe('MatchCard', () => {
 
     const link = screen.getByRole('link', { name: /Aplica acum/i })
     expect(link).toBeInTheDocument()
-    expect(link).toHaveAttribute('href', '/grants/grant-xyz-456')
+    expect(link).toHaveAttribute('href', '/grants/grant-xyz-456/write')
 
     const button = screen.getByRole('button', { name: /Salveaza/i })
     expect(button).not.toBeDisabled()
