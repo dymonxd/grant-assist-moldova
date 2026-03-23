@@ -118,9 +118,7 @@ export function ExportBar({
     setEmailLoading(true)
     setEmailStatus('idle')
     try {
-      // Use the authenticated user's email (passed via server action context)
       const result = await sendApplicationEmail(
-        '', // Server action will get email from auth context
         grantName,
         sections
       )

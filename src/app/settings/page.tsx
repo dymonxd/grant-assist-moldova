@@ -4,7 +4,12 @@ import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { NotificationToggle } from './notification-toggle'
 
-export default async function SettingsPage() {
+export default async function SettingsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ unsubscribed?: string }>
+}) {
+  const { unsubscribed } = await searchParams
   const supabase = await createClient()
 
   const {
@@ -34,6 +39,12 @@ export default async function SettingsPage() {
       </Link>
 
       <h1 className="mb-6 text-2xl font-bold">Setari</h1>
+
+      {unsubscribed === 'true' && (
+        <div className="mb-6 rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200">
+          Ai fost dezabonat cu succes de la notificarile prin email.
+        </div>
+      )}
 
       <Card>
         <CardHeader>

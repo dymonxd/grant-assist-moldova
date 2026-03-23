@@ -54,7 +54,7 @@ describe('SettingsPage', () => {
       error: null,
     })
 
-    await expect(SettingsPage()).rejects.toThrow(RedirectError)
+    await expect(SettingsPage({ searchParams: Promise.resolve({}) })).rejects.toThrow(RedirectError)
     expect(mockRedirect).toHaveBeenCalledWith('/')
   })
 
@@ -68,7 +68,7 @@ describe('SettingsPage', () => {
       error: null,
     })
 
-    const result = await SettingsPage()
+    const result = await SettingsPage({ searchParams: Promise.resolve({}) })
 
     expect(mockFrom).toHaveBeenCalledWith('profiles')
     expect(mockSelect).toHaveBeenCalledWith('email_notifications')
@@ -87,7 +87,7 @@ describe('SettingsPage', () => {
       error: { message: 'Not found' },
     })
 
-    const result = await SettingsPage()
+    const result = await SettingsPage({ searchParams: Promise.resolve({}) })
 
     // Should still render (defaults to true)
     expect(result).toBeTruthy()

@@ -11,7 +11,6 @@ import { createClient } from '@/lib/supabase/server'
  * For production, configure a verified domain in Resend dashboard.
  */
 export async function sendApplicationEmail(
-  _to: string,
   grantName: string,
   sections: Array<{ fieldLabel: string; finalText: string }>
 ): Promise<{ success: true } | { error: string }> {

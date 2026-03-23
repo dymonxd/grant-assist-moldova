@@ -33,8 +33,18 @@ export async function GET(request: NextRequest) {
 
   await disableEmailNotifications(userId)
 
-  return NextResponse.redirect(
-    new URL('/settings?unsubscribed=true', request.url),
-    302
+  return new NextResponse(
+    `<!DOCTYPE html>
+<html lang="ro">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dezabonat</title></head>
+<body style="font-family:system-ui,sans-serif;display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;background:#fafafa">
+<div style="text-align:center;max-width:400px;padding:2rem">
+<h1 style="font-size:1.25rem;margin-bottom:0.5rem">Ai fost dezabonat</h1>
+<p style="color:#666;margin-bottom:1.5rem">Nu vei mai primi notificari prin email de la GrantAssist.</p>
+<a href="/" style="color:#2563eb;text-decoration:none">Inapoi la pagina principala</a>
+</div>
+</body>
+</html>`,
+    { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
   )
 }

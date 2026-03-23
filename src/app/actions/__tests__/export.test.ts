@@ -47,7 +47,7 @@ describe('sendApplicationEmail', () => {
     })
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('', 'Grant IMM', sections)
+    const result = await sendApplicationEmail('Grant IMM', sections)
 
     expect(mockSend).toHaveBeenCalledOnce()
     const call = mockSend.mock.calls[0][0]
@@ -67,7 +67,7 @@ describe('sendApplicationEmail', () => {
     })
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('', 'Grant Test', sections)
+    const result = await sendApplicationEmail('Grant Test', sections)
 
     expect(result).toHaveProperty('error')
   })
@@ -79,7 +79,7 @@ describe('sendApplicationEmail', () => {
     })
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('', 'Grant Test', sections)
+    const result = await sendApplicationEmail('Grant Test', sections)
 
     expect(result).toEqual({ error: 'Trebuie sa fiti autentificat cu un email valid' })
     expect(mockSend).not.toHaveBeenCalled()
@@ -107,7 +107,7 @@ describe('sendApplicationEmail', () => {
     }))
 
     const { sendApplicationEmail } = await import('@/app/actions/export')
-    const result = await sendApplicationEmail('user@example.com', 'Grant Test', sections)
+    const result = await sendApplicationEmail('Grant Test', sections)
 
     expect(result).toEqual({ error: 'Serviciul de email nu este configurat' })
     expect(mockSend).not.toHaveBeenCalled()
