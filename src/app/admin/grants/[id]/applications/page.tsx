@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { requireAdmin } from '@/lib/auth/verify-admin'
 
 interface ApplicationsPageProps {
   params: Promise<{ id: string }>
@@ -8,6 +9,7 @@ interface ApplicationsPageProps {
 export default async function ApplicationsPage({
   params,
 }: ApplicationsPageProps) {
+  await requireAdmin()
   const { id } = await params
   const admin = createAdminClient()
 

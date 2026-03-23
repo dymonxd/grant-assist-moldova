@@ -6,6 +6,23 @@ import {
   buildSystemPrompt,
 } from '@/lib/ai/generate-section'
 
+// Simple in-memory rate limiter (per-IP, 10 requests per minute)
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT = 10
+const RATE_WINDOW_MS = 60_000
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now()
+  const entry = rateLimitMap.get(ip)
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(ip, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return true
+  }
+  if (entry.count >= RATE_LIMIT) return false
+  entry.count++
+  return true
+}
+
 /**
  * POST /api/writer/generate
  *
@@ -20,6 +37,15 @@ import {
  * Does NOT set Content-Length (blocks streaming).
  */
 export async function POST(req: Request) {
+  // Rate limiting
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? 'unknown'
+  if (!checkRateLimit(ip)) {
+    return NextResponse.json(
+      { error: 'Prea multe cereri. Incercati din nou in cateva minute.' },
+      { status: 429 }
+    )
+  }
+
   const body = await req.json()
 
   const {

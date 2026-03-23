@@ -1,4 +1,5 @@
 import { createAdminClient } from '@/lib/supabase/admin'
+import { requireAdmin } from '@/lib/auth/verify-admin'
 import { EditGrantForm } from './edit-grant-form'
 
 interface EditGrantPageProps {
@@ -6,6 +7,7 @@ interface EditGrantPageProps {
 }
 
 export default async function EditGrantPage({ params }: EditGrantPageProps) {
+  await requireAdmin()
   const { id } = await params
   const admin = createAdminClient()
 

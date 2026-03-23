@@ -597,7 +597,7 @@ export async function notifyMatchingProfiles(grantId: string) {
       await resend.emails.send({
         from: 'GrantAssist <onboarding@resend.dev>',
         to: [email],
-        subject: `Grant nou disponibil: ${grant.name}`,
+        subject: `Grant nou disponibil: ${String(grant.name).replace(/[\r\n]/g, ' ')}`,
         html: `
           <h2>Grant nou disponibil</h2>
           <p>Un grant care se potriveste profilului dvs. a fost publicat:</p>

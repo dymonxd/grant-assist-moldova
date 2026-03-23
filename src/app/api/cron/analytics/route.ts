@@ -10,14 +10,7 @@
 
 import { createAdminClient } from '@/lib/supabase/admin'
 
-// --- Cron auth validation ---
-
-function validateCronSecret(request: Request): boolean {
-  const authHeader = request.headers.get('authorization')
-  if (!authHeader) return false
-  const token = authHeader.replace('Bearer ', '')
-  return token === process.env.CRON_SECRET
-}
+import { validateCronSecret } from '@/lib/auth/validate-cron'
 
 // Funnel stage mapping: event_type -> stage name
 const EVENT_TO_STAGE: Record<string, string> = {

@@ -77,23 +77,28 @@ function ctaButton(text: string, url: string): string {
 
 // --- Subject line helpers ---
 
+/** Sanitize text for email subject lines — prevents header injection via CRLF */
+function sanitizeSubject(text: string): string {
+  return text.replace(/[\r\n]/g, ' ').trim()
+}
+
 export function getDeadlineReminderSubject(
   grantName: string,
   daysLeft: number
 ): string {
-  return `Memento: ${grantName} - ${daysLeft} zile ramase`
+  return `Memento: ${sanitizeSubject(grantName)} - ${daysLeft} zile ramase`
 }
 
 export function getAbandonedDraftSubject(grantName: string): string {
-  return `Cererea ta pentru ${grantName} asteapta`
+  return `Cererea ta pentru ${sanitizeSubject(grantName)} asteapta`
 }
 
 export function getGrantExpiringSubject(grantName: string): string {
-  return `${grantName} expira curand`
+  return `${sanitizeSubject(grantName)} expira curand`
 }
 
 export function getNewGrantMatchSubject(grantName: string): string {
-  return `Grant nou potrivit: ${grantName}`
+  return `Grant nou potrivit: ${sanitizeSubject(grantName)}`
 }
 
 // --- Template builders ---

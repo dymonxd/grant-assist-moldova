@@ -15,14 +15,7 @@ import {
 } from '@/lib/email/notification-emails'
 import { Resend } from 'resend'
 
-// --- Cron auth validation ---
-
-function validateCronSecret(request: Request): boolean {
-  const authHeader = request.headers.get('authorization')
-  if (!authHeader) return false
-  const token = authHeader.replace('Bearer ', '')
-  return token === process.env.CRON_SECRET
-}
+import { validateCronSecret } from '@/lib/auth/validate-cron'
 
 export async function GET(request: Request) {
   if (!validateCronSecret(request)) {

@@ -63,9 +63,8 @@ export async function POST(request: Request) {
       },
     })
   } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : 'Eroare la generarea PDF-ului'
-    return new Response(JSON.stringify({ error: message }), {
+    console.error('PDF generation error:', error)
+    return new Response(JSON.stringify({ error: 'Eroare la generarea PDF-ului' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     })
