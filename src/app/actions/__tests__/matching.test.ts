@@ -124,15 +124,20 @@ describe('matchGrants', () => {
     expect(mockFrom).toHaveBeenCalledWith('company_profiles')
   })
 
-  it('returns error when no active grants exist', async () => {
+  it('returns empty results when no active grants exist', async () => {
     mockSession.companyProfileId = 'profile-1'
     mockSingle.mockResolvedValue({ data: testProfile, error: null })
     mockGte.mockReturnValue({ data: [], error: null })
 
     const result = await matchGrants()
 
-    expect(result).toEqual({
-      error: 'Nu exista granturi active in acest moment',
+    expect(result).not.toHaveProperty('error')
+    expect(result).toMatchObject({
+      profile: testProfile,
+      scores: [],
+      grants: [],
+      totalGrants: 0,
+      filteredCount: 0,
     })
   })
 

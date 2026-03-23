@@ -46,7 +46,13 @@ export async function matchGrants(): Promise<
     .gte('deadline', new Date().toISOString())
 
   if (!grants || grants.length === 0) {
-    return { error: 'Nu exista granturi active in acest moment' }
+    return {
+      profile,
+      scores: [],
+      grants: [],
+      totalGrants: 0,
+      filteredCount: 0,
+    }
   }
 
   // 3. Pre-filter by eligibility rules (MATCH-01)

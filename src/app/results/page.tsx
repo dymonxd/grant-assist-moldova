@@ -4,6 +4,7 @@ import { createClient } from '@/lib/supabase/server'
 import { matchGrants } from '@/app/actions/matching'
 import { generateShareLink } from '@/app/actions/share'
 import { getSavedGrants } from '@/app/actions/saved-grants'
+import Link from 'next/link'
 import { ResultsLayout } from '@/components/grants/results-layout'
 import { MatchList } from '@/components/grants/match-list'
 import { Card, CardContent } from '@/components/ui/card'
@@ -50,6 +51,12 @@ export default async function ResultsPage() {
           <p className="mt-2 text-sm text-muted-foreground">
             Revino mai tarziu — adaugam granturi noi in mod regulat.
           </p>
+          <Link
+            href="/grants/browse"
+            className="mt-4 inline-block text-sm font-medium text-primary hover:underline"
+          >
+            Cauta in catalogul de granturi
+          </Link>
         </div>
       </ResultsLayout>
     )
