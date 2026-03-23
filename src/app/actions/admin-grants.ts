@@ -432,7 +432,8 @@ export async function uploadAndExtractPdf(formData: FormData) {
   }
 
   try {
-    const pdfParse = (await import('pdf-parse')).default
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const pdfParse = require('pdf-parse') as (buf: Buffer) => Promise<{ text: string }>
     const buffer = Buffer.from(await file.arrayBuffer())
     const { text } = await pdfParse(buffer)
 
